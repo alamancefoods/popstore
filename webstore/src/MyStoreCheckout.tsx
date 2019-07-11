@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {CardElement, injectStripe } from 'react-stripe-elements';
-import { Elements } from 'react-stripe-elements';
 import { devRootURL } from './utilities/rootURLS'
 
 class CheckoutForm extends Component<{stripe?: any}, {}> {

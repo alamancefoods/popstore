@@ -1,4 +1,4 @@
-export let popOrder = {
+let popOrder = {
   totalCount: 0,
   grapeCount: 0,
   orangeCount: 0,
@@ -17,7 +17,7 @@ export let popOrder = {
   papayaCount: 0
 }
 
-export let buttonList = [
+let buttonList = [
   'Grape',
   'Orange',
   'Blue Punch',
@@ -34,3 +34,9 @@ export let buttonList = [
   'Mojito',
   'Papaya'
 ]
+
+let pickedPopList: string[] = []
+
+let store = {popOrder, buttonList, pickedPopList}
+
+export default store;

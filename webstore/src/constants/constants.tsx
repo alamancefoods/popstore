@@ -1,22 +1,24 @@
-import { popOrder } from '../store/store'
-import { OrderInterface } from '../components/order/types'
+import { PopInterface } from './types'
 
-export const POP_DICTIONARY = (popOrder: OrderInterface ) => {
-  return ({
-    'Grape' : popOrder.grapeCount,
-    'Orange' : popOrder.orangeCount,
-    'Blue Punch' : popOrder.bluePunchCount,
-    'Lemon Lime' : popOrder.lemonLimeCount,
-    'Pina Colada' : popOrder.pinaColadaCount,
-    'Banana' : popOrder.bananaCount,
-    'Peach' : popOrder.peachCount,
-    'Cherry' : popOrder.cherryCount,
-    'Mango' : popOrder.mangoCount,
-    'Green Apple' : popOrder.greenAppleCount,
-    'Watermelon' : popOrder.watermelonCount,
-    'Strawberry' : popOrder.strawberryCount,
-    'Guava' : popOrder.guavaCount,
-    'Mojito' : popOrder.mojitoCount,
-    'Papaya' : popOrder.papayaCount
-  })
-};
+
+const POP_DICTIONARY: PopInterface = {
+    'Total' : 'totalCount',
+    'Grape' : 'grapeCount',
+    'Orange' : 'orangeCount',
+    'Blue Punch' : 'bluePunchCount',
+    'Lemon Lime' : 'lemonLimeCount',
+    'Pina Colada' : 'pinaColadaCount',
+    'Banana' : 'bananaCount',
+    'Peach' : 'peachCount',
+    'Cherry' : 'cherryCount',
+    'Mango' : 'mangoCount',
+    'Green Apple' : 'greenAppleCount',
+    'Watermelon' : 'watermelonCount',
+    'Strawberry' : 'strawberryCount',
+    'Guava' : 'guavaCount',
+    'Mojito' : 'mojitoCount',
+    'Papaya' : 'papayaCount'
+}
+
+export const TOTAL_POPS = POP_DICTIONARY['Total']
+export default POP_DICTIONARY

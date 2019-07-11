@@ -15,4 +15,5 @@ export interface OrderInterface {
   guavaCount: number
   mojitoCount: number;
   papayaCount: number;
+  [index: string]: number;
 }

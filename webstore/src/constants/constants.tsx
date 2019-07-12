@@ -21,4 +21,5 @@ const POP_DICTIONARY: PopInterface = {
 }
 
 export const TOTAL_POPS = POP_DICTIONARY['Total']
+export const MINIMUM_ORDER_SIZE = 5
 export default POP_DICTIONARY

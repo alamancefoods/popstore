@@ -1,37 +1,39 @@
 import React, { useState } from 'react';
 import store from '../../store/store'
-import  POP_DICTIONARY, { TOTAL_POPS } from '../../constants/constants'
+import  POP_DICTIONARY, { TOTAL_POPS, MINIMUM_ORDER_SIZE } from '../../constants/constants'
 import { OrderInterface } from './types'
 import OrderButton from './OrderButton'
 import OrderEntry from './OrderEntry'
 
-const Order: React.FC = () => {
+const OrderForm = ({toggleCheckout} : {toggleCheckout: () => void}) => {
 
   const [order, setOrder] = useState<OrderInterface>(store.popOrder)
   const [buttonList, setButtonList] = useState(store.buttonList)
   const [pickedPopList, setPickedPopList] = useState(store.pickedPopList)
 
 
+  let convertPopCountToCharge = (popCount: number, isCents: boolean) => {
+    let totalCharge: number
+    if(popCount < 50){
+      totalCharge = popCount * 25
+    }else{
+      totalCharge = popCount * 10
+    }
+    if(isCents){
+      return totalCharge
+    }else{
+      let centsCharge = totalCharge / 100
+      return Number(centsCharge).toFixed(2)
+    }
+  }
+
   let updateOrder = (numericChange: number, popFlavor: string) => {
-    //const changeDifference: number = numericChange - order[popFlavor]
-    //setOrder(order[TOTAL_POPS] = ORDER[TOTAL_POPS] + changeDifference)
-    //setOrder(order[popFlavor] = numericChange)
     const key: string = POP_DICTIONARY[popFlavor]
     const changeDifference: number = numericChange - order[key]
     const newTotal: number = order[TOTAL_POPS] + changeDifference
     setOrder(prevState => {
       return {...prevState, [key]: numericChange, [TOTAL_POPS]: newTotal}
     });
-  }
-
-  let incrementPop = (popFlavor: string) =>{
-    //ORDER[TOTAL_POPS]++
-    //ORDER[popFlavor]++
-  }
-
-  let decrementPop = (popFlavor: string) => {
-    //ORDER[TOTAL_POPS]--
-    //ORDER[popFlavor]--
   }
 
   let addPopToOrder =  (popFlavor: string) => {
@@ -49,6 +51,35 @@ const Order: React.FC = () => {
     setButtonList(buttonList => buttonList.concat([popFlavor]))
   }
 
+  const ToggleToCheckout = () => {
+    let checkoutGate = null
+    if(order.totalCount < 5){
+      checkoutGate = <p>5 Pop Minimum Required for Purchase</p>;
+    } else {
+      checkoutGate = <button onClick={() => toggleCheckout()}>Checkout</button>
+    }
+    return(
+      checkoutGate
+    )
+  }
+
+  const OrderMessage: React.FC = () => {
+    let message: string
+    switch(order.totalCount){
+      case 0:
+        message = 'Select your favorite popsicle flavor!'
+        break;
+      case 1:
+        message = "You've selected one, the journey's begun!"
+        break;
+      default:
+        message = `You've selected ${order.totalCount} pops!`
+    }
+
+    return(
+      <p>{message}</p>
+    )
+  }
 
 
   return(
@@ -64,13 +95,14 @@ const Order: React.FC = () => {
           popFlavor={pickedPop} updateOrder={updateOrder} removePopFromOrder={removePopFromOrder} popCount={order[POP_DICTIONARY[pickedPop]]}
         />
       )}
-    <button onClick={() => console.log(pickedPopList) }>popList</button>
-    <button onClick={() => console.log(buttonList) }>buttonList</button>
-    <button onClick={() => console.log(order) }>store</button>
-    {order.totalCount} Pops in All!
+      <OrderMessage />
+      <p>
+        Balance: ${convertPopCountToCharge(order[TOTAL_POPS], false)}
+      </p>
+      <ToggleToCheckout />
     </div>
   );
 };
 
 
-export default Order;
+export default OrderForm;

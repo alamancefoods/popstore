@@ -17,3 +17,25 @@ export interface OrderInterface {
   papayaCount: number;
   [index: string]: number;
 }
+
+export interface OrderEntryProps {
+  popFlavor: string;
+  updateOrder: (popCount: number, popFlavor: string) => void;
+  removePopFromOrder: (popFlavor: string) => void;
+  popCount: number;
+}
+
+export interface OrderFormProps {
+  toggleCheckout: () => void;
+  addPopToOrder: (popFlavor: string) => void;
+  updateOrder: (numericChange: number, popFlavor: string) => void;
+  removePopFromOrder: (popFlavor: string) => void;
+  convertPopCountToCharge: (popCount: number, isCents: boolean) => React.ReactText;
+  order: OrderInterface;
+  pickedPopList: string[];
+  buttonList: string[];
+}
+
+export interface OrderEntryValueTypes {
+  popCount: number;
+}

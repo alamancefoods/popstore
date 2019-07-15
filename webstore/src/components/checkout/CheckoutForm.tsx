@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import {CardElement, injectStripe } from 'react-stripe-elements';
+import { CheckoutFormProps } from './types'
 import { devRootURL } from '../../utilities/rootURLS'
 
-class CheckoutForm extends Component<{stripe?: any; toggleCheckout?: () => void;}, {}> {
+class CheckoutForm extends Component<CheckoutFormProps, {}> {
   constructor(props: any) {
     super(props);
     this.submit = this.submit.bind(this)

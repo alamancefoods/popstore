@@ -1,4 +1,5 @@
 import React from 'react';
+import { OrderEntryProps, OrderEntryValueTypes } from './types'
 import { Formik, FormikActions, Form, ErrorMessage, Field } from 'formik';
 import * as Yup from 'yup';
 
@@ -10,9 +11,6 @@ const OrderEntrySchema = Yup.object().shape({
   .lessThan(1000, 'No more than 1000 unique pops per order please!')
 })
 
-interface OrderEntryValues {
-  popCount: number
-}
 
 const OrderEntry = (
   {
@@ -20,12 +18,7 @@ const OrderEntry = (
     updateOrder,
     removePopFromOrder,
     popCount
-  } : {
-    popFlavor: string,
-    updateOrder: (popcount: number, popFlavor: string) => void,
-    removePopFromOrder: (popFlavor: string) => void,
-    popCount: number
-  }) => {
+  } : OrderEntryProps ) => {
 
 
     const EntryDeleteButton = () => (
@@ -40,7 +33,7 @@ const OrderEntry = (
           popCount: popCount,
         }}
         validationSchema={OrderEntrySchema}
-        onSubmit={(values: OrderEntryValues, actions: FormikActions<OrderEntryValues>)=> {
+        onSubmit={(values: OrderEntryValueTypes , actions: FormikActions<OrderEntryValueTypes>)=> {
           updateOrder(values.popCount, popFlavor);}}
       >
         {({ errors, touched }) => (
@@ -48,18 +41,18 @@ const OrderEntry = (
             <Field name="popCount" />
             <ErrorMessage name="popCount" />
             <button type="submit">Submit</button>
-            <p>{popCount} {popFlavor}'s</p>
+<p>{popCount} {popFlavor}'s</p>
           </Form>
-        )}
+)}
       </Formik>
-    )
+)
 
-    return(
-      <div>
-        <FormEntry />
-        <EntryDeleteButton />
-      </div>
-    )
+return(
+  <div>
+    <FormEntry />
+    <EntryDeleteButton />
+  </div>
+)
 }
 
 export default OrderEntry

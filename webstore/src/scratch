@@ -2,3 +2,25 @@
         <Elements>
           <CheckoutForm />
         </Elements>
+
+  
+  const RootComponent = () => {
+    if(isAtCheckout){
+      return(
+        <Elements>
+        </Elements>
+      )
+    }else{
+      return(
+        <OrderForm
+          toggleCheckout={toggleCheckout}
+          addPopToOrder={addPopToOrder}
+          updateOrder={updateOrder}
+          removePopFromOrder={removePopFromOrder}
+          convertPopCountToCharge={convertPopCountToCharge}
+          order={order}
+          pickedPopList={pickedPopList}
+          buttonList={buttonList}/>
+      )
+    }
+ }

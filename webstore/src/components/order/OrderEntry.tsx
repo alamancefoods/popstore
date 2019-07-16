@@ -7,7 +7,7 @@ const OrderEntrySchema = Yup.object().shape({
   popCount: Yup.number()
   .typeError('Please enter a numeric value!')
   .integer('Only whole numbers please!')
-  .positive("Let's stay positive!")
+  .positive("Please stick with positive values!")
   .lessThan(1000, 'No more than 1000 unique pops per order please!')
 })
 
@@ -30,7 +30,7 @@ const OrderEntry = (
     const FormEntry = () => (
       <Formik
         initialValues={{
-          popCount: popCount,
+          popCount: 0,
         }}
         validationSchema={OrderEntrySchema}
         onSubmit={(values: OrderEntryValueTypes , actions: FormikActions<OrderEntryValueTypes>)=> {
@@ -38,7 +38,7 @@ const OrderEntry = (
       >
         {({ errors, touched }) => (
           <Form>
-            <Field name="popCount" />
+            <Field name="popCount" placeholder="Enter Value"/>
             <ErrorMessage name="popCount" />
             <button type="submit">Submit</button>
 <p>{popCount} {popFlavor}'s</p>

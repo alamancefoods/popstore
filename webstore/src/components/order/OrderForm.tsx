@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import  POP_DICTIONARY, { TOTAL_POPS, MINIMUM_ORDER_SIZE } from '../../constants/constants'
-import { OrderInterface, OrderFormProps } from './types'
+import React from 'react';
+import  POP_DICTIONARY, { TOTAL_POPS } from '../../constants/constants'
+import { OrderFormProps } from './types'
 import OrderButton from './OrderButton'
 import OrderEntry from './OrderEntry'
 

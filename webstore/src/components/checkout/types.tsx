@@ -7,3 +7,26 @@ export interface CheckoutFormProps {
   order: OrderInterface;
   completePurchase: () => void;
 }
+
+export interface CheckoutEntryValueTypes {
+  email: string;
+  name: string;
+  city: string;
+  country: string;
+  state: string;
+  addressLineOne: string;
+  addressLineTwo: string;
+  postalCode: string;
+}
+
+export interface CheckoutSubmitFunctionType {
+  email: string,
+  city: string,
+  country: string,
+  state: string,
+  addressLineOne: string,
+  addressLineTwo: string,
+  postalCode: string
+}
+
+

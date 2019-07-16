@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import store from './store/store'
-import  POP_DICTIONARY, { TOTAL_POPS, BALANCE } from './constants/constants'
+import store from '../../store/store'
+import  POP_DICTIONARY, { TOTAL_POPS, BALANCE } from '../../constants/constants'
 import { Elements, StripeProvider } from 'react-stripe-elements';
-import  CheckoutForm  from './components/checkout/CheckoutForm'
-import OrderForm from './components/order/OrderForm'
-import { OrderInterface } from './components/order/types'
+import  CheckoutForm  from '../checkout/CheckoutForm'
+import OrderForm from '../order/OrderForm'
+import { OrderInterface } from '../order/types'
 
 
 const App: React.FC = () => {

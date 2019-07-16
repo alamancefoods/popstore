@@ -5,4 +5,5 @@ export interface CheckoutFormProps {
   stripe?: any;
   toggleCheckout: () => void;
   order: OrderInterface;
+  completePurchase: () => void;
 }

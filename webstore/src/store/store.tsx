@@ -1,4 +1,5 @@
 let popOrder = {
+  balance: 0,
   totalCount: 0,
   grapeCount: 0,
   orangeCount: 0,

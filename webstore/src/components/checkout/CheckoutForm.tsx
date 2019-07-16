@@ -10,15 +10,15 @@ class CheckoutForm extends Component<CheckoutFormProps, {}> {
   }
 
   async submit(ev: any){
-    let token = await this.props.stripe.createToken({name: 'Name'})
-    let payload = {token: token, order: {amount: 100, cherryCount: 100}}
+    let { token } = await this.props.stripe.createToken({name: 'Name'});
+    let payload = {token: token, order: this.props.order}
     let response = await fetch(`${devRootURL}/charge/`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(payload)
     });
-
-    if (response.ok) console.log('Purchase Complete!')
+    let myOk = await response.ok
+    if (myOk) this.props.completePurchase()
   }
 
 

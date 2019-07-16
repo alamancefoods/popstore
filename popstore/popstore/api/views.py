@@ -10,8 +10,6 @@ class Charge(APIView):
 
     def post(self, request, format=None):
         stripe.api_key = 'sk_test_zJXqsOns2HAr8LqrBv0SzMCD0083xQGsfr'
-        token = request.data['token']
-        order = request.data['order']
-        profile = request.data['profile']
-        print(request.data)
+        amount = request.data['token']
+        print(amount)
         return Response(status=status.HTTP_201_CREATED)

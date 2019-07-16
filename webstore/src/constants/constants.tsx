@@ -2,6 +2,7 @@ import { PopInterface } from './types'
 
 
 const POP_DICTIONARY: PopInterface = {
+    'Balance' : 'balance',
     'Total' : 'totalCount',
     'Grape' : 'grapeCount',
     'Orange' : 'orangeCount',
@@ -21,5 +22,6 @@ const POP_DICTIONARY: PopInterface = {
 }
 
 export const TOTAL_POPS = POP_DICTIONARY['Total']
+export const BALANCE = POP_DICTIONARY['Balance']
 export const MINIMUM_ORDER_SIZE = 5
 export default POP_DICTIONARY

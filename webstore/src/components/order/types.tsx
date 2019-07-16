@@ -1,4 +1,5 @@
 export interface OrderInterface {
+  balance: number;
   totalCount: number;
   grapeCount: number;
   orangeCount: number;

@@ -17,3 +17,16 @@ export interface PopInterface {
   'Papaya': string;
   [index: string]: string;
 }
+
+export type ThemeType = {
+  deviceType: string;
+  minWidth: number,
+  maxWidth: number,
+  orientation: "portrait" | "landscape" | undefined,
+  leftCol: string;
+  mainCol: string;
+  rightCol: string;
+  topRow: string;
+  mainRow: string;
+  bottomRow: string;
+}

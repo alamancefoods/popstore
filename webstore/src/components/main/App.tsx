@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import store from '../../store/store'
+import { TestButton } from './styles'
 import  POP_DICTIONARY, { TOTAL_POPS, BALANCE } from '../../constants/constants'
 import { Elements, StripeProvider } from 'react-stripe-elements';
 import  CheckoutForm  from '../checkout/CheckoutForm'
 import OrderForm from '../order/OrderForm'
 import { OrderInterface } from '../order/types'
+import QueryProvider from '../providers/QueryProvider'
 
 
 const App: React.FC = () => {
@@ -101,7 +103,9 @@ const App: React.FC = () => {
 
   return (
     <StripeProvider apiKey='pk_test_G0og7jUXcWI9WxiK1YUfgZKe00w9QSGkKy'>
-      <Root />
+      <QueryProvider>
+        <Root />
+      </QueryProvider>
     </StripeProvider>
   );
 }

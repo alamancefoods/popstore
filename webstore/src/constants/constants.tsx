@@ -135,9 +135,86 @@ export const MEDIA_QUERY_THEMES: Array<ThemeType> = [
     leftCol: '20%',
     mainCol: 'auto',
     rightCol: '20%',
-    topRow: '20%',
+    topRow: '120px',
     mainRow: 'auto',
     bottomRow: '15%'
   },
 ]
 
+export const BUTTON_THEMES = [
+  {
+    popFlavor:'Grape',
+    gridPosition: 1,
+    color: 'purple'
+  },
+  {
+    popFlavor: 'Orange',
+    gridPosition: 2,
+    color: 'orange'
+  },
+  {
+    popFlavor: 'Blue-Punch',
+    gridPosition: 3,
+    color: 'blue'
+  },
+  {
+    popFlavor: 'Lemon-Lime',
+    gridPosition: 4,
+    color: 'green'
+  },
+  {
+    popFlavor: 'Pina-Colada',
+    gridPosition: 5,
+    color: 'yellow'
+  },
+  {
+    popFlavor: 'Banana',
+    gridPosition: 6,
+    color: 'yellow'
+  },
+  {
+    popFlavor: 'Peach',
+    gridPosition: 7,
+    color: 'orange'
+  },
+  {
+    popFlavor: 'Cherry',
+    gridPosition: 8,
+    color: 'red'
+  },
+  {
+    popFlavor: 'Mango',
+    gridPosition: 9,
+    color: 'orange'
+  },
+  {
+    popFlavor: 'Green-Apple',
+    gridPosition: 10,
+    color: 'green'
+  },
+  {
+    popFlavor: 'Watermelon',
+    gridPosition: 11,
+    color: 'pink'
+  },
+  {
+    popFlavor: 'Strawberry',
+    gridPosition: 12,
+    color: 'pink'
+  },
+  {
+    popFlavor: 'Guava',
+    gridPosition: 13,
+    color: 'orange'
+  },
+  {
+    popFlavor: 'Mojito',
+    gridPosition: 14,
+    color: 'green'
+  },
+  {
+    popFlavor: 'Papaya',
+    gridPosition: 15,
+    color: 'Orange'
+  }
+]

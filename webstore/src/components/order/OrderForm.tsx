@@ -1,6 +1,7 @@
 import React from 'react';
 import  POP_DICTIONARY, { TOTAL_POPS } from '../../constants/constants'
 import { OrderFormProps } from './types'
+import { StyledButtonContainer, StyledEntryContainer} from '../../styles/order/OrderStyles'
 import OrderButton from './OrderButton'
 import OrderEntry from './OrderEntry'
 
@@ -13,7 +14,8 @@ const OrderForm = (
     convertPopCountToCharge,
     order,
     pickedPopList,
-    buttonList
+    buttonList,
+    className
   }: OrderFormProps) => {
 
   const ToggleToCheckout = () => {
@@ -48,16 +50,22 @@ const OrderForm = (
 
 
   return(
-    <div>
-      {buttonList.map((button) =>
-        <OrderButton
-          addPopToOrder={addPopToOrder}
-          popFlavor={button}
-        />
-      )}
+    <div className={className}>
+      <StyledButtonContainer>
+        {buttonList.map((button, index) =>
+          <OrderButton
+            addPopToOrder={addPopToOrder}
+            popFlavor={button}
+            index={index}
+          />
+        )}
+      </StyledButtonContainer>
       {pickedPopList.map((pickedPop) =>
         <OrderEntry
-          popFlavor={pickedPop} updateOrder={updateOrder} removePopFromOrder={removePopFromOrder} popCount={order[POP_DICTIONARY[pickedPop]]}
+          popFlavor={pickedPop}
+          updateOrder={updateOrder}
+          removePopFromOrder={removePopFromOrder}
+          popCount={order[POP_DICTIONARY[pickedPop]]}
         />
       )}
       <OrderMessage />

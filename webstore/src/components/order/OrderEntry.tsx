@@ -1,6 +1,7 @@
 import React from 'react';
 import { OrderEntryProps, OrderEntryValueTypes } from './types'
 import { Formik, FormikActions, Form, ErrorMessage, Field } from 'formik';
+import { StyledPopForm, StyledPopField, StyledPopFieldButton } from '../../styles/order/OrderStyles'
 import * as Yup from 'yup';
 
 const OrderEntrySchema = Yup.object().shape({
@@ -37,12 +38,12 @@ const OrderEntry = (
           updateOrder(values.popCount, popFlavor);}}
       >
         {({ errors, touched }) => (
-          <Form>
-            <Field name="popCount" placeholder="Enter Value"/>
+          <StyledPopForm className={'className'}>
+            <StyledPopField className={'className'} name="popCount" placeholder="Enter Value"/>
             <ErrorMessage name="popCount" />
-            <button type="submit">Submit</button>
+            <StyledPopFieldButton type="submit">Submit</StyledPopFieldButton>
 <p>{popCount} {popFlavor}'s</p>
-          </Form>
+          </StyledPopForm>
 )}
       </Formik>
 )

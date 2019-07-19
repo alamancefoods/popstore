@@ -1,7 +1,7 @@
 import React from 'react';
 import { MEDIA_QUERY_THEMES } from '../../constants/constants';
 import { ProviderPropTypes } from './types'
-import { GridContainer } from '../main/styles';
+import { GridContainer } from '../../styles/root/RootStyles'
 import MediaQuery from 'react-responsive';
 
 

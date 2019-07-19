@@ -35,6 +35,7 @@ export interface OrderFormProps {
   order: OrderInterface;
   pickedPopList: string[];
   buttonList: string[];
+  className?: string;
 }
 
 export interface OrderEntryValueTypes {

@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 import {CardElement, injectStripe } from 'react-stripe-elements';
 import { CheckoutFormProps, CheckoutEntryValueTypes } from './types'
 import { Formik, FormikActions, Form, ErrorMessage, Field } from 'formik';
-import { devRootURL } from '../../utilities/rootURLS'
-import { CheckoutEntrySchema } from './formSchemas'
+import { devRootURL } from '../../utilities/rootURLS';
+import { CheckoutEntrySchema } from './formSchemas';
+import { StyledFormPaper } from  '../../styles/checkout/CheckoutStyles';
 import { STATE_LIST } from '../../constants/constants'
 
 class CheckoutForm extends Component<CheckoutFormProps, {}> {
@@ -76,48 +77,50 @@ class CheckoutForm extends Component<CheckoutFormProps, {}> {
       >
         {({ errors, touched }) => (
           <Form>
-            <div>
-              <label>Name:</label>
-              <Field name="name" type="text" placeholder="Dr Archibald Pop MD" />
-              <ErrorMessage name="name" />
-            </div>
-            <div>
-              <label>Address Line One:</label>
-              <Field name="addressLineOne" type="text" placeholder="1616 Funfoods Lane"/>
-              <ErrorMessage name ="addressLineOne"/>
-            </div>
-            <div>
-              <label>Address Line Two:</label>
-              <Field name="addressLineTwo" type="text" placeholder="Room 132" />
-              <ErrorMessage name="addressLineTwo" />
-            </div>
-            <div>
-              <label>City:</label>
-              <Field name="city" type="text" placeholder="Burlington" />
-              <ErrorMessage name="city" />
-            </div>
-            <div>
-              <label>State:</label>
-              <Field component="select" name="state">
-                {STATE_LIST.map((state) =>
-                  <option value={state}>{state}</option>
-                )}
-              </Field>
-            </div>
-            <div>
-              <label>Zip Code:</label>
-              <Field name="postalCode" type="string" placeholder="27515" />
-              <ErrorMessage name="postalCode" />
-            </div>
-            <div>
-              <label>Email:</label>
-              <Field name="email" type="email" placeholder="docpop@popmail.com" />
-              <ErrorMessage name="email" />
-            </div>
-            <div>
-              <label>Payment:</label>
-              <CardElement hidePostalCode={true} />
-            </div>
+            <StyledFormPaper>
+              <div>
+                <label>Name:</label>
+                <Field name="name" type="text" placeholder="Dr Archibald Pop MD" />
+                <ErrorMessage name="name" />
+              </div>
+              <div>
+                <label>Address Line One:</label>
+                <Field name="addressLineOne" type="text" placeholder="1616 Funfoods Lane"/>
+                <ErrorMessage name ="addressLineOne"/>
+              </div>
+              <div>
+                <label>Address Line Two:</label>
+                <Field name="addressLineTwo" type="text" placeholder="Room 132" />
+                <ErrorMessage name="addressLineTwo" />
+              </div>
+              <div>
+                <label>City:</label>
+                <Field name="city" type="text" placeholder="Burlington" />
+                <ErrorMessage name="city" />
+              </div>
+              <div>
+                <label>State:</label>
+                <Field component="select" name="state">
+                  {STATE_LIST.map((state) =>
+                    <option value={state}>{state}</option>
+                  )}
+                </Field>
+              </div>
+              <div>
+                <label>Zip Code:</label>
+                <Field name="postalCode" type="string" placeholder="27515" />
+                <ErrorMessage name="postalCode" />
+              </div>
+              <div>
+                <label>Email:</label>
+                <Field name="email" type="email" placeholder="docpop@popmail.com" />
+                <ErrorMessage name="email" />
+              </div>
+              <div>
+                <label>Payment:</label>
+                <CardElement hidePostalCode={true} />
+              </div>
+            </StyledFormPaper>
             <button type="submit">Submit</button>
           </Form>
         )}
@@ -128,7 +131,7 @@ class CheckoutForm extends Component<CheckoutFormProps, {}> {
 
   render(){
     return(
-      <div className="checkout">
+      <div className={this.props.className}>
         <p>Would you like to complete the purchase?</p>
         <div>
           {this.checkoutFormEntry()}

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 
 export const GridContainer = styled.div`
   display: grid;
@@ -12,4 +12,13 @@ export const GridContainer = styled.div`
   [firstRowBreak] ${props => props.theme.mainRow}
   [secondRowBreak] ${props => props.theme.bottomRow}
   [bottom];
+`
+
+export const GlobalStyle = createGlobalStyle`
+  html {
+    overflow-y: scroll;
+}
+  body {
+    background-color: #aec6cf;
+}
 `

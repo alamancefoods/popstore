@@ -29,4 +29,5 @@ export type ThemeType = {
   topRow: string;
   mainRow: string;
   bottomRow: string;
+  entryContainerHeight: string;
 }

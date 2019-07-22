@@ -87,49 +87,53 @@ export const MEDIA_QUERY_THEMES: Array<ThemeType> = [
     leftCol: '0%',
     mainCol: '100%',
     rightCol: '0%',
-    topRow: '20%',
+    topRow: '75px',
     mainRow: 'auto',
-    bottomRow: '15%'
+    bottomRow: '15%',
+    entryContainerHeight: '100%',
   },
   {
     deviceType: 'mobileLandscape',
     minWidth: 481,
     maxWidth: 767,
     orientation: 'landscape',
-    leftCol: '15%',
+    leftCol: '20px',
     mainCol: 'auto',
-    rightCol: '15%',
-    topRow: '20%',
+    rightCol: '20px',
+    topRow: '20px',
     mainRow: 'auto',
-    bottomRow: '15%'
+    bottomRow: '15%',
+    entryContainerHeight: '60vh',
   },
   {
     deviceType: 'tabletPortait',
     minWidth: 768,
     maxWidth: 1024,
     orientation: 'portrait',
-    leftCol: '20%',
+    leftCol: '50px',
     mainCol: 'auto',
-    rightCol: '20%',
-    topRow: '20%',
+    rightCol: '50px',
+    topRow: '100px',
     mainRow: 'auto',
-    bottomRow: '15%'
+    bottomRow: '15%',
+    entryContainerHeight: '60vh',
   },
   {
     deviceType: 'tabletLandscape',
     minWidth: 768,
     maxWidth: 1024,
     orientation: 'landscape',
-    leftCol: '20%',
+    leftCol: '100px',
     mainCol: 'auto',
-    rightCol: '20%',
-    topRow: '20%',
+    rightCol: '75px',
+    topRow: '100px',
     mainRow: 'auto',
-    bottomRow: '15%'
+    bottomRow: '15%',
+    entryContainerHeight: '60vh',
   },
   {
     deviceType: 'desktop',
-    minWidth: 1024,
+    minWidth: 1025,
     maxWidth: 10000,
     orientation: 'landscape',
     leftCol: '20%',
@@ -137,84 +141,70 @@ export const MEDIA_QUERY_THEMES: Array<ThemeType> = [
     rightCol: '20%',
     topRow: '120px',
     mainRow: 'auto',
-    bottomRow: '15%'
+    bottomRow: '15%',
+    entryContainerHeight: '60vh',
   },
 ]
 
 export const BUTTON_THEMES = [
   {
     popFlavor:'Grape',
-    gridPosition: 1,
     color: 'purple'
   },
   {
     popFlavor: 'Orange',
-    gridPosition: 2,
     color: 'orange'
   },
   {
     popFlavor: 'Blue-Punch',
-    gridPosition: 3,
     color: 'blue'
   },
   {
     popFlavor: 'Lemon-Lime',
-    gridPosition: 4,
     color: 'green'
   },
   {
     popFlavor: 'Pina-Colada',
-    gridPosition: 5,
     color: 'yellow'
   },
   {
     popFlavor: 'Banana',
-    gridPosition: 6,
     color: 'yellow'
   },
   {
     popFlavor: 'Peach',
-    gridPosition: 7,
     color: 'orange'
   },
   {
     popFlavor: 'Cherry',
-    gridPosition: 8,
     color: 'red'
   },
   {
     popFlavor: 'Mango',
-    gridPosition: 9,
     color: 'orange'
   },
   {
     popFlavor: 'Green-Apple',
-    gridPosition: 10,
     color: 'green'
   },
   {
     popFlavor: 'Watermelon',
-    gridPosition: 11,
     color: 'pink'
   },
   {
     popFlavor: 'Strawberry',
-    gridPosition: 12,
     color: 'pink'
   },
   {
     popFlavor: 'Guava',
-    gridPosition: 13,
     color: 'orange'
   },
   {
     popFlavor: 'Mojito',
-    gridPosition: 14,
     color: 'green'
   },
   {
     popFlavor: 'Papaya',
-    gridPosition: 15,
     color: 'Orange'
   }
 ]

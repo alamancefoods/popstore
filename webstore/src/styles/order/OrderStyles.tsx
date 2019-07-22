@@ -33,15 +33,25 @@ export const StyledOrderButton = styled.button`
 export const StyledEntryContainer = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  align-items: baseline;
+  flex-wrap: wrap;
+  height: ${props => props.theme.entryContainerHeight};
 `
 
 export const StyledPopForm = styled(Form)`
   display: flex;
   flex-direction: row;
+  align-items: center;
 `
 
 export const StyledPopField = styled(Field)`
-  display: table;
+  display: flex;
+  height: 30px;
+  width: 30px;
+  border: 2px solid red;
+  border-radius: 30px;
+  text-align: center;
 `
 
 export const StyledPopFieldButton = styled.button`
@@ -51,6 +61,12 @@ export const StyledPopFieldButton = styled.button`
   padding: 0.25em 1em;
   border: 2px solid palevioletred;
   border-radius: 3px;
+`
+
+export const StyledStatusContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 `
 
 export default StyledOrderForm;

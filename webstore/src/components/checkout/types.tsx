@@ -6,6 +6,7 @@ export interface CheckoutFormProps {
   toggleCheckout: () => void;
   order: OrderInterface;
   completePurchase: () => void;
+  className: string;
 }
 
 export interface CheckoutEntryValueTypes {

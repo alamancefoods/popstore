@@ -3,7 +3,8 @@ import store from '../../store/store'
 import  POP_DICTIONARY, { TOTAL_POPS, BALANCE } from '../../constants/constants'
 import { Elements, StripeProvider } from 'react-stripe-elements';
 import  CheckoutForm  from '../checkout/CheckoutForm'
-import StyledOrderForm from '../../styles/order/StyledOrderForm'
+import StyledOrderForm from '../../styles/order/OrderStyles'
+import StyledCheckoutForm, { StyledCheckoutContainer } from '../../styles/checkout/CheckoutStyles'
 import { OrderInterface } from '../order/types'
 import QueryProvider from '../providers/QueryProvider'
 
@@ -73,13 +74,15 @@ const App: React.FC = () => {
         switch(isAtCheckout){
           case true:
             return(
-              <Elements>
-                <CheckoutForm
-                  toggleCheckout={toggleCheckout}
-                  order={order}
-                  completePurchase={completePurchase}
-                />
-              </Elements>
+              <StyledCheckoutContainer>
+                <Elements>
+                  <StyledCheckoutForm
+                    toggleCheckout={toggleCheckout}
+                    order={order}
+                    completePurchase={completePurchase}
+                  />
+                </Elements>
+              </StyledCheckoutContainer>
             )
           default:
             return(

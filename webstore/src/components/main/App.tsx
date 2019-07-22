@@ -5,8 +5,10 @@ import { Elements, StripeProvider } from 'react-stripe-elements';
 import  CheckoutForm  from '../checkout/CheckoutForm'
 import StyledOrderForm from '../../styles/order/OrderStyles'
 import StyledCheckoutForm, { StyledCheckoutContainer } from '../../styles/checkout/CheckoutStyles'
+import { ProtectedCheckoutRoute } from '../utilities/ProtectedRoute'
 import { OrderInterface } from '../order/types'
 import QueryProvider from '../providers/QueryProvider'
+import { Route, Switch } from 'react-router-dom';
 
 
 const App: React.FC = () => {
@@ -68,25 +70,15 @@ const App: React.FC = () => {
     setPurchaseComplete(isPurchaseComplete => !isPurchaseComplete)
   }
 
-  const Root = () => {
-    switch(isPurchaseComplete){
-      case false:
-        switch(isAtCheckout){
-          case true:
-            return(
-              <StyledCheckoutContainer>
-                <Elements>
-                  <StyledCheckoutForm
-                    toggleCheckout={toggleCheckout}
-                    order={order}
-                    completePurchase={completePurchase}
-                  />
-                </Elements>
-              </StyledCheckoutContainer>
-            )
-          default:
-            return(
-              <StyledOrderForm
+  return (
+    <StripeProvider apiKey='pk_test_G0og7jUXcWI9WxiK1YUfgZKe00w9QSGkKy'>
+      <QueryProvider>
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={props  =>
+              <StyledOrderForm {...props}
                 toggleCheckout={toggleCheckout}
                 addPopToOrder={addPopToOrder}
                 updateOrder={updateOrder}
@@ -95,18 +87,14 @@ const App: React.FC = () => {
                 order={order}
                 pickedPopList={pickedPopList}
                 buttonList={buttonList}/>
-            )
-        }
-      default:
-        return( <p>Thank you for your purchase!</p>)
-    }
-  }
-
-
-  return (
-    <StripeProvider apiKey='pk_test_G0og7jUXcWI9WxiK1YUfgZKe00w9QSGkKy'>
-      <QueryProvider>
-        <Root />
+            }
+          />
+          <ProtectedCheckoutRoute
+            toggleCheckout={toggleCheckout}
+            order={order}
+            completePurchase={completePurchase}
+          />
+        </Switch>
       </QueryProvider>
     </StripeProvider>
   );

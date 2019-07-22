@@ -1,9 +1,10 @@
 import React from 'react';
-import  POP_DICTIONARY, { TOTAL_POPS } from '../../constants/constants'
-import { OrderFormProps } from './types'
-import { StyledButtonContainer, StyledEntryContainer, StyledStatusContainer } from '../../styles/order/OrderStyles'
-import OrderButton from './OrderButton'
-import OrderEntry from './OrderEntry'
+import  POP_DICTIONARY, { TOTAL_POPS } from '../../constants/constants';
+import { OrderFormProps } from './types';
+import { StyledButtonContainer, StyledEntryContainer, StyledStatusContainer } from '../../styles/order/OrderStyles';
+import OrderButton from './OrderButton';
+import OrderEntry from './OrderEntry';
+import { NavLink } from 'react-router-dom';
 
 const OrderForm = (
   {
@@ -23,7 +24,7 @@ const OrderForm = (
     if(order.totalCount < 5){
       checkoutGate = <p>5 Pop Minimum Required for Purchase</p>;
     } else {
-      checkoutGate = <button onClick={() => toggleCheckout()}>Checkout</button>
+      checkoutGate = <NavLink to='/checkout'>Checkout</NavLink>
     }
     return(
       checkoutGate
@@ -67,6 +68,7 @@ const OrderForm = (
             updateOrder={updateOrder}
             removePopFromOrder={removePopFromOrder}
             popCount={order[POP_DICTIONARY[pickedPop]]}
+            order={order}
           />
         )}
       </StyledEntryContainer>

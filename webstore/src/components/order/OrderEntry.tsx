@@ -41,7 +41,7 @@ const OrderEntry = (
       >
         {({ errors, touched }) => (
           <StyledPopForm className={'className'}>
-            <StyledPopField className={'className'} name="popCount" placeholder="Enter Value"/>
+            <StyledPopField type="number" className={'className'} name="popCount" placeholder="0"/>
             <ErrorMessage name="popCount" />
             <StyledPopFieldButton type="submit">Submit</StyledPopFieldButton>
 <p>{popCount} {popFlavor}'s</p>

@@ -51,24 +51,26 @@ const OrderForm = (
 
 
   return(
-    <div className={className}>
+    <div key="dummy-key" className={className}>
       <StyledButtonContainer>
         {buttonList.map((button, index) =>
           <OrderButton
             addPopToOrder={addPopToOrder}
             popFlavor={button}
             index={index}
+            key={index}
           />
         )}
       </StyledButtonContainer>
       <StyledEntryContainer>
-        {pickedPopList.map((pickedPop) =>
+        {pickedPopList.map((pickedPop, index) =>
           <OrderEntry
             popFlavor={pickedPop}
             updateOrder={updateOrder}
             removePopFromOrder={removePopFromOrder}
             popCount={order[POP_DICTIONARY[pickedPop]]}
             order={order}
+            key={index}
           />
         )}
       </StyledEntryContainer>

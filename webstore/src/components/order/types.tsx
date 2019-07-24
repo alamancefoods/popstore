@@ -24,10 +24,10 @@ export interface OrderEntryProps {
   updateOrder: (popCount: number, popFlavor: string) => void;
   removePopFromOrder: (popFlavor: string) => void;
   popCount: number;
+  order: OrderInterface;
 }
 
 export interface OrderFormProps {
-  toggleCheckout: () => void;
   addPopToOrder: (popFlavor: string) => void;
   updateOrder: (numericChange: number, popFlavor: string) => void;
   removePopFromOrder: (popFlavor: string) => void;

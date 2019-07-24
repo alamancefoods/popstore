@@ -12,13 +12,17 @@ export const GridContainer = styled.div`
   [firstRowBreak] ${props => props.theme.mainRow}
   [secondRowBreak] ${props => props.theme.bottomRow}
   [bottom];
+  height: 100%;
 `
 
 export const GlobalStyle = createGlobalStyle`
-  html {
-    overflow-y: scroll;
+  html, body {
+    height: 100%;
 }
   body {
     background-color: #aec6cf;
+}
+  textarea {
+    resize: none
 }
 `

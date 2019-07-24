@@ -1,4 +1,5 @@
 import React from 'react';
+import POP_DICTIONARY, { TOTAL_POPS } from '../../constants/constants'
 import { OrderEntryProps, OrderEntryValueTypes } from './types'
 import { Formik, FormikActions, Form, ErrorMessage, Field } from 'formik';
 import { StyledPopForm, StyledPopField, StyledPopFieldButton } from '../../styles/order/OrderStyles'
@@ -18,7 +19,8 @@ const OrderEntry = (
     popFlavor,
     updateOrder,
     removePopFromOrder,
-    popCount
+    popCount,
+    order
   } : OrderEntryProps ) => {
 
 
@@ -31,7 +33,7 @@ const OrderEntry = (
     const FormEntry = () => (
       <Formik
         initialValues={{
-          popCount: 0,
+          popCount: order[POP_DICTIONARY[popFlavor]],
         }}
         validationSchema={OrderEntrySchema}
         onSubmit={(values: OrderEntryValueTypes , actions: FormikActions<OrderEntryValueTypes>)=> {
@@ -39,7 +41,7 @@ const OrderEntry = (
       >
         {({ errors, touched }) => (
           <StyledPopForm className={'className'}>
-            <StyledPopField className={'className'} name="popCount" placeholder="Enter Value"/>
+            <StyledPopField type="number" className={'className'} name="popCount" placeholder="0"/>
             <ErrorMessage name="popCount" />
             <StyledPopFieldButton type="submit">Submit</StyledPopFieldButton>
 <p>{popCount} {popFlavor}'s</p>

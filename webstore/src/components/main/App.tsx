@@ -1,20 +1,24 @@
 import React, { useState } from 'react';
 import store from '../../store/store'
 import  POP_DICTIONARY, { TOTAL_POPS, BALANCE } from '../../constants/constants'
-import { Elements, StripeProvider } from 'react-stripe-elements';
-import  CheckoutForm  from '../checkout/CheckoutForm'
+import { StripeProvider, Elements } from 'react-stripe-elements';
 import StyledOrderForm from '../../styles/order/OrderStyles'
-import StyledCheckoutForm, { StyledCheckoutContainer } from '../../styles/checkout/CheckoutStyles'
-import { OrderInterface } from '../order/types'
+import { TestStyle } from '../../styles/profile/ProfileStyles'
+import { ProtectedPaymentRoute, ProtectedProfileRoute } from '../utilities/ProtectedRoutes'
+import { OrderInterface } from '../order/types';
+import { ProfileInterface } from '../profile/types';
 import QueryProvider from '../providers/QueryProvider'
+import { Route, Switch, Redirect } from 'react-router-dom';
+import StyledProfileForm, { StyledProfileContainer } from '../../styles/profile/ProfileStyles'
+import StyledPaymentForm, { StyledPaymentContainer } from '../../styles/payment/PaymentStyles'
 
 
 const App: React.FC = () => {
-  const [isAtCheckout, setCheckout] = useState(false)
   const [order, setOrder] = useState<OrderInterface>(store.popOrder)
+  const [profile, setProfile] = useState<ProfileInterface>(store.customerProfile)
+  const [isProfileComplete, setProfileCompletion] = useState(false)
   const [buttonList, setButtonList] = useState(store.buttonList)
   const [pickedPopList, setPickedPopList] = useState(store.pickedPopList)
-  const [isPurchaseComplete, setPurchaseComplete] = useState(false)
 
 
   let convertPopCountToCharge = (popCount: number, isCents: boolean) => {
@@ -59,56 +63,60 @@ const App: React.FC = () => {
   }
 
 
-
-  const toggleCheckout: () => void = () => {
-    setCheckout(isAtCheckout => !isAtCheckout)
-  }
-
-  const completePurchase: () => void = () => {
-    setPurchaseComplete(isPurchaseComplete => !isPurchaseComplete)
-  }
-
-  const Root = () => {
-    switch(isPurchaseComplete){
-      case false:
-        switch(isAtCheckout){
-          case true:
-            return(
-              <StyledCheckoutContainer>
-                <Elements>
-                  <StyledCheckoutForm
-                    toggleCheckout={toggleCheckout}
-                    order={order}
-                    completePurchase={completePurchase}
-                  />
-                </Elements>
-              </StyledCheckoutContainer>
-            )
-          default:
-            return(
-              <StyledOrderForm
-                toggleCheckout={toggleCheckout}
-                addPopToOrder={addPopToOrder}
-                updateOrder={updateOrder}
-                removePopFromOrder={removePopFromOrder}
-                convertPopCountToCharge={convertPopCountToCharge}
-                order={order}
-                pickedPopList={pickedPopList}
-                buttonList={buttonList}/>
-            )
-        }
-      default:
-        return( <p>Thank you for your purchase!</p>)
-    }
-  }
-
-
   return (
-    <StripeProvider apiKey='pk_test_G0og7jUXcWI9WxiK1YUfgZKe00w9QSGkKy'>
       <QueryProvider>
-        <Root />
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={props  =>
+              <StyledOrderForm {...props}
+                addPopToOrder={addPopToOrder}
+                              updateOrder={updateOrder}
+                              removePopFromOrder={removePopFromOrder}
+                              convertPopCountToCharge={convertPopCountToCharge}
+                              order={order}
+                              pickedPopList={pickedPopList}
+                              buttonList={buttonList}/>
+            }
+          />
+          <Route
+            path="/checkout/shipping-details"
+            render={props =>
+              (order.totalCount >= 5)
+              ?
+              <StyledProfileForm {...props}
+                setProfile={setProfile}
+                setProfileCompletion={setProfileCompletion}
+                isProfileComplete={isProfileComplete}
+                profile={profile}
+              />
+              :
+              <Redirect to="/" />
+            }
+          />
+          <Route
+            path="/complete-purchase"
+            render={props =>
+              isProfileComplete
+              ?
+              <StripeProvider apiKey='pk_test_G0og7jUXcWI9WxiK1YUfgZKe00w9QSGkKy'>
+                <StyledPaymentContainer>
+                  <Elements>
+                    <StyledPaymentForm {...props}
+                      order={order}
+                      profile={profile}
+                    />
+                  </Elements>
+                </StyledPaymentContainer>
+              </StripeProvider>
+              :
+              <Redirect to="/checkout/shipping-details" />
+            }
+          />
+          <Redirect to="/" />
+        </Switch>
       </QueryProvider>
-    </StripeProvider>
   );
 }
 

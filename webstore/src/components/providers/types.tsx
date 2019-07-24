@@ -1,3 +1,4 @@
+
 export interface ProviderPropTypes {
-  children?: JSX.Element
+  children?: any;
 }

@@ -7,6 +7,7 @@ const StyledOrderForm = styled(props => <OrderForm {...props} />)`
   display: flex;
   flex-direction: column;
   grid-area: firstRowBreak / firstColBreak / bottom / secondColBreak;
+  height: 100%;
 `;
 
 

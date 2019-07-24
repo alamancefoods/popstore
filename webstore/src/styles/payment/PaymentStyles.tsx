@@ -1,22 +1,27 @@
 import React from 'react';
 import styled from 'styled-components';
-import CheckoutForm from '../../components/checkout/CheckoutForm';
+import PaymentForm from '../../components/payment/PaymentForm';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 
 
-export const StyledCheckoutContainer = styled.div`
+export const StyledPaymentContainer = styled.div`
   grid-area: firstRowBreak / firstColBreak / bottom / secondColBreak;
   display: flex;
   align-content: center;
   align-items: center;
 `;
 
-const StyledCheckoutForm = styled(props => <CheckoutForm {...props} />)`
+const StyledPaymentForm = styled(props => <PaymentForm {...props} />)`
   display: flex;
   flex-grow: 1;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+`
+
+export const StyledCardContainer = styled.div`
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
 `
 
 export const StyledFormPaper = styled.div`
@@ -26,6 +31,6 @@ export const StyledFormPaper = styled.div`
   padding: 10px;
 `
 
-export default StyledCheckoutForm;
+export default StyledPaymentForm;
 
 

@@ -1,0 +1,7 @@
+
+          <ProtectedProfileRoute
+            order={order}
+            setProfile={setProfile}
+            setProfileCompletion={setProfileCompletion}
+            isProfileComplete={isProfileComplete}
+          />

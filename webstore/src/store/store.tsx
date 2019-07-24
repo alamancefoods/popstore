@@ -18,6 +18,17 @@ let popOrder = {
   papayaCount: 0
 }
 
+let customerProfile = {
+  email: "",
+  name: "",
+  city: "",
+  country: "U.S.A.",
+  state: "NC",
+  addressLineOne: "",
+  addressLineTwo: "",
+  postalCode: ""
+}
+
 let buttonList = [
   'Grape',
   'Orange',
@@ -38,6 +49,6 @@ let buttonList = [
 
 let pickedPopList: string[] = []
 
-let store = {popOrder, buttonList, pickedPopList}
+let store = {popOrder, customerProfile, buttonList, pickedPopList}
 
 export default store;

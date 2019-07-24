@@ -13,6 +13,7 @@ export const StyledProfileContainer = styled.div`
 
 const StyledProfileForm = styled(props => <ProfileForm {...props} />)`
   display: flex;
+  grid-area: firstRowBreak / firstColBreak / bottom /secondColBreak;
   flex-grow: 1;
   flex-direction: column;
   justify-content: center;

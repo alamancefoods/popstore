@@ -11,14 +11,16 @@ const ProfileForm = (
   {
     setProfile,
     setProfileCompletion,
-    isProfileComplete
+    isProfileComplete,
+    profile,
+    className
   } : ProfileFormProps ) => {
 
     const ConditionalPaymentLink = () => {
       let linkHolder = null;
       if(isProfileComplete){
        linkHolder = (
-         <NavLink to="/checkout/complete-purchase">Complete Purchase</NavLink>
+         <NavLink to="/complete-purchase">Complete Purchase</NavLink>
        )
       }else{
         linkHolder = null
@@ -39,6 +41,7 @@ const ProfileForm = (
       addressLineTwo: string,
       postalCode: string
       ) => {
+        console.log('hello');
         setProfile(prevState => {return {...prevState,
                   email: email,
                   name: name,
@@ -57,27 +60,28 @@ const ProfileForm = (
         <div>
           <Formik
             initialValues={{
-              email: '',
-              name: '',
-              city: '',
-              country: '',
-              state: '',
-              addressLineOne: '',
-              addressLineTwo: '',
-              postalCode: '',
+              email: profile.email,
+              name: profile.name,
+              city: profile.city,
+              country: 'U.S.A.',
+              state: profile.state,
+              addressLineOne: profile.addressLineOne,
+              addressLineTwo: profile.addressLineTwo,
+              postalCode: profile.postalCode,
             }}
             validationSchema={ProfileEntrySchema}
-            onSubmit={(values: ProfileInterface, actions: FormikActions<ProfileInterface>) => {
-              updateProfile(
-                values.email,
-                values.name,
-                values.city,
-                values.country,
-                values.state,
-                values.addressLineOne,
-                values.addressLineTwo,
-                values.postalCode
-              );}}
+        onSubmit={(values: ProfileInterface, actions: FormikActions<ProfileInterface>) => {
+          updateProfile(
+            values.email,
+            values.name,
+            values.city,
+            values.country,
+            values.state,
+            values.addressLineOne,
+            values.addressLineTwo,
+            values.postalCode
+          )
+        }}
           >
             {({ errors, touched }) => (
               <Form>
@@ -130,8 +134,9 @@ const ProfileForm = (
     }
 
     return(
-      <div>
+      <div className={className}>
         <ProfileFormEntry />
+        <NavLink to="/">Return To Order</NavLink>
         <ConditionalPaymentLink />
       </div>
     )

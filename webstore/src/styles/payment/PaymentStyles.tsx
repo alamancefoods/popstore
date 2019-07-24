@@ -16,7 +16,12 @@ const StyledPaymentForm = styled(props => <PaymentForm {...props} />)`
   flex-grow: 1;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+`
+
+export const StyledCardContainer = styled.div`
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
 `
 
 export const StyledFormPaper = styled.div`

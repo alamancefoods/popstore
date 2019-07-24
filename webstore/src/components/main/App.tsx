@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import store from '../../store/store'
 import  POP_DICTIONARY, { TOTAL_POPS, BALANCE } from '../../constants/constants'
-import { StripeProvider } from 'react-stripe-elements';
+import { StripeProvider, Elements } from 'react-stripe-elements';
 import StyledOrderForm from '../../styles/order/OrderStyles'
 import { TestStyle } from '../../styles/profile/ProfileStyles'
 import { ProtectedPaymentRoute, ProtectedProfileRoute } from '../utilities/ProtectedRoutes'
 import { OrderInterface } from '../order/types';
 import { ProfileInterface } from '../profile/types';
 import QueryProvider from '../providers/QueryProvider'
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import StyledProfileForm, { StyledProfileContainer } from '../../styles/profile/ProfileStyles'
+import StyledPaymentForm, { StyledPaymentContainer } from '../../styles/payment/PaymentStyles'
 
 
 const App: React.FC = () => {
@@ -62,9 +64,8 @@ const App: React.FC = () => {
 
 
   return (
-    <StripeProvider apiKey='pk_test_G0og7jUXcWI9WxiK1YUfgZKe00w9QSGkKy'>
       <QueryProvider>
-        <div>
+        <Switch>
           <Route
             exact
             path="/"
@@ -79,21 +80,43 @@ const App: React.FC = () => {
                               buttonList={buttonList}/>
             }
           />
-          <ProtectedPaymentRoute
-            order={order}
-            profile={profile}
-            isProfileComplete={isProfileComplete}
-          />
           <Route
-            exact
-            path="/testpath"
+            path="/checkout/shipping-details"
             render={props =>
-              <p>hello!</p>
+              (order.totalCount >= 5)
+              ?
+              <StyledProfileForm {...props}
+                setProfile={setProfile}
+                setProfileCompletion={setProfileCompletion}
+                isProfileComplete={isProfileComplete}
+                profile={profile}
+              />
+              :
+              <Redirect to="/" />
             }
           />
-        </div>
+          <Route
+            path="/complete-purchase"
+            render={props =>
+              isProfileComplete
+              ?
+              <StripeProvider apiKey='pk_test_G0og7jUXcWI9WxiK1YUfgZKe00w9QSGkKy'>
+                <StyledPaymentContainer>
+                  <Elements>
+                    <StyledPaymentForm {...props}
+                      order={order}
+                      profile={profile}
+                    />
+                  </Elements>
+                </StyledPaymentContainer>
+              </StripeProvider>
+              :
+              <Redirect to="/checkout/shipping-details" />
+            }
+          />
+          <Redirect to="/" />
+        </Switch>
       </QueryProvider>
-    </StripeProvider>
   );
 }
 

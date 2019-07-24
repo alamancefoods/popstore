@@ -22,8 +22,8 @@ let customerProfile = {
   email: "",
   name: "",
   city: "",
-  country: "",
-  state: "",
+  country: "U.S.A.",
+  state: "NC",
   addressLineOne: "",
   addressLineTwo: "",
   postalCode: ""

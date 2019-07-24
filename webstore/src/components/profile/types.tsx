@@ -15,4 +15,6 @@ export interface ProfileFormProps {
   setProfile: React.Dispatch<React.SetStateAction<ProfileInterface>>;
   setProfileCompletion: React.Dispatch<React.SetStateAction<boolean>>;
   isProfileComplete: boolean;
+  profile: ProfileInterface;
+  className?: string;
 }

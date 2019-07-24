@@ -28,7 +28,6 @@ export interface OrderEntryProps {
 }
 
 export interface OrderFormProps {
-  toggleCheckout: () => void;
   addPopToOrder: (popFlavor: string) => void;
   updateOrder: (numericChange: number, popFlavor: string) => void;
   removePopFromOrder: (popFlavor: string) => void;

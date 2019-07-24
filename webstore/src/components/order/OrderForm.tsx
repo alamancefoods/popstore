@@ -8,7 +8,6 @@ import { NavLink } from 'react-router-dom';
 
 const OrderForm = (
   {
-    toggleCheckout,
     addPopToOrder,
     updateOrder,
     removePopFromOrder,
@@ -19,15 +18,15 @@ const OrderForm = (
     className
   }: OrderFormProps) => {
 
-  const ToggleToCheckout = () => {
-    let checkoutGate = null
+  const ConditionalProfileLink = () => {
+    let linkHolder = null
     if(order.totalCount < 5){
-      checkoutGate = <p>5 Pop Minimum Required for Purchase</p>;
+      linkHolder = <p>5 Pop Minimum Required for Purchase</p>;
     } else {
-      checkoutGate = <NavLink to='/checkout'>Checkout</NavLink>
+      linkHolder = <NavLink to='/checkout/shipping-details'>Checkout</NavLink>
     }
     return(
-      checkoutGate
+      linkHolder
     )
   }
 
@@ -79,7 +78,7 @@ const OrderForm = (
         <p>
           Balance: ${convertPopCountToCharge(order[TOTAL_POPS], false)}
         </p>
-        <ToggleToCheckout />
+        <ConditionalProfileLink />
       </StyledStatusContainer>
     </div>
   );

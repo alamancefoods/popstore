@@ -1,8 +1,15 @@
 import { OrderInterface } from '../order/types';
-import { StyledComponent } from 'styled-components'
+import { ProfileInterface } from '../profile/types';
 
-export interface ProtectedCheckoutRouteProps {
-  toggleCheckout: () => void;
+export interface ProtectedProfileRouteProps{
   order: OrderInterface;
-  completePurchase: () => void;
+  setProfile: React.Dispatch<React.SetStateAction<ProfileInterface>>;
+  setProfileCompletion: React.Dispatch<React.SetStateAction<boolean>>;
+  isProfileComplete: boolean;
+}
+
+export interface ProtectedPaymentRouteProps {
+  order: OrderInterface;
+  profile: ProfileInterface;
+  isProfileComplete: boolean;
 }

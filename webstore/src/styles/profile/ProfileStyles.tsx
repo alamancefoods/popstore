@@ -1,17 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
-import CheckoutForm from '../../components/checkout/CheckoutForm';
+import ProfileForm from '../../components/profile/ProfileForm';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 
 
-export const StyledCheckoutContainer = styled.div`
+export const StyledProfileContainer = styled.div`
   grid-area: firstRowBreak / firstColBreak / bottom / secondColBreak;
   display: flex;
   align-content: center;
   align-items: center;
 `;
 
-const StyledCheckoutForm = styled(props => <CheckoutForm {...props} />)`
+const StyledProfileForm = styled(props => <ProfileForm {...props} />)`
   display: flex;
   flex-grow: 1;
   flex-direction: column;
@@ -26,6 +26,9 @@ export const StyledFormPaper = styled.div`
   padding: 10px;
 `
 
-export default StyledCheckoutForm;
+export const TestStyle = styled.div`
+  grid-area: firstRowBreak / firstColBreak / bottom / secondColBreak;
+  display: flex;
+`
 
-
+export default StyledProfileForm;

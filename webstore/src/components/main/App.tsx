@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
 import store from '../../store/store'
 import  POP_DICTIONARY, { TOTAL_POPS, BALANCE } from '../../constants/constants'
-import { Elements, StripeProvider } from 'react-stripe-elements';
-import  CheckoutForm  from '../checkout/CheckoutForm'
+import { StripeProvider } from 'react-stripe-elements';
 import StyledOrderForm from '../../styles/order/OrderStyles'
-import StyledCheckoutForm, { StyledCheckoutContainer } from '../../styles/checkout/CheckoutStyles'
-import { ProtectedCheckoutRoute } from '../utilities/ProtectedRoute'
-import { OrderInterface } from '../order/types'
+import { TestStyle } from '../../styles/profile/ProfileStyles'
+import { ProtectedPaymentRoute, ProtectedProfileRoute } from '../utilities/ProtectedRoutes'
+import { OrderInterface } from '../order/types';
+import { ProfileInterface } from '../profile/types';
 import QueryProvider from '../providers/QueryProvider'
 import { Route, Switch } from 'react-router-dom';
 
 
 const App: React.FC = () => {
-  const [isAtCheckout, setCheckout] = useState(false)
   const [order, setOrder] = useState<OrderInterface>(store.popOrder)
+  const [profile, setProfile] = useState<ProfileInterface>(store.customerProfile)
+  const [isProfileComplete, setProfileCompletion] = useState(false)
   const [buttonList, setButtonList] = useState(store.buttonList)
   const [pickedPopList, setPickedPopList] = useState(store.pickedPopList)
-  const [isPurchaseComplete, setPurchaseComplete] = useState(false)
 
 
   let convertPopCountToCharge = (popCount: number, isCents: boolean) => {
@@ -61,40 +61,37 @@ const App: React.FC = () => {
   }
 
 
-
-  const toggleCheckout: () => void = () => {
-    setCheckout(isAtCheckout => !isAtCheckout)
-  }
-
-  const completePurchase: () => void = () => {
-    setPurchaseComplete(isPurchaseComplete => !isPurchaseComplete)
-  }
-
   return (
     <StripeProvider apiKey='pk_test_G0og7jUXcWI9WxiK1YUfgZKe00w9QSGkKy'>
       <QueryProvider>
-        <Switch>
+        <div>
           <Route
             exact
             path="/"
             render={props  =>
               <StyledOrderForm {...props}
-                toggleCheckout={toggleCheckout}
                 addPopToOrder={addPopToOrder}
-                updateOrder={updateOrder}
-                removePopFromOrder={removePopFromOrder}
-                convertPopCountToCharge={convertPopCountToCharge}
-                order={order}
-                pickedPopList={pickedPopList}
-                buttonList={buttonList}/>
+                              updateOrder={updateOrder}
+                              removePopFromOrder={removePopFromOrder}
+                              convertPopCountToCharge={convertPopCountToCharge}
+                              order={order}
+                              pickedPopList={pickedPopList}
+                              buttonList={buttonList}/>
             }
           />
-          <ProtectedCheckoutRoute
-            toggleCheckout={toggleCheckout}
+          <ProtectedPaymentRoute
             order={order}
-            completePurchase={completePurchase}
+            profile={profile}
+            isProfileComplete={isProfileComplete}
           />
-        </Switch>
+          <Route
+            exact
+            path="/testpath"
+            render={props =>
+              <p>hello!</p>
+            }
+          />
+        </div>
       </QueryProvider>
     </StripeProvider>
   );

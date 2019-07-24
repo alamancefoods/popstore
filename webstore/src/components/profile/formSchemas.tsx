@@ -2,7 +2,7 @@ import * as Yup from 'yup';
 
 const zip =  /(^\d{5}$)|(^\d{5}-\d{4}$)/
 
-export const CheckoutEntrySchema = Yup.object().shape({
+export const ProfileEntrySchema = Yup.object().shape({
   email: Yup.string()
             .email('Please enter a valid email address.'),
   city: Yup.string()

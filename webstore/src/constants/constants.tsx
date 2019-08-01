@@ -4,21 +4,21 @@ import { PopInterface, ThemeType } from './types'
 const POP_DICTIONARY: PopInterface = {
     'Balance' : 'balance',
     'Total' : 'totalCount',
-    'Grape' : 'grapeCount',
-    'Orange' : 'orangeCount',
-    'Blue Punch' : 'bluePunchCount',
-    'Lemon Lime' : 'lemonLimeCount',
-    'Pina Colada' : 'pinaColadaCount',
-    'Banana' : 'bananaCount',
-    'Peach' : 'peachCount',
-    'Cherry' : 'cherryCount',
-    'Mango' : 'mangoCount',
-    'Green Apple' : 'greenAppleCount',
-    'Watermelon' : 'watermelonCount',
-    'Strawberry' : 'strawberryCount',
-    'Guava' : 'guavaCount',
-    'Mojito' : 'mojitoCount',
-    'Papaya' : 'papayaCount'
+    'Grape' : 'grape',
+    'Orange' : 'orange',
+    'Blue Punch' : 'bluePunch',
+    'Lemon Lime' : 'lemonLime',
+    'Pina Colada' : 'pinaColada',
+    'Banana' : 'banana',
+    'Peach' : 'peach',
+    'Cherry' : 'cherry',
+    'Mango' : 'mango',
+    'Green Apple' : 'greenApple',
+    'Watermelon' : 'watermelon',
+    'Strawberry' : 'strawberry',
+    'Guava' : 'guava',
+    'Mojito' : 'mojito',
+    'Papaya' : 'papaya'
 }
 
 export const STATE_LIST: string[] = [

@@ -12,6 +12,7 @@ pycountry = "^18.12"
 djangorestframework = "^3.9"
 braintree = "^3.55"
 stripe = "^2.32"
+djangorestframework-camel-case = "^1.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^3.0"

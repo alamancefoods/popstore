@@ -1,21 +1,21 @@
 let popOrder = {
   balance: 0,
   totalCount: 0,
-  grapeCount: 0,
-  orangeCount: 0,
-  bluePunchCount: 0,
-  lemonLimeCount: 0,
-  pinaColadaCount: 0,
-  bananaCount: 0,
-  peachCount: 0,
-  cherryCount: 0,
-  mangoCount: 0,
-  greenAppleCount: 0,
-  watermelonCount: 0,
-  strawberryCount: 0,
-  guavaCount: 0,
-  mojitoCount: 0,
-  papayaCount: 0
+  grape: 0,
+  orange: 0,
+  bluePunch: 0,
+  lemonLime: 0,
+  pinaColada: 0,
+  banana: 0,
+  peach: 0,
+  cherry: 0,
+  mango: 0,
+  greenApple: 0,
+  watermelon: 0,
+  strawberry: 0,
+  guava: 0,
+  mojito: 0,
+  papaya: 0
 }
 
 let customerProfile = {

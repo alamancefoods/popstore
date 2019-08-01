@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'api.apps.ApiConfig'
 ]
 
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -86,6 +87,15 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'popstore.wsgi.application'
+
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': (
+        'djangorestframework_camel_case.render.CamelCaseJSONRenderer',
+        ),
+    'DEFAULT_PARSER_CLASSES': (
+        'djangorestframework_camel_case.parser.CamelCaseJSONParser',
+        )
+}
 
 
 # Database

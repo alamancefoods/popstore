@@ -8,6 +8,10 @@ class Charge(models.Model):
     order_id = models.CharField(max_length = 255)
     postal_code = models.CharField(max_length = 5)
     email = models.EmailField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+    fulfilled = models.BooleanField(default=False)
+    disputed = models.BooleanField(default=False)
+    refunded = models.BooleanField(default=False)
 
 class Order(models.Model):
     charge = models.ForeignKey(Charge, on_delete=models.CASCADE)

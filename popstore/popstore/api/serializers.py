@@ -18,7 +18,8 @@ class OrderSerializer(serializers.ModelSerializer):
             'watermelon', 'strawberry', 'guava', 'mojito', 'papaya'
                   ]
 
-        def create(self, validated_data):
-            charge_data = validated_data.pop('charge')
-            order = Order.objects.create(**validated_data)
-            Charge.object.create(order=order, **charge_data)
+    def create(self, validated_data):
+        charge_data = validated_data.pop('charge')
+        charge_entry = Charge.objects.create(**charge_data)
+        order = Order.objects.create(charge=charge_entry, **validated_data)
+        return order

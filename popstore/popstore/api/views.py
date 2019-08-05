@@ -3,6 +3,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from api.serializers import OrderSerializer
+from api.email_utility import EmailDispatch
 import stripe
 
 # Create your views here.
@@ -49,15 +50,14 @@ class Charge(APIView):
         serializer = OrderSerializer(data=order_db_entry)
         if(serializer.is_valid()):
             serializer.save()
+            email = EmailDispatch(order, profile)
+            email.send_message()
         else:
             print('Booo!')
-
-        print(charge['id'])
-        print(order_db_entry)
-
 
         ## Fill out the charge object more, then save the id, along with the order, to our database.
 
         return Response(status=status.HTTP_201_CREATED)
+
 
 

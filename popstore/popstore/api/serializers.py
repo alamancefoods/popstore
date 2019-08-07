@@ -4,7 +4,10 @@ from api.models import Charge, Order
 class ChargeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Charge
-        fields = ['order_id', 'postal_code', 'email']
+        fields = [
+            'order_id', 'name', 'address_line_one', 'address_line_two',
+            'city', 'state', 'postal_code', 'email'
+            ]
 
 
 class OrderSerializer(serializers.ModelSerializer):

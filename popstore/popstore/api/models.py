@@ -6,6 +6,11 @@ import re
 
 class Charge(models.Model):
     order_id = models.CharField(max_length = 255)
+    name = models.CharField(max_length = 255)
+    address_line_one = models.CharField(max_length = 255)
+    address_line_two = models.CharField(max_length = 40)
+    city = models.CharField(max_length = 255)
+    state = models.CharField(max_length = 2)
     postal_code = models.CharField(max_length = 5)
     email = models.EmailField()
     timestamp = models.DateTimeField(auto_now_add=True)

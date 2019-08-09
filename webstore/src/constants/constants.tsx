@@ -2,23 +2,23 @@ import { PopInterface, ThemeType } from './types'
 
 
 const POP_DICTIONARY: PopInterface = {
-    'Balance' : 'balance',
-    'Total' : 'totalCount',
-    'Grape' : 'grape',
-    'Orange' : 'orange',
-    'Blue Punch' : 'bluePunch',
-    'Lemon Lime' : 'lemonLime',
-    'Pina Colada' : 'pinaColada',
-    'Banana' : 'banana',
-    'Peach' : 'peach',
-    'Cherry' : 'cherry',
-    'Mango' : 'mango',
-    'Green Apple' : 'greenApple',
-    'Watermelon' : 'watermelon',
-    'Strawberry' : 'strawberry',
-    'Guava' : 'guava',
-    'Mojito' : 'mojito',
-    'Papaya' : 'papaya'
+  'Balance' : 'balance',
+  'Total' : 'totalCount',
+  'Grape' : 'grape',
+  'Orange' : 'orange',
+  'Blue Punch' : 'bluePunch',
+  'Lemon Lime' : 'lemonLime',
+  'Pineapple' : 'pineapple',
+  'Banana' : 'banana',
+  'Coconut' : 'coconut',
+  'Cherry' : 'cherry',
+  'Mango' : 'mango',
+  'Green Apple' : 'greenApple',
+  'Watermelon' : 'watermelon',
+  'Strawberry' : 'strawberry',
+  'Guava' : 'guava',
+  'Mojito' : 'mojito',
+  'Papaya' : 'papaya'
 }
 
 export const STATE_LIST: string[] = [
@@ -90,7 +90,8 @@ export const MEDIA_QUERY_THEMES: Array<ThemeType> = [
     topRow: '0%',
     mainRow: '100%',
     bottomRow: '0%',
-    entryContainerHeight: '100%'
+    entryContainerHeight: '100%',
+    isPortrait: true
   },
   {
     deviceType: 'mobileLandscape',
@@ -104,6 +105,7 @@ export const MEDIA_QUERY_THEMES: Array<ThemeType> = [
     mainRow: 'auto',
     bottomRow: '15%',
     entryContainerHeight: '60vh',
+    isPortrait: false
   },
   {
     deviceType: 'tabletPortait',
@@ -117,6 +119,7 @@ export const MEDIA_QUERY_THEMES: Array<ThemeType> = [
     mainRow: 'auto',
     bottomRow: '15%',
     entryContainerHeight: '60vh',
+    isPortrait: true
   },
   {
     deviceType: 'desktop',
@@ -130,6 +133,7 @@ export const MEDIA_QUERY_THEMES: Array<ThemeType> = [
     mainRow: 'auto',
     bottomRow: '15%',
     entryContainerHeight: '60vh',
+    isPortrait: false
   },
 ]
 
@@ -151,7 +155,7 @@ export const BUTTON_THEMES = [
     color: 'green'
   },
   {
-    popFlavor: 'Pina-Colada',
+    popFlavor: 'Pineapple',
     color: 'yellow'
   },
   {
@@ -159,8 +163,8 @@ export const BUTTON_THEMES = [
     color: 'yellow'
   },
   {
-    popFlavor: 'Peach',
-    color: 'orange'
+    popFlavor: 'Coconut',
+    color: 'white'
   },
   {
     popFlavor: 'Cherry',
@@ -193,5 +197,5 @@ export const BUTTON_THEMES = [
   {
     popFlavor: 'Papaya',
     color: 'Orange'
-  }
+}
 ]

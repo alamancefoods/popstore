@@ -3,6 +3,19 @@ import styled from 'styled-components';
 import OrderForm from '../../components/order/OrderForm'
 import { Form, Field, ErrorMessage } from 'formik';
 
+const portraitGrid=`
+  "Strawberry Orange Blue-Punch"
+  "Grape Watermelon Lemon-Lime"
+  "Cherry Pineapple Guava"
+  "Mojito Papaya Mango"
+  "Coconut Green-Apple Banana"
+`
+
+const landscapeGrid=`
+  "Strawberry Orange Blue-Punch Grape Watermelon"
+  "Lemon-Lime Cherry Pineapple Guava Mojito"
+  "Papaya Mango Coconut Green-Apple Banana"
+`
 const StyledOrderForm = styled(props => <OrderForm {...props} />)`
   display: flex;
   flex-direction: column;
@@ -13,13 +26,11 @@ const StyledOrderForm = styled(props => <OrderForm {...props} />)`
 
 export const StyledButtonContainer = styled.div`
   display: grid;
-  grid-template-columns: 20% 20% 20% 20% 20%;
+  grid-template-columns: ${props => props.theme.isPortrait ? "33% 33% 33%" : "20% 20% 20% 20% 20%"};
   grid-template-rows: auto;
-  grid-template-areas:
-    "Grape Orange Blue-Punch Lemon-Lime Pina-Colada"
-    "Banana Peach Cherry Mango Green-Apple"
-    "Watermelon Strawberry Guava Mojito Papaya";
+  grid-template-areas: ${props => props.theme.isPortrait ? portraitGrid : landscapeGrid };
 `;
+
 
 export const StyledOrderButton = styled.button`
   display: table;

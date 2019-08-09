@@ -4,9 +4,9 @@ export interface PopInterface {
   'Orange': string;
   'Blue Punch': string;
   'Lemon Lime': string;
-  'Pina Colada': string;
+  'Pineapple': string;
   'Banana': string;
-  'Peach': string;
+  'Coconut': string;
   'Cherry': string;
   'Mango': string;
   'Green Apple': string;
@@ -30,4 +30,5 @@ export type ThemeType = {
   mainRow: string;
   bottomRow: string;
   entryContainerHeight: string;
+  isPortrait: boolean;
 }

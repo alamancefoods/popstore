@@ -1,0 +1,13 @@
+
+  "Strawberry Orange Blue-Punch"
+  "Grape Watermelon Lemon-Lime"
+  "Cherry Pineapple Guava"
+  "Mojito Papaya Mango"
+  "Coconut Green-Apple Banana"
+
+const mobileGrid = '"Strawberry Orange Blue-Punch" "Grape Watermeleon Lemon-Lime" "Cherry Pineapple Guava" "Mojito Papaya Mango" "Coconut Green-Apple Banana"'
+
+  grid-template-areas: ${props => props.theme.isPortait
+  ? mobileGrid
+  : null
+  };

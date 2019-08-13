@@ -1,4 +1,7 @@
 import styled, { createGlobalStyle } from 'styled-components';
+import { ReactComponent as Logo } from  '../../static/logo_header.svg';
+import { ReactComponent as Banana } from '../../static/banana.svg';
+
 
 export const GridContainer = styled.div`
   display: grid;
@@ -15,12 +18,24 @@ export const GridContainer = styled.div`
   height: 100%;
 `
 
+export const StyledLogoDiv = styled.div`
+  display: flex;
+  margin: 14px;
+  justify-content: ${props => props.theme.isPortrait ? 'center' : 'left'};
+  grid-area: top / firstColBreak / firstRowBreak / secondColBreak;
+`
+
+export const StyledLogo= styled(Logo)`
+  filter: drop-shadow(2px 3px 1px #4444dd);
+`
+
+
 export const GlobalStyle = createGlobalStyle`
-  html, body {
-    height: 100%;
+html, body {
+  height: 100%;
 }
   body {
-    background-color: #aec6cf;
+    background-color: #FFFFFF;
 }
   textarea {
     resize: none

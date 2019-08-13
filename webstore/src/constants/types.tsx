@@ -20,8 +20,8 @@ export interface PopInterface {
 
 export type ThemeType = {
   deviceType: string;
-  minWidth: number,
-  maxWidth: number,
+  width: number,
+  height: number,
   orientation: "portrait" | "landscape" | undefined,
   leftCol: string;
   mainCol: string;

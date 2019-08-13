@@ -1,7 +1,11 @@
 import React from 'react';
 import  POP_DICTIONARY, { TOTAL_POPS } from '../../constants/constants';
 import { OrderFormProps } from './types';
-import { StyledButtonContainer, StyledEntryContainer, StyledStatusContainer } from '../../styles/order/OrderStyles';
+import {
+  StyledButtonContainer,
+  StyledEntryContainer,
+  StyledStatusContainer
+} from '../../styles/order/OrderStyles';
 import OrderButton from './OrderButton';
 import OrderEntry from './OrderEntry';
 import { NavLink } from 'react-router-dom';
@@ -50,7 +54,7 @@ const OrderForm = (
 
 
   return(
-    <div key="dummy-key" className={className}>
+    <>
       <StyledButtonContainer>
         {buttonList.map((button, index) =>
           <OrderButton
@@ -80,7 +84,7 @@ const OrderForm = (
         </p>
         <ConditionalProfileLink />
       </StyledStatusContainer>
-    </div>
+    </>
   );
 };
 

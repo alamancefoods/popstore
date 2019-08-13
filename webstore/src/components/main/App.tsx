@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import store from '../../store/store'
 import  POP_DICTIONARY, { TOTAL_POPS, BALANCE } from '../../constants/constants'
 import { StripeProvider, Elements } from 'react-stripe-elements';
-import StyledOrderForm from '../../styles/order/OrderStyles'
 import { TestStyle } from '../../styles/profile/ProfileStyles'
 import { ProtectedPaymentRoute, ProtectedProfileRoute } from '../utilities/ProtectedRoutes'
 import { OrderInterface } from '../order/types';
@@ -11,7 +10,9 @@ import QueryProvider from '../providers/QueryProvider'
 import { Route, Switch, Redirect } from 'react-router-dom';
 import StyledProfileForm, { StyledProfileContainer } from '../../styles/profile/ProfileStyles'
 import StyledPaymentForm, { StyledPaymentContainer } from '../../styles/payment/PaymentStyles'
-
+import { ReactComponent as Logo } from '../../static/logo_header.svg'
+import { StyledLogoDiv, StyledLogo} from '../../styles/root/RootStyles'
+import OrderForm from '../order/OrderForm';
 
 const App: React.FC = () => {
   const [order, setOrder] = useState<OrderInterface>(store.popOrder)
@@ -65,19 +66,21 @@ const App: React.FC = () => {
 
   return (
       <QueryProvider>
+        <StyledLogoDiv><StyledLogo /></StyledLogoDiv>
         <Switch>
           <Route
             exact
             path="/"
             render={props  =>
-              <StyledOrderForm {...props}
+              <OrderForm{...props}
                 addPopToOrder={addPopToOrder}
-                              updateOrder={updateOrder}
-                              removePopFromOrder={removePopFromOrder}
-                              convertPopCountToCharge={convertPopCountToCharge}
-                              order={order}
-                              pickedPopList={pickedPopList}
-                              buttonList={buttonList}/>
+                updateOrder={updateOrder}
+                removePopFromOrder={removePopFromOrder}
+                convertPopCountToCharge={convertPopCountToCharge}
+                order={order}
+                pickedPopList={pickedPopList}
+                buttonList={buttonList}
+              />
             }
           />
           <Route

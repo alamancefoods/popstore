@@ -11,8 +11,8 @@ const QueryProvider = (props: ProviderPropTypes) => {
     <div>
       {MEDIA_QUERY_THEMES.map((theme) =>
         <MediaQuery
-          width={theme.width}
-          height={theme.height}
+          minWidth={theme.minWidth}
+          height={theme.minHeight}
           >
           <GlobalStyle />
           <ThemeProvider theme={theme}>

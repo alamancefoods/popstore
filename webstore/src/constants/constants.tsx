@@ -93,11 +93,55 @@ export const STATE_LIST: string[] = [
 export const TOTAL_POPS = POP_DICTIONARY['Total']
 export const BALANCE = POP_DICTIONARY['Balance']
 export const MINIMUM_ORDER_SIZE = 5
+
 export default POP_DICTIONARY
+
+export const BUTTON_SVG = 'BUTTON_SVG';
+export const LOGO_SVG = 'LOGO_SVG';
+
+// Mobile Portraits
+export const IPHONE_X_PORTRAIT = 'IPHONE_X_PORTRAIT';
+export const IPHONE_8_PLUS_PORTRAIT = 'IPHONE_8_PLUS_PORTRAIT';
+export const IPHONE_8_PORTRAIT = 'IPHONE_8_PORTRAIT';
+export const IPHONE_SE_PORTRAIT = 'IPHONE_SE_PORTRAIT';
+export const PIXEL_PORTRAIT = 'PIXEL_PORTRAIT';
+export const PIXEL_XL_PORTRAIT = 'PIXEL_XL_PORTRAIT';
+export const ANDROID_PORTRAIT = 'ANDROID_PORTRAIT';
+
+// Mobile Landscapes
+export const IPHONE_X_LANDSCAPE = 'IPHONE_X_LANDSCAPE';
+export const IPHONE_8_PLUS_LANDSCAPE = 'IPHONE_8_PLUS_LANDSCAPE';
+export const IPHONE_8_LANDSCAPE = 'IPHONE_8_LANDSCAPE';
+export const IPHONE_SE_LANDSCAPE = 'IPHONE_SE_LANDSCAPE';
+export const PIXEL_LANDSCAPE = 'PIXEL_LANDSCAPE';
+export const PIXEL_XL_LANDSCAPE = 'PIXEL_XL_LANDSCAPE';
+export const ANDROID_LANDSCAPE = 'ANDROID_LANDSCAPE';
+
+// Tablet Portraits
+export const IPAD_MINI_PORTRAIT = 'IPAD_MINI_PORTRAIT';
+export const IPAD_PRO_10_PORTRAIT = 'IPAD_PRO_10_PORTRAIT';
+export const IPAD_PRO_12_PORTRAIT = 'IPAD_PRO_12_PORTRAIT';
+export const SURFACE_PRO_3_PORTRAIT = 'SURFACE_PRO_3_PORTRAIT';
+export const SURFACE_PRO_4_PORTRAIT = 'SURFACE_PRO_4_PORTRAIT';
+
+// Tablet Landscapes
+export const IPAD_MINI_LANDSCAPE = 'IPAD_MINI_LANDSCAPE';
+export const IPAD_PRO_10_LANDSCAPE = 'IPAD_PRO_10_LANDSCAPE';
+export const IPAD_PRO_12_LANDSCAPE = 'IPAD_PRO_12_LANDSCAPE';
+export const SURFACE_PRO_3_LANDSCAPE = 'SURFACE_PRO_3_LANDSCAPE';
+export const SURFACE_PRO_4_LANDSCAPE = 'SURFACE_PRO_4_LANDSCAPE';
+
+// Desktops
+export const DESKTOP = 'DESKTOP';
+export const MACBOOK = 'MACBOOK';
+export const MACBOOK_PRO = 'MACBOOK_PRO';
+export const SURFACE_BOOK = 'SURFACE_BOOK';
+export const IMAC = 'IMAC';
+
 
 export const MEDIA_QUERY_THEMES: Array<ThemeType> = [
   {
-    deviceType: 'iphoneXPortrait',
+    deviceType: IPHONE_X_PORTRAIT,
     width: 375,
     height: 812,
     orientation: 'portrait',
@@ -111,7 +155,7 @@ export const MEDIA_QUERY_THEMES: Array<ThemeType> = [
     isPortrait: true
   },
   {
-    deviceType: 'iphoneXLandscape',
+    deviceType: IPHONE_X_LANDSCAPE,
     width: 812,
     height: 375,
     orientation: 'landscape',
@@ -125,7 +169,7 @@ export const MEDIA_QUERY_THEMES: Array<ThemeType> = [
     isPortrait: false
   },
   {
-    deviceType: 'iphone8PlusPortrait',
+    deviceType: IPHONE_8_PLUS_PORTRAIT,
     width: 414,
     height: 736,
     orientation: 'portrait',
@@ -139,7 +183,7 @@ export const MEDIA_QUERY_THEMES: Array<ThemeType> = [
     isPortrait: true
   },
   {
-    deviceType: 'iphone8PlusLandscape',
+    deviceType: IPHONE_8_PLUS_LANDSCAPE,
     width: 736,
     height: 414,
     orientation: 'landscape',
@@ -153,7 +197,7 @@ export const MEDIA_QUERY_THEMES: Array<ThemeType> = [
     isPortrait: false
   },
   {
-    deviceType: 'iphone8Portrait',
+    deviceType: IPHONE_8_PORTRAIT,
     width: 375,
     height: 667,
     orientation: 'portrait',
@@ -167,7 +211,7 @@ export const MEDIA_QUERY_THEMES: Array<ThemeType> = [
     isPortrait: true
   },
   {
-    deviceType: 'iphone8Landscape',
+    deviceType: IPHONE_8_LANDSCAPE,
     width: 667,
     height: 375,
     orientation: 'landscape',
@@ -181,7 +225,7 @@ export const MEDIA_QUERY_THEMES: Array<ThemeType> = [
     isPortrait: false
   },
   {
-    deviceType: 'iphoneSePortrait',
+    deviceType: IPHONE_SE_PORTRAIT,
     width: 320,
     height: 568,
     orientation: 'portrait',
@@ -195,7 +239,7 @@ export const MEDIA_QUERY_THEMES: Array<ThemeType> = [
     isPortrait: true
   },
   {
-    deviceType: 'iphoneSeLandscape',
+    deviceType: IPHONE_SE_LANDSCAPE,
     width: 568,
     height: 320,
     orientation: 'landscape',
@@ -209,7 +253,7 @@ export const MEDIA_QUERY_THEMES: Array<ThemeType> = [
     isPortrait: false
   },
   {
-    deviceType: 'pixelPortrait',
+    deviceType: PIXEL_PORTRAIT,
     width: 411,
     height: 731,
     orientation: 'portrait',
@@ -223,7 +267,7 @@ export const MEDIA_QUERY_THEMES: Array<ThemeType> = [
     isPortrait: true
   },
   {
-    deviceType: 'pixelLandscape',
+    deviceType: PIXEL_LANDSCAPE,
     width: 731,
     height: 411,
     orientation: 'landscape',
@@ -237,7 +281,7 @@ export const MEDIA_QUERY_THEMES: Array<ThemeType> = [
     isPortrait: false
   },
   {
-    deviceType: 'pixelPortraitXL',
+    deviceType: PIXEL_XL_PORTRAIT,
     width: 411,
     height: 823,
     orientation: 'portrait',
@@ -251,7 +295,7 @@ export const MEDIA_QUERY_THEMES: Array<ThemeType> = [
     isPortrait: true
   },
   {
-    deviceType: 'pixelLandscapeXL',
+    deviceType: PIXEL_XL_LANDSCAPE,
     width: 823,
     height: 411,
     orientation: 'landscape',
@@ -265,7 +309,7 @@ export const MEDIA_QUERY_THEMES: Array<ThemeType> = [
     isPortrait: false
   },
   {
-    deviceType: 'androidPortrait',
+    deviceType: ANDROID_PORTRAIT,
     width: 360,
     height: 640,
     orientation: 'portrait',
@@ -279,7 +323,7 @@ export const MEDIA_QUERY_THEMES: Array<ThemeType> = [
     isPortrait: true
   },
   {
-    deviceType: 'androidLandscape',
+    deviceType: ANDROID_LANDSCAPE,
     width: 640,
     height: 360,
     orientation: 'landscape',
@@ -293,7 +337,7 @@ export const MEDIA_QUERY_THEMES: Array<ThemeType> = [
     isPortrait: false
   },
   {
-    deviceType: 'iPadMiniPortrait',
+    deviceType: IPAD_MINI_PORTRAIT,
     width: 768,
     height: 1024,
     orientation: 'portrait',
@@ -307,7 +351,7 @@ export const MEDIA_QUERY_THEMES: Array<ThemeType> = [
     isPortrait: true
   },
   {
-    deviceType: 'iPadMiniLandscape',
+    deviceType: IPAD_MINI_LANDSCAPE,
     width: 1024,
     height: 768,
     orientation: 'landscape',
@@ -321,7 +365,7 @@ export const MEDIA_QUERY_THEMES: Array<ThemeType> = [
     isPortrait: false
   },
   {
-    deviceType: 'iPadPro10Portrait',
+    deviceType: IPAD_PRO_10_PORTRAIT,
     width: 834,
     height: 1112,
     orientation: 'portrait',
@@ -335,7 +379,7 @@ export const MEDIA_QUERY_THEMES: Array<ThemeType> = [
     isPortrait: true
   },
   {
-    deviceType: 'iPadPro10Landscape',
+    deviceType: IPAD_PRO_10_LANDSCAPE,
     width: 1112,
     height: 834,
     orientation: 'landscape',
@@ -349,7 +393,7 @@ export const MEDIA_QUERY_THEMES: Array<ThemeType> = [
     isPortrait: false
   },
   {
-    deviceType: 'iPadPro12Portrait',
+    deviceType: IPAD_PRO_12_PORTRAIT,
     width: 1024,
     height: 1366,
     orientation: 'portrait',
@@ -363,7 +407,7 @@ export const MEDIA_QUERY_THEMES: Array<ThemeType> = [
     isPortrait: true
   },
   {
-    deviceType: 'iPadPro12Landscape',
+    deviceType: IPAD_PRO_12_LANDSCAPE,
     width: 1366,
     height: 1024,
     orientation: 'landscape',
@@ -377,7 +421,7 @@ export const MEDIA_QUERY_THEMES: Array<ThemeType> = [
     isPortrait: false
   },
   {
-    deviceType: 'surfacePro3Portrait',
+    deviceType: SURFACE_PRO_3_PORTRAIT,
     width: 990,
     height: 1440,
     orientation: 'portrait',
@@ -391,7 +435,7 @@ export const MEDIA_QUERY_THEMES: Array<ThemeType> = [
     isPortrait: true
   },
   {
-    deviceType: 'surfacePro3Landscape',
+    deviceType: SURFACE_PRO_3_LANDSCAPE,
     width: 1440,
     height: 990,
     orientation: 'landscape',
@@ -405,7 +449,7 @@ export const MEDIA_QUERY_THEMES: Array<ThemeType> = [
     isPortrait: false
   },
   {
-    deviceType: 'surfacePro4Portrait',
+    deviceType: SURFACE_PRO_4_PORTRAIT,
     width: 912,
     height: 1368,
     orientation: 'portrait',
@@ -419,7 +463,7 @@ export const MEDIA_QUERY_THEMES: Array<ThemeType> = [
     isPortrait: true
   },
   {
-    deviceType: 'surfacePro4Landscape',
+    deviceType: SURFACE_PRO_4_LANDSCAPE,
     width: 1368,
     height: 912,
     orientation: 'landscape',
@@ -433,7 +477,7 @@ export const MEDIA_QUERY_THEMES: Array<ThemeType> = [
     isPortrait: false
   },
   {
-    deviceType: 'desktop',
+    deviceType: DESKTOP,
     width: 1440,
     height: 1024,
     orientation: 'landscape',
@@ -447,7 +491,7 @@ export const MEDIA_QUERY_THEMES: Array<ThemeType> = [
     isPortrait: false
   },
   {
-    deviceType: 'macBook',
+    deviceType: MACBOOK,
     width: 1152,
     height: 700,
     orientation: 'landscape',
@@ -461,7 +505,7 @@ export const MEDIA_QUERY_THEMES: Array<ThemeType> = [
     isPortrait: false
   },
   {
-    deviceType: 'macBookPro',
+    deviceType: MACBOOK_PRO,
     width: 1440,
     height: 900,
     orientation: 'landscape',
@@ -475,7 +519,7 @@ export const MEDIA_QUERY_THEMES: Array<ThemeType> = [
     isPortrait: false
   },
   {
-    deviceType: 'surfaceBook',
+    deviceType: SURFACE_BOOK,
     width: 1500,
     height: 1000,
     orientation: 'landscape',
@@ -489,9 +533,9 @@ export const MEDIA_QUERY_THEMES: Array<ThemeType> = [
     isPortrait: false
   },
   {
-    deviceType: 'iMac',
+    deviceType: IMAC,
     width: 1280,
-    height: 720,
+    height: 721,
     orientation: 'landscape',
     leftCol: '20%',
     mainCol: 'auto',

@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
 import { StyledSVGButton } from '../../styles/order/OrderStyles';
-import { BUTTON_PROPS } from '../../constants/constants';
+import { BUTTON_PROPS, BUTTON_SVG } from '../../constants/constants';
 import { ThemeContext } from 'styled-components';
+import { dynamicViewBox } from '../../utilities/SVGResizers'
 
 const OrderButton = ({addPopToOrder, popFlavor, index } : {
   addPopToOrder: (popFlavor: string) => void,
@@ -15,21 +16,17 @@ const OrderButton = ({addPopToOrder, popFlavor, index } : {
     color: BUTTON_PROP!.color
   }
   const inheritedTheme = useContext(ThemeContext);
+  const buttonViewBox = dynamicViewBox(
+    BUTTON_SVG,
+    inheritedTheme.deviceType,
+    popFlavor
+  )
 
-  let buttonViewBox = ""
-
-  if(popFlavor === "Lemon Lime"){
-    buttonViewBox = "0 0 135 130"
-  }else{
-    buttonViewBox = "0 0 115 115"
-  }
-
-  // onClick={() => addPopToOrder(popFlavor)}
   return (
-    <StyledSVGButton viewBox={buttonViewBox} theme={theme} onClick={() => console.log(inheritedTheme)}>
-      {BUTTON_PROP!.svg}
-    </StyledSVGButton>
+    <StyledSVGButton viewBox={buttonViewBox} theme={theme} onClick={() => console.log(inheritedTheme) }>{BUTTON_PROP!.svg}</StyledSVGButton>
   )
 }
 
 export default OrderButton;
+
+// onClick={() => addPopToOrder(popFlavor)}

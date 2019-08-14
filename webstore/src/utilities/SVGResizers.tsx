@@ -1,7 +1,8 @@
 import { ResizerInterface } from './types'
 import {
   BUTTON_SVG, LOGO_SVG,
-  IPHONE_X_PORTRAIT
+  IPHONE_X_PORTRAIT, IPHONE_8_PLUS_PORTRAIT, IPHONE_8_PORTRAIT,
+  IPHONE_SE_PORTRAIT, PIXEL_PORTRAIT, PIXEL_XL_PORTRAIT, ANDROID_PORTRAIT
 } from '../constants/constants'
 
 
@@ -13,7 +14,13 @@ export const dynamicViewBox = ( svgCategory: string, deviceType: string, popFlav
       case BUTTON_SVG:
       switch(deviceType){
         case IPHONE_X_PORTRAIT:
-          viewBox = viewBox * 1.3
+        case IPHONE_8_PLUS_PORTRAIT:
+        case IPHONE_8_PORTRAIT:
+        case IPHONE_SE_PORTRAIT:
+        case PIXEL_PORTRAIT:
+        case PIXEL_XL_PORTRAIT:
+        case ANDROID_PORTRAIT:
+          viewBox = viewBox * 1.4
           break;
         default:
           break;

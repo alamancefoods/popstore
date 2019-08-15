@@ -14,7 +14,6 @@ export const dynamicViewBox = ( svgCategory: string, deviceType: string, popFlav
       case BUTTON_SVG:
       switch(deviceType){
         case IPHONE_X_PORTRAIT:
-        case IPHONE_8_PLUS_PORTRAIT:
         case IPHONE_8_PORTRAIT:
         case IPHONE_SE_PORTRAIT:
         case PIXEL_PORTRAIT:
@@ -22,6 +21,8 @@ export const dynamicViewBox = ( svgCategory: string, deviceType: string, popFlav
         case ANDROID_PORTRAIT:
           viewBox = viewBox * 1.4
           break;
+        case IPHONE_8_PLUS_PORTRAIT:
+          viewBox = viewBox * 1.7
         default:
           break;
       }

@@ -31,12 +31,14 @@ export const StyledLogo= styled(Logo)`
 
 
 export const GlobalStyle = createGlobalStyle`
-html, body {
+html, body, #root, #queryContainer {
   height: 100%;
 }
   body {
     background-color: #FFFFFF;
 }
+
+
   textarea {
     resize: none
 }

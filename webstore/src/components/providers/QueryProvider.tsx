@@ -8,7 +8,7 @@ import MediaQuery from 'react-responsive';
 
 const QueryProvider = (props: ProviderPropTypes) => {
   return(
-    <div>
+    <div id='queryContainer'>
       {MEDIA_QUERY_THEMES.map((theme) =>
         <MediaQuery
           minWidth={theme.minWidth}

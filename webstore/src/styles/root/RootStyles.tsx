@@ -33,6 +33,8 @@ export const StyledLogo= styled(Logo)`
 export const GlobalStyle = createGlobalStyle`
 html, body, #root, #queryContainer {
   height: 100%;
+  margin: 0;
+  padding: 0;
 }
   body {
     background-color: #FFFFFF;

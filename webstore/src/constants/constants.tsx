@@ -222,7 +222,7 @@ export const MEDIA_QUERY_THEMES: Array<ThemeType> = [
     mainCol: 'auto',
     rightCol: '201px',
     topRow: '99px',
-    mainRow: '1fr',
+    mainRow: 'auto',
     bottomRow: '0%',
     entryContainerHeight: '60vh',
     isPortrait: false
@@ -238,7 +238,7 @@ export const MEDIA_QUERY_THEMES: Array<ThemeType> = [
     mainCol: 'auto',
     rightCol: '302px',
     topRow: '178px',
-    mainRow: '1fr',
+    mainRow: 'auto',
     bottomRow: '0%',
     entryContainerHeight: '60vh',
     isPortrait: false

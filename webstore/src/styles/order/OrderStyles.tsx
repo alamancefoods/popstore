@@ -3,9 +3,12 @@ import styled from 'styled-components';
 import OrderForm from '../../components/order/OrderForm'
 import { Form, Field, ErrorMessage } from 'formik';
 
-const mobileOrderEntryGrid = `
-"flavorName flavorGraphic formEntry"
-"totalCount submitZone checkoutZone"
+const landscapeEntryGridArea =`
+firstRowBreak / secondColBreak / bottom / stop
+`
+
+const portraitEntryGridArea =`
+secondRowBreak / start / bottom /stop
 `
 
 const portraitGrid =`
@@ -58,12 +61,8 @@ export const StyledSVGButton = styled.svg`
 
 export const StyledEntryContainer = styled.div`
 display: flex;
-grid-area: firstRowBreak / firstColBreak / secondRowBreak / secondColBreak;
+grid-area: ${props => props.theme.isPortrait ? portraitEntryGridArea : landscapeEntryGridArea }
 flex-direction: column;
-  justify-content: flex-start;
-  align-items: baseline;
-  flex-wrap: wrap;
-  height: ${props => props.theme.entryContainerHeight};
 `
 
 export const StyledPopForm = styled(Form)`

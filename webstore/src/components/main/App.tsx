@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import store from '../../store/store'
-import  POP_DICTIONARY, { TOTAL_POPS, BALANCE } from '../../constants/constants'
+import  POP_DICTIONARY, { TOTAL_POPS, BALANCE, NO_POP_PICKED} from '../../constants/constants'
 import { StripeProvider, Elements } from 'react-stripe-elements';
 import { TestStyle } from '../../styles/profile/ProfileStyles'
 import { ProtectedPaymentRoute, ProtectedProfileRoute } from '../utilities/ProtectedRoutes'
@@ -19,7 +19,7 @@ const App: React.FC = () => {
   const [profile, setProfile] = useState<ProfileInterface>(store.customerProfile)
   const [isProfileComplete, setProfileCompletion] = useState(false)
   const [buttonList, setButtonList] = useState(store.buttonList)
-  const [pickedPopList, setPickedPopList] = useState(store.pickedPopList)
+  const [pickedPop, setPickedPop] = useState(store.pickedPop)
 
 
   let convertPopCountToCharge = (popCount: number, isCents: boolean) => {
@@ -51,15 +51,12 @@ const App: React.FC = () => {
   let addPopToOrder =  (popFlavor: string) => {
     let index: number = buttonList.indexOf(popFlavor)
     buttonList.splice(index, 1)
-    setButtonList([...buttonList]);
-    setPickedPopList(pickedPopList => pickedPopList.concat([popFlavor]))
+    setPickedPop(popFlavor)
   }
 
   let removePopFromOrder = (popFlavor: string) => {
     updateOrder(0, popFlavor)
-    let index = pickedPopList.indexOf(popFlavor)
-    pickedPopList.splice(index, 1)
-    setPickedPopList([...pickedPopList])
+    setPickedPop(NO_POP_PICKED)
     setButtonList(buttonList => buttonList.concat([popFlavor]))
   }
 
@@ -78,7 +75,7 @@ const App: React.FC = () => {
                 removePopFromOrder={removePopFromOrder}
                 convertPopCountToCharge={convertPopCountToCharge}
                 order={order}
-                pickedPopList={pickedPopList}
+                pickedPop={pickedPop}
                 buttonList={buttonList}
               />
             }

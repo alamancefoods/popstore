@@ -99,6 +99,8 @@ export default POP_DICTIONARY
 export const BUTTON_SVG = 'BUTTON_SVG';
 export const LOGO_SVG = 'LOGO_SVG';
 
+export const NO_POP_PICKED = 'NO_POP_PICKED';
+
 export const SMALL_PHONE = 'SMALL_PHONE';
 export const BIG_PHONE = 'BIG_PHONE';
 export const SMALL_TABLET = 'SMALL_TABLET';
@@ -220,7 +222,7 @@ export const MEDIA_QUERY_THEMES: Array<ThemeType> = [
     mainCol: 'auto',
     rightCol: '201px',
     topRow: '99px',
-    mainRow: 'auto',
+    mainRow: '1fr',
     bottomRow: '0%',
     entryContainerHeight: '60vh',
     isPortrait: false
@@ -236,7 +238,7 @@ export const MEDIA_QUERY_THEMES: Array<ThemeType> = [
     mainCol: 'auto',
     rightCol: '302px',
     topRow: '178px',
-    mainRow: 'auto',
+    mainRow: '1fr',
     bottomRow: '0%',
     entryContainerHeight: '60vh',
     isPortrait: false
@@ -252,7 +254,7 @@ export const MEDIA_QUERY_THEMES: Array<ThemeType> = [
     mainCol: 'auto',
     rightCol: '370px',
     topRow: '222px',
-    mainRow: 'auto',
+    mainRow: '1fr',
     bottomRow: '0%',
     entryContainerHeight: '60vh',
     isPortrait: false
@@ -268,7 +270,7 @@ export const MEDIA_QUERY_THEMES: Array<ThemeType> = [
     mainCol: 'auto',
     rightCol: '15%',
     topRow: '20%',
-    mainRow: 'auto',
+    mainRow: '1fr',
     bottomRow: '0%',
     entryContainerHeight: '60vh',
     isPortrait: false

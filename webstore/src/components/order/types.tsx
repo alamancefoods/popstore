@@ -33,7 +33,7 @@ export interface OrderFormProps {
   removePopFromOrder: (popFlavor: string) => void;
   convertPopCountToCharge: (popCount: number, isCents: boolean) => React.ReactText;
   order: OrderInterface;
-  pickedPopList: string[];
+  pickedPop: string;
   buttonList: string[];
   className?: string;
 }

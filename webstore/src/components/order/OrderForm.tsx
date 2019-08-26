@@ -1,5 +1,5 @@
 import React from 'react';
-import  POP_DICTIONARY, { TOTAL_POPS } from '../../constants/constants';
+import  POP_DICTIONARY, { TOTAL_POPS, NO_POP_PICKED } from '../../constants/constants';
 import { OrderFormProps } from './types';
 import {
   StyledButtonContainer,
@@ -17,7 +17,7 @@ const OrderForm = (
     removePopFromOrder,
     convertPopCountToCharge,
     order,
-    pickedPopList,
+    pickedPop,
     buttonList,
     className
   }: OrderFormProps) => {
@@ -59,6 +59,7 @@ const OrderForm = (
         {buttonList.map((button, index) =>
           <OrderButton
             addPopToOrder={addPopToOrder}
+            pickedPop={pickedPop}
             popFlavor={button}
             index={index}
             key={index}
@@ -66,24 +67,22 @@ const OrderForm = (
         )}
       </StyledButtonContainer>
       <StyledEntryContainer>
-        {pickedPopList.map((pickedPop, index) =>
-          <OrderEntry
-            popFlavor={pickedPop}
-            updateOrder={updateOrder}
-            removePopFromOrder={removePopFromOrder}
-            popCount={order[POP_DICTIONARY[pickedPop]]}
-            order={order}
-            key={index}
-          />
-        )}
-      </StyledEntryContainer>
-      <StyledStatusContainer>
+        {pickedPop === NO_POP_PICKED
+        ? <p>No Pop Picked</p>
+        : <OrderEntry
+           popFlavor={pickedPop}
+           updateOrder={updateOrder}
+           removePopFromOrder={removePopFromOrder}
+           popCount={order[POP_DICTIONARY[pickedPop]]}
+           order={order}
+         />
+        }
         <OrderMessage />
         <p>
           Balance: ${convertPopCountToCharge(order[TOTAL_POPS], false)}
         </p>
         <ConditionalProfileLink />
-      </StyledStatusContainer>
+      </StyledEntryContainer>
     </>
   );
 };

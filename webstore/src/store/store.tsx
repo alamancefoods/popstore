@@ -1,3 +1,5 @@
+import { NO_POP_PICKED } from '../constants/constants'
+
 let popOrder = {
   balance: 0,
   totalCount: 0,
@@ -48,8 +50,8 @@ let buttonList = [
 ]
 
 
-let pickedPopList: string[] = []
+let pickedPop: string = NO_POP_PICKED;
 
-let store = {popOrder, customerProfile, buttonList, pickedPopList}
+let store = {popOrder, customerProfile, buttonList, pickedPop}
 
 export default store;

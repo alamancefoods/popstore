@@ -1,11 +1,12 @@
 import React, { useContext } from 'react';
 import { StyledSVGButton } from '../../styles/order/OrderStyles';
-import { BUTTON_PROPS, BUTTON_SVG } from '../../constants/constants';
+import { BUTTON_PROPS, BUTTON_SVG, NO_POP_PICKED } from '../../constants/constants';
 import { ThemeContext } from 'styled-components';
 import { dynamicViewBox } from '../../utilities/SVGResizers'
 
-const OrderButton = ({addPopToOrder, popFlavor, index } : {
+const OrderButton = ({addPopToOrder, pickedPop, popFlavor, index } : {
   addPopToOrder: (popFlavor: string) => void,
+  pickedPop: string
   popFlavor: string,
   index: number
 }) => {
@@ -23,7 +24,7 @@ const OrderButton = ({addPopToOrder, popFlavor, index } : {
   )
 
   return (
-    <StyledSVGButton viewBox={buttonViewBox} theme={theme} onClick={() => console.log(inheritedTheme) }>{BUTTON_PROP!.svg}</StyledSVGButton>
+    <StyledSVGButton viewBox={buttonViewBox} theme={theme} onClick={() => pickedPop === NO_POP_PICKED ? addPopToOrder(popFlavor) : '' }>{BUTTON_PROP!.svg}</StyledSVGButton>
   )
 }
 

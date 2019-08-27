@@ -15,18 +15,20 @@ export const dynamicViewBox = ( svgCategory: string, deviceType: string, popFlav
       switch(deviceType){
         case SMALL_PHONE:
         case BIG_PHONE:
-          viewBox = viewBox * 1.4
+          viewBox = viewBox * 2
           break;
         case SMALL_TABLET:
         case BIG_TABLET:
         case HUGE_TABLET:
           viewBox = viewBox * 2
           break;
-        case TINY_LANDSCAPE:
         case SMALL_LANDSCAPE:
         case BIG_LANDSCAPE:
         case HUGE_LANDSCAPE:
           viewBox = viewBox * 1.7
+        case TINY_LANDSCAPE:
+          viewBox = viewBox * 0.7
+          break;
         default:
           break;
       }

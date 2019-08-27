@@ -35,6 +35,7 @@ html, body, #root, #queryContainer {
   height: 100%;
   margin: 0;
   padding: 0;
+  resize: none;
 }
   body {
     background-color: #FFFFFF;

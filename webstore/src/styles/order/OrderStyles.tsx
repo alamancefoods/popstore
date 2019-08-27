@@ -11,16 +11,26 @@ const portraitEntryGridArea =`
 secondRowBreak / start / bottom /stop
 `
 
-const portraitGrid =`
+const portraitEntryGrid=`
+"Alert Picked-Pop Entry"
+"Balance Submit Checkout"
+`
+
+const landscapeEntryGrid=`
+"Balance Alert"
+"Picked-Pop Entry"
+`
+
+const portraitButtonGrid =`
   "Strawberry Orange Blue-Punch"
   "Grape Watermelon Lemon-Lime"
   "Cherry Pineapple Guava"
   "Mojito Papaya Mango"
   "Coconut Green-Apple Banana"
-`
+` 
 
 
-const landscapeGrid =`
+const landscapeButtonGrid =`
   "Strawberry Orange Blue-Punch Grape Watermelon"
   "Lemon-Lime Cherry Pineapple Guava Mojito"
   "Papaya Mango Coconut Green-Apple Banana"
@@ -41,7 +51,7 @@ export const StyledButtonContainer = styled.div`
   position: relative;
   grid-template-columns: ${props => props.theme.isPortrait ? "33% 33% 33%" : "20% 20% 20% 20% 20%"};
   grid-template-rows: auto;
-  grid-template-areas: ${props => props.theme.isPortrait ? portraitGrid : landscapeGrid };
+  grid-template-areas: ${props => props.theme.isPortrait ? portraitButtonGrid : landscapeButtonGrid };
 `;
 
 
@@ -50,6 +60,7 @@ export const StyledSVGButton = styled.svg`
   position: absolute;
   height: auto;
   display: table;
+  overflow: visible;
   font-size: 1em;
   margin: 1em;
   padding: 0.25em 1em;

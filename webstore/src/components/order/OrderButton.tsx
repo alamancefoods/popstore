@@ -17,6 +17,8 @@ const OrderButton = ({addPopToOrder, pickedPop, popFlavor, index } : {
     color: BUTTON_PROP!.color
   }
   const inheritedTheme = useContext(ThemeContext);
+
+  //Use dynamicViewBox function to resize svgs according to device type.
   const buttonViewBox = dynamicViewBox(
     BUTTON_SVG,
     inheritedTheme.deviceType,
@@ -30,4 +32,3 @@ const OrderButton = ({addPopToOrder, pickedPop, popFlavor, index } : {
 
 export default OrderButton;
 
-// onClick={() => addPopToOrder(popFlavor)}

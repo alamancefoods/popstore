@@ -10,9 +10,8 @@ import QueryProvider from '../providers/QueryProvider'
 import { Route, Switch, Redirect } from 'react-router-dom';
 import StyledProfileForm, { StyledProfileContainer } from '../../styles/profile/ProfileStyles'
 import StyledPaymentForm, { StyledPaymentContainer } from '../../styles/payment/PaymentStyles'
-import { ReactComponent as Logo } from '../../static/logo_header.svg'
-import { StyledLogoDiv, StyledLogo} from '../../styles/root/RootStyles'
 import OrderForm from '../order/OrderForm';
+import LogoContainer from './LogoContainer'
 
 const App: React.FC = () => {
   const [order, setOrder] = useState<OrderInterface>(store.popOrder)
@@ -63,7 +62,7 @@ const App: React.FC = () => {
 
   return (
       <QueryProvider>
-        <StyledLogoDiv><StyledLogo /></StyledLogoDiv>
+        <LogoContainer />
         <Switch>
           <Route
             exact

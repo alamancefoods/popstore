@@ -39,6 +39,7 @@ const StyledOrderForm = styled(props => <OrderForm {...props} />)`
   display: flex;
   flex-direction: column;
   grid-area: firstRowBreak / firstColBreak / bottom / secondColBreak;
+  justify-content: center;
   height: 100%;
 `;
 
@@ -49,6 +50,8 @@ export const StyledButtonContainer = styled.div`
   height: 100%;
   width: 100%;
   position: relative;
+  justify-items: center;
+  justify-content: center;
   grid-template-columns: ${props => props.theme.isPortrait ? "33% 33% 33%" : "20% 20% 20% 20% 20%"};
   grid-template-rows: auto;
   grid-template-areas: ${props => props.theme.isPortrait ? portraitButtonGrid : landscapeButtonGrid };
@@ -58,22 +61,18 @@ export const StyledButtonContainer = styled.div`
 
 export const StyledSVGButton = styled.svg`
   position: absolute;
-  height: auto;
-  display: table;
-  overflow: visible;
-  font-size: 1em;
-  margin: 1em;
-  padding: 0.25em 1em;
-  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  justify-items: center;
   grid-area: ${props => props.theme.gridArea};
   filter: drop-shadow(4px 3px 1px #757575);
 `;
 
 
 export const StyledEntryContainer = styled.div`
-display: flex;
-grid-area: ${props => props.theme.isPortrait ? portraitEntryGridArea : landscapeEntryGridArea }
-flex-direction: column;
+  display: flex;
+  grid-area: ${props => props.theme.isPortrait ? portraitEntryGridArea : landscapeEntryGridArea }
+  flex-direction: column;
 `
 
 export const StyledPopForm = styled(Form)`

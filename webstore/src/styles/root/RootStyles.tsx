@@ -15,6 +15,7 @@ export const GridContainer = styled.div`
   [firstRowBreak] ${props => props.theme.mainRow}
   [secondRowBreak] ${props => props.theme.bottomRow}
   [bottom];
+  justify-items: center;
   height: 100%;
 `
 
@@ -22,6 +23,7 @@ export const StyledLogoDiv = styled.div`
   display: flex;
   margin: 14px;
   justify-content: ${props => props.theme.isPortrait ? 'center' : 'left'};
+  align-items: center;
   grid-area: top / firstColBreak / firstRowBreak / secondColBreak;
 `
 
@@ -41,6 +43,9 @@ html, body, #root, #queryContainer {
     background-color: #FFFFFF;
 }
 
+svg {
+  overflow: visible;
+}
 
   textarea {
     resize: none

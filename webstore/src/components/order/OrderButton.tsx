@@ -16,17 +16,16 @@ const OrderButton = ({addPopToOrder, pickedPop, popFlavor, index } : {
     gridArea: BUTTON_PROP!.popFlavor,
     color: BUTTON_PROP!.color
   }
-  const inheritedTheme = useContext(ThemeContext);
+  const themeContext = useContext(ThemeContext);
 
   //Use dynamicViewBox function to resize svgs according to device type.
-  const buttonViewBox = dynamicViewBox(
-    BUTTON_SVG,
-    inheritedTheme.deviceType,
-    popFlavor
-  )
+  const buttonViewBox = () => {
+    let scale = themeContext.windowWidth * 0.15
+    return `0 0 ${scale} ${scale}`
+  }
 
   return (
-    <StyledSVGButton viewBox={buttonViewBox} theme={theme} onClick={() => pickedPop === NO_POP_PICKED ? addPopToOrder(popFlavor) : '' }>{BUTTON_PROP!.svg}</StyledSVGButton>
+    <StyledSVGButton viewBox={buttonViewBox()} theme={theme} onClick={() => pickedPop === NO_POP_PICKED ? addPopToOrder(popFlavor) : '' }>{BUTTON_PROP!.svg}</StyledSVGButton>
   )
 }
 

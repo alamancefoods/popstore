@@ -3,17 +3,18 @@ import { ReactComponent as Logo } from  '../../static/logo_header.svg';
 import { ReactComponent as Banana } from '../../static/banana.svg';
 
 
+
 export const GridContainer = styled.div`
   display: grid;
   grid-template-columns:
-  [start] ${props => props.theme.leftCol}
-  [firstColBreak] ${props => props.theme.mainCol}
-  [secondColBreak] ${props => props.theme.rightCol}
+  [start] 0px
+  [firstColBreak] auto
+  [secondColBreak] ${props => props.theme.isPortrait ? 0 : props.theme.windowWidth * 0.2}
   [stop];
   grid-template-rows:
-  [top] ${props => props.theme.topRow}
-  [firstRowBreak] ${props => props.theme.mainRow}
-  [secondRowBreak] ${props => props.theme.bottomRow}
+  [top] ${props => props.theme.isPortrait ? props.theme.windowHeight * 0.15 : props.theme.windowHeight * 0.2}px
+  [firstRowBreak] minmax(${props => props.theme.isPortrait ? props.theme.windowHeight * 0.4 : props.theme.windowHeight * 0.3}px, auto)
+  [secondRowBreak] ${props => props.theme.isPortrait ? props.theme.windowHeight * 0.2 : 0}px
   [bottom];
   justify-items: center;
   height: 100%;

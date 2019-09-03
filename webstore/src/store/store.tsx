@@ -54,4 +54,10 @@ let pickedPop: string = NO_POP_PICKED;
 
 let store = {popOrder, customerProfile, buttonList, pickedPop}
 
+export let appTheme = {
+  isPortrait: false,
+  windowWidth: 1152,
+  windowHeight: 700
+}
+
 export default store;

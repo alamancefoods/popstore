@@ -5,14 +5,15 @@ import { LOGO_SVG } from '../../constants/constants';
 import { ThemeContext } from 'styled-components';
 
 const LogoContainer = () => {
-  const inheritedTheme = useContext(ThemeContext);
-  const logoViewBox = dynamicViewBox(
-    LOGO_SVG,
-    inheritedTheme.deviceType,
-  )
+
+  const themeContext = useContext(ThemeContext);
+  const logoViewBox = () => {
+    let scale = themeContext.windowWidth * 0.2
+    return `0 0 ${scale} ${scale}`
+  }
 
   return (
-    <StyledLogoDiv><StyledLogo viewBox={logoViewBox} /></StyledLogoDiv>
+    <StyledLogoDiv><StyledLogo viewBox={logoViewBox()} /></StyledLogoDiv>
   )
 }
 

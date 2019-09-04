@@ -9,7 +9,7 @@ export const GridContainer = styled.div`
   grid-template-columns:
   [start] 0px
   [firstColBreak] auto
-  [secondColBreak] ${props => props.theme.isPortrait ? 0 : props.theme.windowWidth * 0.2}
+  [secondColBreak] ${props => props.theme.isPortrait ? 0 : props.theme.windowWidth * 0.2}px
   [stop];
   grid-template-rows:
   [top] ${props => props.theme.isPortrait ? props.theme.windowHeight * 0.15 : props.theme.windowHeight * 0.2}px

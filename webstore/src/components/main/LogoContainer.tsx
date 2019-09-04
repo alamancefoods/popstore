@@ -8,7 +8,7 @@ const LogoContainer = () => {
 
   const themeContext = useContext(ThemeContext);
   const logoViewBox = () => {
-    let scale = themeContext.windowWidth * 0.2
+    let scale = themeContext.windowWidth * 0.1
     return `0 0 ${scale} ${scale}`
   }
 

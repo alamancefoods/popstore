@@ -17,14 +17,19 @@ const QueryProvider = (props: ProviderPropTypes) => {
     if(aspectRatio > 13/9){
       isPortrait = false
     }else{
-      isPortrait = false
+      isPortrait = true
     }
     setTheme(prevState => {
       return {...prevState, isPortrait: isPortrait, windowWidth: window.innerWidth, windowHeight: window.innerHeight }
     })
  }
 
-  useEffect(updateTheme, [window.innerWidth, window.innerHeight])
+  useEffect(() => {
+    window.addEventListener('resize', updateTheme);
+    return () => {
+      window.removeEventListener('resize', updateTheme);
+    };
+  });
 
   return(
     <div id='queryContainer'>

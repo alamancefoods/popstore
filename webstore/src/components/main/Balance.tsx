@@ -2,7 +2,7 @@ import React from 'react';
 import {BalanceInterface} from './types'
 import { TOTAL_POPS } from '../../constants/constants';
 
-const BalanceContainer = (
+const Balance = (
   {
     convertPopCountToCharge,
     order
@@ -23,4 +23,4 @@ const BalanceContainer = (
     }
   }
 
-export default BalanceContainer;
+export default Balance;

@@ -25,7 +25,7 @@ const OrderForm = (
   const ConditionalProfileLink = () => {
     let linkHolder = null
     if(order.totalCount < 5){
-      linkHolder = <p>5 Pop Minimum Required for Purchase</p>;
+      linkHolder = null
     } else {
       linkHolder = <NavLink to='/checkout/shipping-details'>Checkout</NavLink>
     }
@@ -33,25 +33,6 @@ const OrderForm = (
       linkHolder
     )
   }
-
-  const OrderMessage: React.FC = () => {
-    let message: string
-    switch(order.totalCount){
-      case 0:
-        message = 'Select your favorite popsicle flavor!'
-        break;
-      case 1:
-        message = "You've selected one, the journey's begun!"
-        break;
-      default:
-        message = `You've selected ${order.totalCount} pops!`
-    }
-
-    return(
-      <p>{message}</p>
-    )
-  }
-
 
   return(
     <>
@@ -68,7 +49,7 @@ const OrderForm = (
       </StyledButtonContainer>
       <StyledEntryContainer>
         {pickedPop === NO_POP_PICKED
-        ? <p>No Pop Picked</p>
+        ? null
         : <OrderEntry
            popFlavor={pickedPop}
            updateOrder={updateOrder}
@@ -77,7 +58,6 @@ const OrderForm = (
            order={order}
          />
         }
-        <OrderMessage />
         <ConditionalProfileLink />
       </StyledEntryContainer>
     </>

@@ -10,9 +10,10 @@ import QueryProvider from '../providers/QueryProvider'
 import { Route, Switch, Redirect } from 'react-router-dom';
 import StyledProfileForm, { StyledProfileContainer } from '../../styles/profile/ProfileStyles'
 import StyledPaymentForm, { StyledPaymentContainer } from '../../styles/payment/PaymentStyles'
+import { StyledBalance, StyledHeader, StyledUserAlertContainer } from '../../styles/root/RootStyles'
 import OrderForm from '../order/OrderForm';
-import LogoContainer from './LogoContainer'
-import BalanceContainer from './BalanceContainer';
+import ResizedLogo from './LogoContainer'
+import UserAlert from './UserAlert';
 
 const App: React.FC = () => {
   const [order, setOrder] = useState<OrderInterface>(store.popOrder)
@@ -20,6 +21,7 @@ const App: React.FC = () => {
   const [isProfileComplete, setProfileCompletion] = useState(false)
   const [buttonList, setButtonList] = useState(store.buttonList)
   const [pickedPop, setPickedPop] = useState(store.pickedPop)
+  const [isInitiated, setInitiation] = useState(false)
 
 
   let convertPopCountToCharge = (popCount: number, isCents: boolean) => {
@@ -51,6 +53,9 @@ const App: React.FC = () => {
   let addPopToOrder =  (popFlavor: string) => {
     let index: number = buttonList.indexOf(popFlavor)
     buttonList.splice(index, 1)
+    if(isInitiated === false){
+      setInitiation(true)
+    }
     setPickedPop(popFlavor)
   }
 
@@ -63,11 +68,13 @@ const App: React.FC = () => {
 
   return (
       <QueryProvider>
-        <LogoContainer />
-        <BalanceContainer
+        <StyledHeader>
+          <ResizedLogo />
+          <StyledBalance
           convertPopCountToCharge={convertPopCountToCharge}
           order={order}
-        />
+          />
+        </StyledHeader>
         <Switch>
           <Route
             exact
@@ -120,6 +127,11 @@ const App: React.FC = () => {
           />
           <Redirect to="/" />
         </Switch>
+        <StyledUserAlertContainer>
+          <UserAlert
+            isInitiated={isInitiated}
+          />
+        </StyledUserAlertContainer>
       </QueryProvider>
   );
 }

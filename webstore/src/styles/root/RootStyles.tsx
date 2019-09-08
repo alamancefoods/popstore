@@ -1,6 +1,9 @@
+import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import { ReactComponent as Logo } from  '../../static/logo_header.svg';
 import { ReactComponent as Banana } from '../../static/banana.svg';
+import Balance from '../../components/main/Balance';
+import UserAlert from '../../components/main/UserAlert';
 
 
 
@@ -20,7 +23,7 @@ export const GridContainer = styled.div`
   height: 100%;
 `
 
-export const StyledLogoDiv = styled.div`
+export const StyledHeader= styled.div`
   display: flex;
   margin: 14px;
   justify-content: ${props => props.theme.isPortrait ? 'center' : 'left'};
@@ -28,8 +31,23 @@ export const StyledLogoDiv = styled.div`
   grid-area: top / firstColBreak / firstRowBreak / secondColBreak;
 `
 
+export const StyledBalance = styled(props => <Balance {...props} />)`
+  display: flex;
+  justify-self: right;
+`
+
 export const StyledLogo= styled(Logo)`
   filter: drop-shadow(2px 3px 1px #4444dd);
+  justify-self: left;
+`
+const alertPortraitGridArea = 'secondRowBreak / firstColBreak / bottom / secondColBreak;'
+const alertLandscapeGridArea = 'firstRowBreak / secondColBreak / secondRowBreak / stop;'
+
+export const StyledUserAlertContainer = styled.div`
+  grid-area: ${props => props.theme.isPortrait ? alertPortraitGridArea : alertLandscapeGridArea}
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
 
 
@@ -52,3 +70,4 @@ svg {
     resize: none
 }
 `
+

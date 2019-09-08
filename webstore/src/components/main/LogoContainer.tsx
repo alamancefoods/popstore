@@ -8,12 +8,17 @@ const LogoContainer = () => {
 
   const themeContext = useContext(ThemeContext);
   const logoViewBox = () => {
-    let scale = themeContext.windowWidth * 0.1
+    let scale = (Math.sqrt(themeContext.windowWidth) / 2) + 100
+    if(themeContext.isPortrait){
+      scale = (Math.sqrt(themeContext.windowWidth)) + 100
+    }else{
+      scale = (-themeContext.windowWidth * 0.09) + 160
+    }
     return `0 0 ${scale} ${scale}`
   }
 
   return (
-    <StyledLogoDiv><StyledLogo viewBox={logoViewBox()} /></StyledLogoDiv>
+    <StyledLogoDiv><StyledLogo width="100%" height="150%" onClick={()=> console.log(logoViewBox()) } /></StyledLogoDiv>
   )
 }
 

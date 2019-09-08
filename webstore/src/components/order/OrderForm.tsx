@@ -78,9 +78,6 @@ const OrderForm = (
          />
         }
         <OrderMessage />
-        <p>
-          Balance: ${convertPopCountToCharge(order[TOTAL_POPS], false)}
-        </p>
         <ConditionalProfileLink />
       </StyledEntryContainer>
     </>

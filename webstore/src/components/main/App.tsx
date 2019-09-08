@@ -12,6 +12,7 @@ import StyledProfileForm, { StyledProfileContainer } from '../../styles/profile/
 import StyledPaymentForm, { StyledPaymentContainer } from '../../styles/payment/PaymentStyles'
 import OrderForm from '../order/OrderForm';
 import LogoContainer from './LogoContainer'
+import BalanceContainer from './BalanceContainer';
 
 const App: React.FC = () => {
   const [order, setOrder] = useState<OrderInterface>(store.popOrder)
@@ -63,6 +64,10 @@ const App: React.FC = () => {
   return (
       <QueryProvider>
         <LogoContainer />
+        <BalanceContainer
+          convertPopCountToCharge={convertPopCountToCharge}
+          order={order}
+        />
         <Switch>
           <Route
             exact

@@ -20,12 +20,19 @@ const OrderButton = ({addPopToOrder, pickedPop, popFlavor, index } : {
 
   //Use dynamicViewBox function to resize svgs according to device type.
   const buttonViewBox = () => {
-    let scale = themeContext.windowWidth * 0.2
-    return `${-scale / 4} ${-scale / 4} ${scale} ${scale}`
+    let landscapeWidthChunk= (themeContext.windowWidth * 0.8) / 3
+    let portraitWidthChunk = themeContext.windowWidth / 2
+    let scale = 0
+    if(themeContext.isPortrait){
+      scale = portraitWidthChunk
+    }else{
+      scale = landscapeWidthChunk
+    }
+    return `${-scale / 4} ${-scale / 6} ${scale} ${scale / 1.5}`
   }
 
   return (
-    <StyledSVGButton viewBox={buttonViewBox()} theme={theme} onClick={() => console.log(themeContext.windowWidth)}>{BUTTON_PROP!.svg}</StyledSVGButton>
+    <StyledSVGButton viewBox={ buttonViewBox() } theme={theme} onClick={() => pickedPop === NO_POP_PICKED ? addPopToOrder(popFlavor) : '' }>{BUTTON_PROP!.svg}</StyledSVGButton>
   )
 }
 

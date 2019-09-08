@@ -9,12 +9,13 @@ import MediaQuery from 'react-responsive';
 
 const QueryProvider = (props: ProviderPropTypes) => {
   const [theme, setTheme] = useState(appTheme)
+  const [firstRender, setFirstRender] = useState(true)
 
 
   const updateTheme = () => {
     let isPortrait = true
     let aspectRatio = window.innerWidth / window.innerHeight
-    if(aspectRatio > 13/9){
+    if(aspectRatio > 1024/768){
       isPortrait = false
     }else{
       isPortrait = true
@@ -24,12 +25,22 @@ const QueryProvider = (props: ProviderPropTypes) => {
     })
  }
 
+  const onMount = () => {
+    if(firstRender){
+      updateTheme()
+      setFirstRender(false)
+    }
+  }
+
   useEffect(() => {
     window.addEventListener('resize', updateTheme);
     return () => {
       window.removeEventListener('resize', updateTheme);
     };
   });
+
+  onMount()
+
 
   return(
     <div id='queryContainer'>

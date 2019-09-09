@@ -52,6 +52,13 @@ export const StyledSVGButton = styled.svg`
   filter: drop-shadow(4px 3px 1px #757575);
 `;
 
+export const StyledSVGEntry = styled.svg`
+  position: absolute;
+  display: flex;
+  justify-content: left;
+  justify-items: left;
+  filter: drop-shadow(4px 3px 1px #757575);
+`
 
 //Styles for Order Form Entry
 const landscapeEntryGridArea =`

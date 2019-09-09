@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { ThemeContext } from 'styled-components';
 import POP_DICTIONARY, { TOTAL_POPS } from '../../constants/constants'
 import { OrderEntryProps, OrderEntryValueTypes } from './types'
 import { Formik, FormikActions, Form, ErrorMessage, Field } from 'formik';
-import { StyledPopForm, StyledPopField, StyledPopFieldButton } from '../../styles/order/OrderStyles'
+import { StyledPopForm, StyledPopField, StyledPopFieldButton, StyledSVGEntry } from '../../styles/order/OrderStyles'
 import * as Yup from 'yup';
+import popConverter from '../../utilities/popConverter';
+import { entrySVGViewBox } from '../../utilities/buttonViewBox';
 
 const OrderEntrySchema = Yup.object().shape({
   popCount: Yup.number()
@@ -30,6 +33,10 @@ const OrderEntry = (
       </button>
     )
 
+    const PICKED_POP = popConverter(popFlavor);
+    const themeContext = useContext(ThemeContext);
+    const customViewBox = entrySVGViewBox(themeContext);
+
     const FormEntry = () => (
       <Formik
         initialValues={{
@@ -41,6 +48,7 @@ const OrderEntry = (
       >
         {({ errors, touched }) => (
           <StyledPopForm className={'className'}>
+            <StyledSVGEntry viewBox={customViewBox}>{PICKED_POP!.svg}</StyledSVGEntry>
             <StyledPopField type="number" className={'className'} name="popCount" placeholder="0"/>
             <ErrorMessage name="popCount" />
             <StyledPopFieldButton type="submit">Submit</StyledPopFieldButton>

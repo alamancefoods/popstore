@@ -5,9 +5,9 @@ export interface OrderInterface {
   orange: number;
   bluePunch: number;
   lemonLime: number;
-  pinaColada: number;
+  pineapple: number;
   banana: number;
-  peach: number;
+  coconut: number;
   cherry: number;
   mango: number;
   greenApple: number;

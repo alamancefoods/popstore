@@ -7,9 +7,9 @@ let popOrder = {
   orange: 0,
   bluePunch: 0,
   lemonLime: 0,
-  pinaColada: 0,
+  pineapple: 0,
   banana: 0,
-  peach: 0,
+  coconut: 0,
   cherry: 0,
   mango: 0,
   greenApple: 0,
@@ -53,5 +53,11 @@ let buttonList = [
 let pickedPop: string = NO_POP_PICKED;
 
 let store = {popOrder, customerProfile, buttonList, pickedPop}
+
+export let appTheme = {
+  isPortrait: false,
+  windowWidth: 1152,
+  windowHeight: 700
+}
 
 export default store;

@@ -1,19 +1,12 @@
 import React, { useContext }from 'react';
-import { dynamicViewBox } from '../../utilities/SVGResizers';
-import { StyledLogoDiv, StyledLogo } from '../../styles/root/RootStyles';
+import { StyledLogo } from '../../styles/root/RootStyles';
 import { LOGO_SVG } from '../../constants/constants';
 import { ThemeContext } from 'styled-components';
 
-const LogoContainer = () => {
-  const inheritedTheme = useContext(ThemeContext);
-  const logoViewBox = dynamicViewBox(
-    LOGO_SVG,
-    inheritedTheme.deviceType,
-  )
-
+const ResizedLogo= () => {
   return (
-    <StyledLogoDiv><StyledLogo viewBox={logoViewBox} /></StyledLogoDiv>
+    <StyledLogo width="100%" height="150%" />
   )
 }
 
-export default LogoContainer;
+export default ResizedLogo;

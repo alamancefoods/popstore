@@ -281,77 +281,77 @@ export const BUTTON_PROPS = [
   {
     popFlavor:'Grape',
     color: 'purple',
-    svg: <Grape />
+    svg: Grape
   },
   {
     popFlavor: 'Orange',
     color: 'orange',
-    svg: <Orange />
+    svg: Orange
   },
   {
     popFlavor: 'Blue-Punch',
     color: 'blue',
-    svg: <BluePunch />
+    svg: BluePunch
   },
   {
     popFlavor: 'Lemon-Lime',
     color: 'green',
-    svg: <LemonLime />
+    svg: LemonLime
   },
   {
     popFlavor: 'Pineapple',
     color: 'yellow',
-    svg: <Pineapple />
+    svg: Pineapple
   },
   {
     popFlavor: 'Banana',
     color: 'yellow',
-    svg: <Banana />
+    svg: Banana
   },
   {
     popFlavor: 'Coconut',
     color: 'white',
-    svg: <Coconut />
+    svg: Coconut
   },
   {
     popFlavor: 'Cherry',
     color: 'red',
-    svg: <Cherry />
+    svg: Cherry
   },
   {
     popFlavor: 'Mango',
     color: 'orange',
-    svg: <Mango />
+    svg: Mango
   },
   {
     popFlavor: 'Green-Apple',
     color: 'green',
-    svg: <GreenApple />
+    svg: GreenApple
   },
   {
     popFlavor: 'Watermelon',
     color: 'pink',
-    svg: <Watermelon />
+    svg: Watermelon
   },
   {
     popFlavor: 'Strawberry',
     color: 'pink',
-    svg: <Strawberry />
+    svg: Strawberry
   },
   {
     popFlavor: 'Guava',
     color: 'orange',
-    svg: <Guava />
+    svg: Guava
   },
   {
     popFlavor: 'Mojito',
     color: 'green',
-    svg: <Mojito />
+    svg: Mojito
   },
   {
     popFlavor: 'Papaya',
     color: 'Orange',
-    svg: <Papaya />
+    svg: Papaya
   }
 ]
 

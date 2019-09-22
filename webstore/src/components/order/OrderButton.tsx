@@ -1,8 +1,10 @@
 import React, { useContext } from 'react';
-import { StyledSVGButton } from '../../styles/order/OrderStyles';
+import { StyledFlavorIcon } from '../../styles/order/OrderStyles';
+import styled from 'styled-components';
 import { BUTTON_PROPS, BUTTON_SVG, NO_POP_PICKED } from '../../constants/constants';
 import { ThemeContext } from 'styled-components';
-import { dynamicViewBox } from '../../utilities/SVGResizers'
+import popConverter from '../../utilities/popConverter';
+import svgResizer from '../../utilities/svgResizer';
 
 const OrderButton = ({addPopToOrder, pickedPop, popFlavor, index } : {
   addPopToOrder: (popFlavor: string) => void,
@@ -10,25 +12,20 @@ const OrderButton = ({addPopToOrder, pickedPop, popFlavor, index } : {
   popFlavor: string,
   index: number
 }) => {
-  const rePopFlavor = popFlavor.replace(/\s+/g, '-')
-  const BUTTON_PROP = BUTTON_PROPS.find(theme => theme.popFlavor === rePopFlavor)
+  const BUTTON_PROP = popConverter(popFlavor)
   const theme = {
     gridArea: BUTTON_PROP!.popFlavor,
     color: BUTTON_PROP!.color
   }
-  const inheritedTheme = useContext(ThemeContext);
 
-  //Use dynamicViewBox function to resize svgs according to device type.
-  const buttonViewBox = dynamicViewBox(
-    BUTTON_SVG,
-    inheritedTheme.deviceType,
-    popFlavor
-  )
+  const FlavorIcon = BUTTON_PROP!.svg
+  const themeContext = useContext(ThemeContext);
+  const { iconWidth, iconHeight } = svgResizer(themeContext)
 
   return (
-    <StyledSVGButton viewBox={buttonViewBox} theme={theme} onClick={() => pickedPop === NO_POP_PICKED ? addPopToOrder(popFlavor) : '' }>{BUTTON_PROP!.svg}</StyledSVGButton>
+    <StyledFlavorIcon theme={theme} component={<FlavorIcon width={iconWidth} height={iconHeight}  onClick={() => pickedPop === NO_POP_PICKED ? addPopToOrder(popFlavor) : '' } />} />
   )
 }
 
 export default OrderButton;
-
+//onClick={() => pickedPop === NO_POP_PICKED ? addPopToOrder(popFlavor) : '' }

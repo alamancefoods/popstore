@@ -12,15 +12,15 @@ const buttonViewBox = (themeContext: any) => {
 }
 
 export const entrySVGViewBox = (themeContext: any) => {
-  let landscapeWidthChunk= (themeContext.windowWidth * 0.8) / 3
-  let portraitWidthChunk = themeContext.windowWidth * 1.5
+  let landscapeWidthChunk= themeContext.windowWidth * 0.9
+  let portraitWidthChunk = themeContext.windowWidth * 0.5
   let scale = 0
   if(themeContext.isPortrait){
     scale = portraitWidthChunk
   }else{
     scale = landscapeWidthChunk
   }
-  return `${-scale / 4} ${-scale / 6} ${scale} ${scale / 1.5}`
+  return '1 1'
 }
 
 export default buttonViewBox;

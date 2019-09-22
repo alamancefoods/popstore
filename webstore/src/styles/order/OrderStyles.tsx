@@ -41,16 +41,11 @@ export const StyledButtonContainer = styled.div`
   grid-template-areas: ${props => props.theme.isPortrait ? portraitButtonGrid : landscapeButtonGrid };
 `;
 
-
-
-export const StyledSVGButton = styled.svg`
-  position: absolute;
+export const StyledFlavorIcon = styled(({ component, ...props}) => React.cloneElement(component, props))`
   display: flex;
-  justify-content: center;
-  justify-items: center;
   grid-area: ${props => props.theme.gridArea};
   filter: drop-shadow(4px 3px 1px #757575);
-`;
+`
 
 export const StyledSVGEntry = styled.svg`
   position: absolute;
@@ -89,7 +84,7 @@ export const StyledEntryContainer = styled.div`
 
 export const StyledPopForm = styled(Form)`
   display: flex;
-  flex-direction: row;
+  flex-direction: ${props => props.theme.isPortrait ? 'row' : 'column'};
   align-items: center;
 `
 

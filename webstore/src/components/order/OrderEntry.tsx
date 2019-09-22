@@ -3,10 +3,10 @@ import { ThemeContext } from 'styled-components';
 import POP_DICTIONARY, { TOTAL_POPS } from '../../constants/constants'
 import { OrderEntryProps, OrderEntryValueTypes } from './types'
 import { Formik, FormikActions, Form, ErrorMessage, Field } from 'formik';
-import { StyledPopForm, StyledPopField, StyledPopFieldButton, StyledSVGEntry } from '../../styles/order/OrderStyles'
+import { StyledPopForm, StyledPopField, StyledPopFieldButton, StyledFlavorIcon } from '../../styles/order/OrderStyles'
 import * as Yup from 'yup';
 import popConverter from '../../utilities/popConverter';
-import { entrySVGViewBox } from '../../utilities/buttonViewBox';
+import svgResizer from '../../utilities/svgResizer'
 
 const OrderEntrySchema = Yup.object().shape({
   popCount: Yup.number()
@@ -34,8 +34,14 @@ const OrderEntry = (
     )
 
     const PICKED_POP = popConverter(popFlavor);
+    const FlavorIcon = PICKED_POP!.svg
     const themeContext = useContext(ThemeContext);
-    const customViewBox = entrySVGViewBox(themeContext);
+    const { iconWidth, iconHeight }= svgResizer(themeContext)
+    // Customize theme for svg icon placement.
+    const theme = {
+      gridArea: 'Entry'
+    }
+
 
     const FormEntry = () => (
       <Formik
@@ -48,7 +54,7 @@ const OrderEntry = (
       >
         {({ errors, touched }) => (
           <StyledPopForm className={'className'}>
-            <StyledSVGEntry viewBox={customViewBox}>{PICKED_POP!.svg}</StyledSVGEntry>
+            <StyledFlavorIcon theme={theme} component={<FlavorIcon width={iconWidth} height={iconHeight} />} />
             <StyledPopField type="number" className={'className'} name="popCount" placeholder="0"/>
             <ErrorMessage name="popCount" />
             <StyledPopFieldButton type="submit">Submit</StyledPopFieldButton>

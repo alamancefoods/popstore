@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
-import { StyledSVGButton } from '../../styles/order/OrderStyles';
+import { StyledFlavorIcon } from '../../styles/order/OrderStyles';
+import styled from 'styled-components';
 import { BUTTON_PROPS, BUTTON_SVG, NO_POP_PICKED } from '../../constants/constants';
 import { ThemeContext } from 'styled-components';
-import  buttonViewBox  from '../../utilities/buttonViewBox'
-import popConverter from '../../utilities/popConverter'
+import popConverter from '../../utilities/popConverter';
+import svgResizer from '../../utilities/svgResizer';
 
 const OrderButton = ({addPopToOrder, pickedPop, popFlavor, index } : {
   addPopToOrder: (popFlavor: string) => void,
@@ -17,12 +18,12 @@ const OrderButton = ({addPopToOrder, pickedPop, popFlavor, index } : {
     color: BUTTON_PROP!.color
   }
 
+  const FlavorIcon = BUTTON_PROP!.svg
   const themeContext = useContext(ThemeContext);
-  const customViewBox = buttonViewBox(themeContext);
-
+  const { iconWidth, iconHeight } = svgResizer(themeContext)
 
   return (
-    <StyledSVGButton viewBox={customViewBox} theme={theme} onClick={() => pickedPop === NO_POP_PICKED ? addPopToOrder(popFlavor) : '' }>{BUTTON_PROP!.svg}</StyledSVGButton>
+    <StyledFlavorIcon theme={theme} component={<FlavorIcon width={iconWidth} height={iconHeight}  onClick={() => pickedPop === NO_POP_PICKED ? addPopToOrder(popFlavor) : '' } />} />
   )
 }
 

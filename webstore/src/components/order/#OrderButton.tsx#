@@ -8,7 +8,7 @@ import svgResizer from '../../utilities/svgResizer';
 
 const OrderButton = ({ addPopToOrder, pickedPop, popFlavor, index }: {
   addPopToOrder: (popFlavor: string) => void,
-  pickedPop: string
+  pickedPop: string,
   popFlavor: string,
   index: number
 }) => {

@@ -1,5 +1,6 @@
-import React from 'react';
-import  POP_DICTIONARY, { TOTAL_POPS, NO_POP_PICKED } from '../../constants/constants';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { NO_CHOICE, BUTTON_OBJECTS } from '../../constants/constants';
 import { OrderFormProps } from './types';
 import {
   StyledButtonContainer,
@@ -10,53 +11,43 @@ import OrderButton from './OrderButton';
 import OrderEntry from './OrderEntry';
 import { NavLink } from 'react-router-dom';
 
-const OrderForm = (
-  {
-    addPopToOrder,
-    updateOrder,
-    removePopFromOrder,
-    convertPopCountToCharge,
-    order,
-    pickedPop,
-    buttonList,
-    className
-  }: OrderFormProps) => {
+
+const OrderForm = (className?: string) => {
+  const choice = useSelector((state: any) => state.choiceReducer.choice);
 
   const ConditionalProfileLink = () => {
-    let linkHolder = null
-    if(order.totalCount < 5){
-      linkHolder = null
+    let linkHolder = null;
+    if (order.totalCount < 5) {
+      linkHolder = null;
     } else {
-      linkHolder = <NavLink to='/checkout/shipping-details'>Checkout</NavLink>
+      linkHolder = <NavLink to='/checkout/shipping-details'>Checkout</NavLink>;
     }
-    return(
+    return (
       linkHolder
-    )
-  }
+    );
+  };
 
-  return(
+  return (
     <>
       <StyledButtonContainer>
-        {buttonList.map((button, index) =>
+        {BUTTON_OBJECTS.map((popButton, index) =>
           <OrderButton
-            addPopToOrder={addPopToOrder}
-            pickedPop={pickedPop}
-            popFlavor={button}
+            popButton={popButton}
             index={index}
             key={index}
           />
         )}
       </StyledButtonContainer>
       <StyledEntryContainer>
-        {pickedPop === NO_POP_PICKED
-        ? null
-        : <OrderEntry
-           popFlavor={pickedPop}
-           updateOrder={updateOrder}
-           removePopFromOrder={removePopFromOrder}
-           popCount={order[POP_DICTIONARY[pickedPop]]}
-           order={order}
-         />
+        {pickedPop === NO_CHOICE
+          ? null
+          : <OrderEntry
+            popFlavor={pickedPop}
+            updateOrder={updateOrder}
+            removePopFromOrder={removePopFromOrder}
+            popCount={order[POP_DICTIONARY[pickedPop]]}
+            order={order}
+          />
         }
         <ConditionalProfileLink />
       </StyledEntryContainer>

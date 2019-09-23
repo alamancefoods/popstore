@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import { orderReducer } from '../order/reducers';
-import { profileReducer } from '../profile/reducers';
+import { orderReducer } from '../order/orderReducer';
+import { choiceReducer } from '../order/choiceReducer';
 
 export default combineReducers({
   orderReducer,
-  profileReducer
-})
+  choiceReducer
+});

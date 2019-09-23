@@ -1,4 +1,4 @@
-import { OrderInterface } from '../order/types'
+import { OrderInterface } from '../order/types';
 
 export interface BalanceInterface {
   convertPopCountToCharge: (popCount: number, isCents: boolean) => React.ReactText;

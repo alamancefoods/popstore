@@ -13,19 +13,19 @@ const StyledOrderForm = styled(props => <OrderForm {...props} />)`
 
 
 // Styles for Buttons.
-const portraitButtonGrid =`
-  "Strawberry Orange Blue-Punch"
-  "Grape Watermelon Lemon-Lime"
-  "Cherry Pineapple Guava"
-  "Mojito Papaya Mango"
-  "Coconut Green-Apple Banana"
+const portraitButtonGrid = `
+  "strawberry orange bluePunch"
+  "grape watermelon lemonLime"
+  "cherry pineapple guava"
+  "mojito papaya mango"
+  "coconut greenApple banana"
 `
 
 
-const landscapeButtonGrid =`
-  "Strawberry Orange Blue-Punch Grape Watermelon"
-  "Lemon-Lime Cherry Pineapple Guava Mojito"
-  "Papaya Mango Coconut Green-Apple Banana"
+const landscapeButtonGrid = `
+  "strawberry orange bluePunch grape watermelon"
+  "lemonLime cherry pineapple guava mojito"
+  "papaya mango coconut greenApple banana"
 `
 
 export const StyledButtonContainer = styled.div`
@@ -38,10 +38,10 @@ export const StyledButtonContainer = styled.div`
   justify-content: center;
   grid-template-columns: ${props => props.theme.isPortrait ? "33% 33% 33%" : "20% 20% 20% 20% 20%"};
   grid-template-rows: auto;
-  grid-template-areas: ${props => props.theme.isPortrait ? portraitButtonGrid : landscapeButtonGrid };
+  grid-template-areas: ${props => props.theme.isPortrait ? portraitButtonGrid : landscapeButtonGrid};
 `;
 
-export const StyledFlavorIcon = styled(({ component, ...props}) => React.cloneElement(component, props))`
+export const StyledFlavorIcon = styled(({ component, ...props }) => React.cloneElement(component, props))`
   display: flex;
   grid-area: ${props => props.theme.gridArea};
   filter: drop-shadow(4px 3px 1px #757575);
@@ -56,21 +56,21 @@ export const StyledSVGEntry = styled.svg`
 `
 
 //Styles for Order Form Entry
-const landscapeEntryGridArea =`
+const landscapeEntryGridArea = `
 firstRowBreak / secondColBreak / bottom / stop
 `
 
-const portraitEntryGridArea =`
+const portraitEntryGridArea = `
 secondRowBreak / start / bottom /stop
 `
 
-const portraitEntryGrid=`
+const portraitEntryGrid = `
 "Picked-Pop Entry Entry"
 "Picked-Pop Entry Entry"
 "Error Error"
 `
 
-const landscapeEntryGrid=`
+const landscapeEntryGrid = `
 "Picked-Pop Picked-Pop"
 "Entry Entry"
 "Error Error"
@@ -78,7 +78,7 @@ const landscapeEntryGrid=`
 
 export const StyledEntryContainer = styled.div`
   display: grid;
-  grid-area: ${props => props.theme.isPortrait ? portraitEntryGridArea : landscapeEntryGridArea }
+  grid-area: ${props => props.theme.isPortrait ? portraitEntryGridArea : landscapeEntryGridArea}
   grid-template-areas: ${props => props.theme.isPortrait ? portraitEntryGrid : landscapeEntryGrid}
 `
 

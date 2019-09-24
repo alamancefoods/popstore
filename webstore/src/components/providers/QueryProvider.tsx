@@ -1,57 +1,55 @@
-import React, { useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
-import { appTheme } from '../../store/store'
-import { MEDIA_QUERY_THEMES } from '../../constants/constants';
-import { ProviderPropTypes } from './types'
-import { GlobalStyle, GridContainer } from '../../styles/root/RootStyles'
-import MediaQuery from 'react-responsive';
+import { ProviderPropTypes } from './types';
+import { DisplayState } from '../../redux/display/types';
+import { GlobalStyle, GridContainer } from '../../styles/root/RootStyles';
+import { updateDisplay } from '../../redux/display/actions';
 
 
 const QueryProvider = (props: ProviderPropTypes) => {
-  const [theme, setTheme] = useState(appTheme)
-  const [firstRender, setFirstRender] = useState(true)
+  const [firstRender, setFirstRender] = useState(true);
+  const dispatch = useDispatch();
+  const display = useSelector((state: any) => state.displayReducer.display);
 
 
-  const updateTheme = () => {
-    let isPortrait = true
-    let aspectRatio = window.innerWidth / window.innerHeight
-    if(aspectRatio > 1024/768){
-      isPortrait = false
-    }else{
-      isPortrait = true
-    }
-    setTheme(prevState => {
-      return {...prevState, isPortrait: isPortrait, windowWidth: window.innerWidth, windowHeight: window.innerHeight }
-    })
- }
-
-  const onMount = () => {
-    if(firstRender){
-      updateTheme()
-      setFirstRender(false)
-    }
-  }
-
+  // Update display dimensions if they change.
   useEffect(() => {
-    window.addEventListener('resize', updateTheme);
+    window.addEventListener('resize', () => {
+      dispatch(updateDisplay());
+    });
     return () => {
-      window.removeEventListener('resize', updateTheme);
+      window.removeEventListener('resize', () => {
+        dispatch(updateDisplay());
+      });
     };
   });
 
-  onMount()
+
+  // Function to call on first load. Ensures that proper theme is set.
+  const onMount = () => {
+    if (firstRender) {
+      dispatch(updateDisplay());
+      setFirstRender(false);
+    }
+  };
+
+  console.log(display);
 
 
-  return(
+  onMount();
+
+
+  return (
     <div id='queryContainer'>
       <GlobalStyle />
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={() => (display)}>
         <GridContainer >
           {props.children}
         </GridContainer>
       </ThemeProvider>
     </div>
-  )
-}
+  );
+};
 
 export default QueryProvider;

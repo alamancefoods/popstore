@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { NO_CHOICE, BUTTON_OBJECTS } from '../../constants/constants';
-import { OrderFormProps } from './types';
+import { BUTTON_OBJECTS } from '../../constants/constants';
+import { NO_CHOICE } from '../../constants/constants';
 import {
   StyledButtonContainer,
   StyledEntryContainer,
@@ -12,8 +12,9 @@ import OrderEntry from './OrderEntry';
 import { NavLink } from 'react-router-dom';
 
 
-const OrderForm = (className?: string) => {
+const OrderForm = ({ className }: { className?: string }) => {
   const choice = useSelector((state: any) => state.choiceReducer.choice);
+  const order = useSelector((state: any) => state.orderReducer.order);
 
   const ConditionalProfileLink = () => {
     let linkHolder = null;
@@ -33,21 +34,14 @@ const OrderForm = (className?: string) => {
         {BUTTON_OBJECTS.map((popButton, index) =>
           <OrderButton
             popButton={popButton}
-            index={index}
             key={index}
           />
         )}
       </StyledButtonContainer>
       <StyledEntryContainer>
-        {pickedPop === NO_CHOICE
+        {choice === NO_CHOICE
           ? null
-          : <OrderEntry
-            popFlavor={pickedPop}
-            updateOrder={updateOrder}
-            removePopFromOrder={removePopFromOrder}
-            popCount={order[POP_DICTIONARY[pickedPop]]}
-            order={order}
-          />
+          : <OrderEntry />
         }
         <ConditionalProfileLink />
       </StyledEntryContainer>

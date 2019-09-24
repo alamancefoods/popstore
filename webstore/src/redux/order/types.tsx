@@ -1,3 +1,5 @@
+import { UPDATE_ORDER, UPDATE_CHOICE } from '../actionTypes';
+
 export interface OrderState {
   balance: number;
   totalCount: number;
@@ -18,7 +20,7 @@ export interface OrderState {
   papaya: number;
 };
 
-export interface choiceState {
+export interface ChoiceState {
   choice: string;
 };
 
@@ -28,7 +30,7 @@ interface OrderPayload {
 };
 
 interface ChoicePayload {
-  pickedFlavor: string;
+  choice: string;
 };
 
 interface UpdateOrderAction {

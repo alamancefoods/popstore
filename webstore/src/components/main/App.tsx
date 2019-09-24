@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import store from '../../store/store';
 import { StripeProvider, Elements } from 'react-stripe-elements';
-import { ProtectedPaymentRoute, ProtectedProfileRoute } from '../utilities/ProtectedRoutes';
 import { ProfileInterface } from '../profile/types';
 import QueryProvider from '../providers/QueryProvider';
 import { Route, Switch, Redirect } from 'react-router-dom';
@@ -23,25 +23,13 @@ const App: React.FC = () => {
     <QueryProvider>
       <StyledHeader>
         <ResizedLogo />
-        <StyledBalance
-          convertPopCountToCharge={convertPopCountToCharge}
-          order={order}
-        />
+        <StyledBalance />
       </StyledHeader>
       <Switch>
         <Route
           exact
           path="/"
-          render={props =>
-            <OrderForm{...props}
-              addPopToOrder={addPopToOrder}
-              updateOrder={updateOrder}
-              removePopFromOrder={removePopFromOrder}
-              order={order}
-              pickedPop={pickedPop}
-              buttonList={buttonList}
-            />
-          }
+          render={() => <OrderForm />}
         />
         <Route
           path="/checkout/shipping-details"

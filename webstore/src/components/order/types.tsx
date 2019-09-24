@@ -19,13 +19,6 @@ export interface OrderInterface {
   [index: string]: number;
 }
 
-export interface OrderEntryProps {
-  popFlavor: string;
-  updateOrder: (popCount: number, popFlavor: string) => void;
-  removePopFromOrder: (popFlavor: string) => void;
-  popCount: number;
-  order: OrderInterface;
-}
 
 export interface OrderFormProps {
   addPopToOrder: (popFlavor: string) => void;

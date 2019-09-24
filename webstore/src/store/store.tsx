@@ -1,4 +1,3 @@
-import { NO_POP_PICKED } from '../constants/constants'
 
 let popOrder = {
   balance: 0,
@@ -50,9 +49,8 @@ let buttonList = [
 ]
 
 
-let pickedPop: string = NO_POP_PICKED;
 
-let store = {popOrder, customerProfile, buttonList, pickedPop}
+let store = { popOrder, customerProfile, buttonList }
 
 export let appTheme = {
   isPortrait: false,

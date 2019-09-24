@@ -1,19 +1,14 @@
 import React from 'react';
-import { BalanceInterface } from './types';
-import { TOTAL_POPS } from '../../constants/constants';
+import { useSelector } from 'react-redux';
+import { convertPopCountToCharge } from '../../utilities/convertPopCountToCharge';
 
-const Balance = (
-  {
-    convertPopCountToCharge,
-    order
-  }: BalanceInterface) => {
+const Balance = () => {
+  const order = useSelector((state: any) => state.orderReducer);
 
-
-
-  if (order[TOTAL_POPS] > 0) {
+  if (order.totalCount > 0) {
     return (
       <>
-        Balance: ${convertPopCountToCharge(order[TOTAL_POPS], false)}
+        Balance: ${convertPopCountToCharge(order.totalCount, false)}
       </>
     );
   } else {

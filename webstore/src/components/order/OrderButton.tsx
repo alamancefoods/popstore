@@ -1,31 +1,36 @@
 import React, { useContext } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { updateChoice } from '../../redux/order/actions';
+import { NO_CHOICE } from '../../constants/constants';
 import { StyledFlavorIcon } from '../../styles/order/OrderStyles';
-import styled from 'styled-components';
-import { BUTTON_PROPS, BUTTON_SVG, NO_POP_PICKED } from '../../constants/constants';
-import { ThemeContext } from 'styled-components';
 import popConverter from '../../utilities/popConverter';
 import svgResizer from '../../utilities/svgResizer';
 
-const OrderButton = ({ addPopToOrder, pickedPop, popFlavor, index }: {
-  addPopToOrder: (popFlavor: string) => void,
-  pickedPop: string
-  popFlavor: string,
-  index: number
-}) => {
-  const BUTTON_PROP = popConverter(popFlavor);
+const OrderButton = ({ popButton }: { popButton: any }) => {
+  const display = useSelector((state: any) => state.displayReducer.display);
+  const choice = useSelector((state: any) => state.choiceReducer.choice);
+  const dispatch = useDispatch();
   const theme = {
-    gridArea: BUTTON_PROP!.popFlavor,
-    color: BUTTON_PROP!.color
+    gridArea: popButton.popFlavor,
   };
 
-  const FlavorIcon = BUTTON_PROP!.svg
-  const themeContext = useContext(ThemeContext);
-  const { iconWidth, iconHeight } = svgResizer(themeContext);
+  const FlavorIcon = popButton.svg;
+  const { iconWidth, iconHeight } = svgResizer(display);
 
   return (
-    <StyledFlavorIcon theme={theme} component={<FlavorIcon width={iconWidth} height={iconHeight} onClick={() => pickedPop === NO_POP_PICKED ? addPopToOrder(popFlavor) : ''} />} />
+    <StyledFlavorIcon
+      theme={theme}
+      component={
+        <FlavorIcon
+          width={iconWidth}
+          height={iconHeight}
+          onClick={
+            () => choice === NO_CHOICE ? dispatch(updateChoice(popButton.popFlavor)) : ''
+          }
+        />
+      }
+    />
   );
 };
 
 export default OrderButton;
-//onClick={() => pickedPop === NO_POP_PICKED ? addPopToOrder(popFlavor) : '' }

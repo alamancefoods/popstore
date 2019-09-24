@@ -1,30 +1,11 @@
-import {
-  OrderState,
-  OrderActionTypes,
-  UPDATE_ORDER
-} from './types';
+import { OrderState, OrderActionTypes } from './types';
+import { ORDER_DEFAULT } from '../stateDefaults';
+import { UPDATE_ORDER } from '../actionTypes';
 
-const initialState: OrderState = {
-  balance: 0,
-  totalCount: 0,
-  grape: 0,
-  orange: 0,
-  bluePunch: 0,
-  lemonLime: 0,
-  pineapple: 0,
-  banana: 0,
-  coconut: 0,
-  cherry: 0,
-  mango: 0,
-  greenApple: 0,
-  watermelon: 0,
-  strawberry: 0,
-  guava: 0,
-  mojito: 0,
-  papaya: 0
-};
 
-function calculatedTotal = (
+const initialState: OrderState = ORDER_DEFAULT;
+
+function calculatedTotal(
   currentTotal: number,
   numericChange: number,
   initialCount: number
@@ -34,7 +15,7 @@ function calculatedTotal = (
   return newTotal;
 };
 
-function calculatedBalance = (newTotal: number) {
+function calculatedBalance(newTotal: number) {
   let newBalance: number;
   if (newTotal > 10) {
     newBalance = newTotal * 25;
@@ -53,7 +34,7 @@ export function orderReducer(
       const newTotal = calculatedTotal(
         state['totalCount'],
         action.payload.numericChange,
-        state[action.payload.pickedFlavor]
+        (state as any)[action.payload.pickedFlavor]
       );
       const newBalance = calculatedBalance(newTotal);
       return {

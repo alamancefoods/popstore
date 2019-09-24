@@ -1,10 +1,9 @@
 import { ChoiceState, ChoiceActionTypes } from './types';
-import { UPDATE_CHOICE, NO_CHOICE } from '../../constants/constants';
+import { UPDATE_CHOICE } from '../actionTypes';
+import { CHOICE_DEFAULT } from '../stateDefaults';
 
 
-const initialState: ChoiceState = {
-  choice: NO_CHOICE
-};
+const initialState: ChoiceState = CHOICE_DEFAULT;
 
 export function choiceReducer(
   state = initialState,

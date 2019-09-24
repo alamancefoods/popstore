@@ -9,7 +9,7 @@ import { ReactComponent as Guava } from '../static/guava.svg';
 import { ReactComponent as LemonLime } from '../static/lemon_lime.svg';
 import { ReactComponent as Mango } from '../static/mango.svg';
 import { ReactComponent as Mojito } from '../static/mojito.svg';
-import { ReactComponent as  Orange} from '../static/orange.svg';
+import { ReactComponent as Orange } from '../static/orange.svg';
 import { ReactComponent as Papaya } from '../static/papaya.svg';
 import { ReactComponent as Pineapple } from '../static/pineapple.svg';
 import { ReactComponent as Strawberry } from '../static/strawberry.svg';
@@ -19,23 +19,23 @@ import { PopInterface, ThemeType } from './types'
 
 
 const POP_DICTIONARY: PopInterface = {
-  'Balance' : 'balance',
-  'Total' : 'totalCount',
-  'Grape' : 'grape',
-  'Orange' : 'orange',
-  'Blue Punch' : 'bluePunch',
-  'Lemon Lime' : 'lemonLime',
-  'Pineapple' : 'pineapple',
-  'Banana' : 'banana',
-  'Coconut' : 'coconut',
-  'Cherry' : 'cherry',
-  'Mango' : 'mango',
-  'Green Apple' : 'greenApple',
-  'Watermelon' : 'watermelon',
-  'Strawberry' : 'strawberry',
-  'Guava' : 'guava',
-  'Mojito' : 'mojito',
-  'Papaya' : 'papaya'
+  'Balance': 'balance',
+  'Total': 'totalCount',
+  'Grape': 'grape',
+  'Orange': 'orange',
+  'Blue Punch': 'bluePunch',
+  'Lemon Lime': 'lemonLime',
+  'Pineapple': 'pineapple',
+  'Banana': 'banana',
+  'Coconut': 'coconut',
+  'Cherry': 'cherry',
+  'Mango': 'mango',
+  'Green Apple': 'greenApple',
+  'Watermelon': 'watermelon',
+  'Strawberry': 'strawberry',
+  'Guava': 'guava',
+  'Mojito': 'mojito',
+  'Papaya': 'papaya'
 }
 
 export const STATE_LIST: string[] = [
@@ -97,7 +97,6 @@ export const MINIMUM_ORDER_SIZE = 5
 export default POP_DICTIONARY
 
 export const BUTTON_SVG = 'BUTTON_SVG';
-export const LOGO_SVG = 'LOGO_SVG';
 
 export const NO_POP_PICKED = 'NO_POP_PICKED';
 
@@ -279,7 +278,7 @@ export const MEDIA_QUERY_THEMES: Array<ThemeType> = [
 
 export const BUTTON_PROPS = [
   {
-    popFlavor:'Grape',
+    popFlavor: 'Grape',
     color: 'purple',
     svg: Grape
   },

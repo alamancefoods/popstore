@@ -1,9 +1,8 @@
-import { BUTTON_PROPS } from '../constants/constants';
+import { BUTTON_OBJECTS } from '../constants/constants';
 
-const popConverter = (popString: string) => {
-  const rePopString = popString.replace(/\s+/g, '-')
-  const parsedFlavor = BUTTON_PROPS.find(theme => theme.popFlavor === rePopString)
-  return parsedFlavor
-}
+const popConverter = (popFlavor: string) => {
+  const buttonObject = BUTTON_OBJECTS.find(button => button.popFlavor === popFlavor);
+  return buttonObject;
+};
 
 export default popConverter;

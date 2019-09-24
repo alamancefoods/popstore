@@ -15,10 +15,8 @@ import { ReactComponent as Pineapple } from '../static/pineapple.svg';
 import { ReactComponent as Strawberry } from '../static/strawberry.svg';
 import { ReactComponent as Watermelon } from '../static/watermelon.svg';
 
-// Constants for redux reducers.
-// Choice & Order reducers:
-export const UPDATE_ORDER = 'UPDATE_ORDER';
-export const UPDATE_CHOICE = 'UPDATE_CHOICE';
+// Simple Constants.
+export const LOGO_SVG = 'LOGO_SVG';
 export const NO_CHOICE = 'NO_CHOICE';
 
 // List of button objects.

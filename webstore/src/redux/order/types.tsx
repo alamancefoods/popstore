@@ -1,27 +1,33 @@
-import { UPDATE_ORDER, UPDATE_CHOICE } from '../actionTypes';
+import { UPDATE_ORDER, UPDATE_CHOICE, UPDATE_INIT } from '../actionTypes';
 
 export interface OrderState {
-  balance: number;
-  totalCount: number;
-  grape: number;
-  orange: number;
-  bluePunch: number;
-  lemonLime: number;
-  pineapple: number;
-  banana: number;
-  coconut: number;
-  cherry: number;
-  mango: number;
-  greenApple: number;
-  watermelon: number;
-  strawberry: number;
-  guava: number;
-  mojito: number;
-  papaya: number;
+  order: {
+    balance: number;
+    totalCount: number;
+    grape: number;
+    orange: number;
+    bluePunch: number;
+    lemonLime: number;
+    pineapple: number;
+    banana: number;
+    coconut: number;
+    cherry: number;
+    mango: number;
+    greenApple: number;
+    watermelon: number;
+    strawberry: number;
+    guava: number;
+    mojito: number;
+    papaya: number;
+  };
 };
 
 export interface ChoiceState {
   choice: string;
+};
+
+export interface InitState {
+  init: boolean;
 };
 
 interface OrderPayload {
@@ -31,6 +37,10 @@ interface OrderPayload {
 
 interface ChoicePayload {
   choice: string;
+};
+
+interface InitPayload {
+  init: boolean;
 };
 
 interface UpdateOrderAction {
@@ -43,6 +53,12 @@ interface UpdateChoiceAction {
   payload: ChoicePayload;
 };
 
+interface UpdateInitAction {
+  type: typeof UPDATE_INIT;
+  payload: InitPayload;
+};
+
 export type OrderActionTypes = UpdateOrderAction;
 export type ChoiceActionTypes = UpdateChoiceAction;
+export type InitActionTypes = UpdateInitAction;
 

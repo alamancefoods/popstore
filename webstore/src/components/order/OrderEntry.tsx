@@ -57,7 +57,7 @@ const OrderEntry = () => {
     >
       {({ errors, touched }) => (
         <StyledPopForm className={'className'}>
-          <StyledFlavorIcon theme={theme} component={<FlavorIcon width={iconWidth} height={iconHeight} />} />
+          <StyledFlavorIcon theme={theme} component={<FlavorIcon />} />
           <StyledPopField type="number" className={'className'} name="popCount" placeholder="0" />
           <ErrorMessage name="popCount" />
           <StyledPopFieldButton type="submit">Submit</StyledPopFieldButton>
@@ -76,3 +76,5 @@ const OrderEntry = () => {
 };
 
 export default OrderEntry;
+
+// width={iconWidth} height={iconHeight} 

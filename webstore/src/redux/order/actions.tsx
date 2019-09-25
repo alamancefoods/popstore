@@ -1,5 +1,5 @@
-import { OrderActionTypes, ChoiceActionTypes } from './types';
-import { UPDATE_ORDER, UPDATE_CHOICE } from '../actionTypes';
+import { OrderActionTypes, ChoiceActionTypes, InitActionTypes } from './types';
+import { UPDATE_ORDER, UPDATE_CHOICE, UPDATE_INIT } from '../actionTypes';
 
 export function updateOrder(
   pickedFlavor: string,
@@ -26,3 +26,11 @@ export function updateChoice(
   };
 };
 
+export function updateInit(): InitActionTypes {
+  return {
+    type: UPDATE_INIT,
+    payload: {
+      init: true
+    }
+  };
+};

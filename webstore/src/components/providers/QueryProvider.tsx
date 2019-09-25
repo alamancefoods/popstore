@@ -16,11 +16,11 @@ const QueryProvider = (props: ProviderPropTypes) => {
   // Update display dimensions if they change.
   useEffect(() => {
     window.addEventListener('resize', () => {
-      dispatch(updateDisplay());
+      dispatch(updateDisplay(firstRender));
     });
     return () => {
       window.removeEventListener('resize', () => {
-        dispatch(updateDisplay());
+        dispatch(updateDisplay(firstRender));
       });
     };
   });
@@ -29,13 +29,10 @@ const QueryProvider = (props: ProviderPropTypes) => {
   // Function to call on first load. Ensures that proper theme is set.
   const onMount = () => {
     if (firstRender) {
-      dispatch(updateDisplay());
+      dispatch(updateDisplay(firstRender));
       setFirstRender(false);
     }
   };
-
-  console.log(display);
-
 
   onMount();
 

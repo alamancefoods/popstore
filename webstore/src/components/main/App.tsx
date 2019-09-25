@@ -15,8 +15,8 @@ import UserAlert from './UserAlert';
 const App: React.FC = () => {
   const [profile, setProfile] = useState<ProfileInterface>(store.customerProfile);
   const [isProfileComplete, setProfileCompletion] = useState(false);
-  const [isInitiated, setInitiation] = useState(false);
   const order = useSelector((state: any) => state.orderReducer.order);
+  const choice = useSelector((state: any) => state.choiceReducer.choice);
 
 
   return (
@@ -68,9 +68,7 @@ const App: React.FC = () => {
         <Redirect to="/" />
       </Switch>
       <StyledUserAlertContainer>
-        <UserAlert
-          isInitiated={isInitiated}
-        />
+        <UserAlert />
       </StyledUserAlertContainer>
     </QueryProvider>
   );

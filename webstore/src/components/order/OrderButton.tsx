@@ -17,20 +17,26 @@ const OrderButton = ({ popButton }: { popButton: any }) => {
   const FlavorIcon = popButton.svg;
   const { iconWidth, iconHeight } = svgResizer(display);
 
-  return (
-    <StyledFlavorIcon
-      theme={theme}
-      component={
-        <FlavorIcon
-          width={iconWidth}
-          height={iconHeight}
-          onClick={
-            () => choice === NO_CHOICE ? dispatch(updateChoice(popButton.popFlavor)) : ''
-          }
-        />
-      }
-    />
-  );
+  if (choice === popButton.popFlavor) {
+    return (
+      null
+    );
+  } else {
+    return (
+      <StyledFlavorIcon
+        theme={theme}
+        component={
+          <FlavorIcon
+            width={iconWidth}
+            height={iconHeight}
+            onClick={
+              () => choice === NO_CHOICE ? dispatch(updateChoice(popButton.popFlavor)) : ''
+            }
+          />
+        }
+      />
+    );
+  }
 };
 
 export default OrderButton;

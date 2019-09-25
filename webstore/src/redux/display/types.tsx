@@ -1,9 +1,12 @@
 import { UPDATE_DISPLAY } from '../actionTypes';
 
 export interface DisplayState {
-  isPortrait: boolean;
-  windowWidth: number;
-  windowHeight: number;
+  display: {
+    isPortrait: boolean;
+    windowWidth: number;
+    windowHeight: number;
+    firstRender: boolean;
+  };
 };
 
 interface UpdateDisplayAction {
@@ -12,5 +15,3 @@ interface UpdateDisplayAction {
 };
 
 export type DisplayActionTypes = UpdateDisplayAction;
-
-// handleEvent(evt: Event): void;

@@ -32,16 +32,18 @@ export function orderReducer(
   switch (action.type) {
     case UPDATE_ORDER:
       const newTotal = calculatedTotal(
-        state['totalCount'],
+        state.order['totalCount'],
         action.payload.numericChange,
-        (state as any)[action.payload.pickedFlavor]
+        (state as any).order[action.payload.pickedFlavor]
       );
       const newBalance = calculatedBalance(newTotal);
       return {
-        ...state,
-        [action.payload.pickedFlavor]: action.payload.numericChange,
-        balance: newBalance,
-        totalCount: newTotal
+        order: {
+          ...state.order,
+          [action.payload.pickedFlavor]: action.payload.numericChange,
+          balance: newBalance,
+          totalCount: newTotal
+        }
       };
     default:
       return state;

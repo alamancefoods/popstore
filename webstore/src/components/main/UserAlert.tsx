@@ -1,7 +1,10 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
-const UserAlert = ({ isInitiated }: { isInitiated: boolean }) => {
-  if (isInitiated) {
+const UserAlert = () => {
+  const init = useSelector((state: any) => state.initReducer.init);
+
+  if (init) {
     return null;
   } else {
     return (

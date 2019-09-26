@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
-import { ReactComponent as Logo } from  '../../static/logo_header.svg';
+import { ReactComponent as Logo } from '../../static/logo_header.svg';
 import { ReactComponent as Banana } from '../../static/banana.svg';
 import Balance from '../../components/main/Balance';
 import UserAlert from '../../components/main/UserAlert';
@@ -19,36 +19,37 @@ export const GridContainer = styled.div`
   [firstRowBreak] minmax(${props => props.theme.isPortrait ? props.theme.windowHeight * 0.4 : props.theme.windowHeight * 0.3}px, auto)
   [secondRowBreak] ${props => props.theme.isPortrait ? props.theme.windowHeight * 0.2 : 0}px
   [bottom];
-  justify-items: center;
   height: 100%;
-`
+`;
 
-export const StyledHeader= styled.div`
+export const StyledHeader = styled.div`
   display: flex;
   margin: 14px;
-  justify-content: ${props => props.theme.isPortrait ? 'center' : 'left'};
+  justify-content: ${props => props.theme.isPortrait ? 'center' : 'flex-start'};
+  flex-direction: row;
   align-items: center;
   grid-area: top / firstColBreak / firstRowBreak / secondColBreak;
-`
+`;
 
 export const StyledBalance = styled(props => <Balance {...props} />)`
   display: flex;
   justify-self: right;
-`
+`;
 
-export const StyledLogo= styled(Logo)`
+export const StyledLogo = styled(({ component, ...props }) =>
+  React.cloneElement(component, props))`
   filter: drop-shadow(2px 3px 1px #4444dd);
-  justify-self: left;
-`
-const alertPortraitGridArea = 'secondRowBreak / firstColBreak / bottom / secondColBreak;'
-const alertLandscapeGridArea = 'firstRowBreak / secondColBreak / secondRowBreak / stop;'
+`;
+
+const alertPortraitGridArea = 'secondRowBreak / firstColBreak / bottom / secondColBreak;';
+const alertLandscapeGridArea = 'firstRowBreak / secondColBreak / secondRowBreak / stop;';
 
 export const StyledUserAlertContainer = styled.div`
   grid-area: ${props => props.theme.isPortrait ? alertPortraitGridArea : alertLandscapeGridArea}
   display: flex;
   justify-content: center;
   align-items: center;
-`
+`;
 
 
 export const GlobalStyle = createGlobalStyle`
@@ -69,5 +70,5 @@ svg {
   textarea {
     resize: none
 }
-`
+`;
 

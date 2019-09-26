@@ -17,6 +17,7 @@ import { ReactComponent as Watermelon } from '../static/watermelon.svg';
 
 // Simple Constants.
 export const LOGO_SVG = 'LOGO_SVG';
+export const BUTTON_SVG = 'BUTTON_SVG';
 export const NO_CHOICE = 'NO_CHOICE';
 
 // List of button objects.

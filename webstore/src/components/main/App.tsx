@@ -19,11 +19,11 @@ const App: React.FC = () => {
   const choice = useSelector((state: any) => state.choiceReducer.choice);
 
 
+  //<StyledBalance />
   return (
     <QueryProvider>
       <StyledHeader>
         <ResizedLogo />
-        <StyledBalance />
       </StyledHeader>
       <Switch>
         <Route

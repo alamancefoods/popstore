@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 import styled from 'styled-components';
-import OrderForm from '../../components/order/OrderForm'
+import OrderForm from '../../components/order/OrderForm';
 import { Form, Field, ErrorMessage } from 'formik';
 
 const StyledOrderForm = styled(props => <OrderForm {...props} />)`
@@ -19,14 +19,14 @@ const portraitButtonGrid = `
   "cherry pineapple guava"
   "mojito papaya mango"
   "coconut greenApple banana"
-`
+`;
 
 
 const landscapeButtonGrid = `
   "strawberry orange bluePunch grape watermelon"
   "lemonLime cherry pineapple guava mojito"
   "papaya mango coconut greenApple banana"
-`
+`;
 
 export const StyledButtonContainer = styled.div`
   display: grid;
@@ -43,9 +43,17 @@ export const StyledButtonContainer = styled.div`
 
 export const StyledFlavorIcon = styled(({ component, ...props }) => React.cloneElement(component, props))`
   display: flex;
+  z-index: auto;
   grid-area: ${props => props.theme.gridArea};
   filter: drop-shadow(4px 3px 1px #757575);
-`
+`;
+
+export const StyledFlavorCountBox = styled.h5`
+  display: flex; 
+  z-index: 1;
+  transform: translate(-50px, -20px);
+  grid-area: ${props => props.theme.gridArea};
+`;
 
 export const StyledSVGEntry = styled.svg`
   position: absolute;
@@ -53,40 +61,41 @@ export const StyledSVGEntry = styled.svg`
   justify-content: left;
   justify-items: left;
   filter: drop-shadow(4px 3px 1px #757575);
-`
+`;
 
 //Styles for Order Form Entry
 const landscapeEntryGridArea = `
 firstRowBreak / secondColBreak / bottom / stop
-`
+`;
 
 const portraitEntryGridArea = `
 secondRowBreak / start / bottom /stop
-`
+`;
 
 const portraitEntryGrid = `
 "Picked-Pop Entry Entry"
 "Picked-Pop Entry Entry"
 "Error Error"
-`
+`;
 
 const landscapeEntryGrid = `
 "Picked-Pop Picked-Pop"
 "Entry Entry"
 "Error Error"
-`
+`;
 
 export const StyledEntryContainer = styled.div`
   display: grid;
+  z-index: 1;
   grid-area: ${props => props.theme.isPortrait ? portraitEntryGridArea : landscapeEntryGridArea}
   grid-template-areas: ${props => props.theme.isPortrait ? portraitEntryGrid : landscapeEntryGrid}
-`
+`;
 
 export const StyledPopForm = styled(Form)`
   display: flex;
   flex-direction: ${props => props.theme.isPortrait ? 'row' : 'column'};
   align-items: center;
-`
+`;
 
 export const StyledPopField = styled(Field)`
   display: flex;
@@ -95,7 +104,7 @@ export const StyledPopField = styled(Field)`
   border: 2px solid red;
   border-radius: 30px;
   text-align: center;
-`
+`;
 
 export const StyledPopFieldButton = styled.button`
   display: table;
@@ -104,14 +113,14 @@ export const StyledPopFieldButton = styled.button`
   padding: 0.25em 1em;
   border: 2px solid palevioletred;
   border-radius: 3px;
-`
+`;
 
 export const StyledStatusContainer = styled.div`
   display: flex;
   grid-area: secondRowBreak / firstColBreak / bottom / secondColBreak;
   flex-direction: row;
   justify-content: space-around;
-`
+`;
 
 export default StyledOrderForm;
 

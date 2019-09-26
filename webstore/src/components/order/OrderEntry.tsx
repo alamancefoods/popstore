@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateChoice, updateOrder } from '../../redux/order/actions';
-import { NO_CHOICE } from '../../constants/constants';
+import { NO_CHOICE, BUTTON_SVG } from '../../constants/constants';
 import { OrderEntryValueTypes } from './types';
 import { Formik, FormikActions, Form, ErrorMessage, Field } from 'formik';
 import { StyledPopForm, StyledPopField, StyledPopFieldButton, StyledFlavorIcon } from '../../styles/order/OrderStyles';
@@ -37,7 +37,7 @@ const OrderEntry = () => {
 
 
   // Resize SVG according to display values.
-  const { iconWidth, iconHeight } = svgResizer(display);
+  const { iconWidth, iconHeight } = svgResizer(display, BUTTON_SVG);
 
   // Customize theme for svg icon placement.
   const theme = {
@@ -52,12 +52,21 @@ const OrderEntry = () => {
       }}
       validationSchema={OrderEntrySchema}
       onSubmit={(values: OrderEntryValueTypes, actions: FormikActions<OrderEntryValueTypes>) => {
-        updateOrder(choice, values.popCount);
+        dispatch(updateOrder(choice, values.popCount));
+        dispatch(updateChoice(NO_CHOICE));
       }}
     >
       {({ errors, touched }) => (
         <StyledPopForm className={'className'}>
-          <StyledFlavorIcon theme={theme} component={<FlavorIcon />} />
+          <StyledFlavorIcon
+            theme={theme}
+            component={
+              <FlavorIcon
+                width={iconWidth}
+                height={iconHeight}
+              />
+            }
+          />
           <StyledPopField type="number" className={'className'} name="popCount" placeholder="0" />
           <ErrorMessage name="popCount" />
           <StyledPopFieldButton type="submit">Submit</StyledPopFieldButton>

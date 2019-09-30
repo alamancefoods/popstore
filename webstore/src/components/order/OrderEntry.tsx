@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateChoice, updateOrder } from '../../redux/order/actions';
+import { updateFocus } from '../../redux/display/actions';
 import { NO_CHOICE, BUTTON_SVG } from '../../constants/constants';
 import { OrderEntryValueTypes } from './types';
 import { Formik, FormikActions, Form, ErrorMessage, Field } from 'formik';
@@ -67,7 +68,13 @@ const OrderEntry = () => {
               />
             }
           />
-          <StyledPopField type="number" className={'className'} name="popCount" placeholder="0" />
+          <StyledPopField
+            onFocus={() => dispatch(updateFocus(true))}
+            onBlur={() => dispatch(updateFocus(false))}
+            type="number"
+            className={'className'}
+            name="popCount"
+            placeholder="" />
           <ErrorMessage name="popCount" />
           <StyledPopFieldButton type="submit">Submit</StyledPopFieldButton>
           <p>{order[choice]} {PICKED_POP!.popText}'s</p>

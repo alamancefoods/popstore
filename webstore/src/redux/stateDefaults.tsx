@@ -34,3 +34,9 @@ export const DISPLAY_DEFAULT = {
     firstRender: true
   }
 };
+
+export const FOCUS_DEFAULT = {
+  focus: {
+    isFocused: false
+  }
+};

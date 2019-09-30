@@ -19,16 +19,35 @@ export const GridContainer = styled.div`
   [firstRowBreak] minmax(${props => props.theme.isPortrait ? props.theme.windowHeight * 0.4 : props.theme.windowHeight * 0.3}px, auto)
   [secondRowBreak] ${props => props.theme.isPortrait ? props.theme.windowHeight * 0.2 : 0}px
   [bottom];
-  height: 100%;
+  height: ${props => props.theme.windowHeight}px;
 `;
+
+export const HeaderPortraitGridArea = (
+  "top / firstColBreak / firstRowBreak / secondColBreak"
+);
+
+export const HeaderLandscapeGridArea = (
+  "top / firstColBreak /firstRowBreak / stop"
+);
 
 export const StyledHeader = styled.div`
   display: flex;
   margin: 14px;
-  justify-content: ${props => props.theme.isPortrait ? 'center' : 'flex-start'};
+  justify-content: ${props => props.theme.isPortrait ? 'space-around' : 'space-between'};
   flex-direction: row;
   align-items: center;
-  grid-area: top / firstColBreak / firstRowBreak / secondColBreak;
+  grid-area: ${
+  props => props.theme.isPortrait ?
+    HeaderPortraitGridArea :
+    HeaderLandscapeGridArea};
+`;
+
+export const StyledInfoBox = styled.div`
+    display: flex;
+    margin: 10px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
 `;
 
 export const StyledBalance = styled(props => <Balance {...props} />)`
@@ -59,7 +78,8 @@ html, body, #root, #queryContainer {
   padding: 0;
   resize: none;
 }
-  body {
+
+body {
     background-color: #FFFFFF;
 }
 

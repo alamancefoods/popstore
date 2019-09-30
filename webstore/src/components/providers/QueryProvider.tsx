@@ -3,24 +3,28 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
 import { ProviderPropTypes } from './types';
 import { DisplayState } from '../../redux/display/types';
+import { DISPLAY_DEFAULT } from '../../redux/stateDefaults';
 import { GlobalStyle, GridContainer } from '../../styles/root/RootStyles';
 import { updateDisplay } from '../../redux/display/actions';
+
 
 
 const QueryProvider = (props: ProviderPropTypes) => {
   const [firstRender, setFirstRender] = useState(true);
   const dispatch = useDispatch();
   const display = useSelector((state: any) => state.displayReducer.display);
+  const focus = useSelector((state: any) => state.focusReducer.focus);
+  const activeElement = document.activeElement;
 
 
   // Update display dimensions if they change.
   useEffect(() => {
     window.addEventListener('resize', () => {
-      dispatch(updateDisplay(firstRender));
+      dispatch(updateDisplay(firstRender, focus.isFocused));
     });
     return () => {
       window.removeEventListener('resize', () => {
-        dispatch(updateDisplay(firstRender));
+        dispatch(updateDisplay(firstRender, focus.isFocused));
       });
     };
   });
@@ -29,7 +33,7 @@ const QueryProvider = (props: ProviderPropTypes) => {
   // Function to call on first load. Ensures that proper theme is set.
   const onMount = () => {
     if (firstRender) {
-      dispatch(updateDisplay(firstRender));
+      dispatch(updateDisplay(firstRender, focus.isFocused));
       setFirstRender(false);
     }
   };
@@ -39,14 +43,17 @@ const QueryProvider = (props: ProviderPropTypes) => {
 
   return (
     <div id='queryContainer'>
-      <GlobalStyle />
       <ThemeProvider theme={() => (display)}>
-        <GridContainer >
-          {props.children}
-        </GridContainer>
+        <>
+          <GlobalStyle />
+          <GridContainer >
+            {props.children}
+          </GridContainer>
+        </>
       </ThemeProvider>
     </div>
   );
 };
 
+export type ThemeType = typeof DISPLAY_DEFAULT;
 export default QueryProvider;

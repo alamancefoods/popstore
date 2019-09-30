@@ -20,8 +20,11 @@ export function displayReducer(
         state.display.isPortrait === action.payload.display.isPortrait
         && action.payload.display.firstRender === false
       ) {
-        console.log('firing');
         return state;
+
+      } else if (action.isFocused === true) {
+        return state;
+
       } else {
         return {
           ...state,

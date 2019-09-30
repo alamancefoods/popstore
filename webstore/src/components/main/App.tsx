@@ -7,7 +7,7 @@ import QueryProvider from '../providers/QueryProvider';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import StyledProfileForm, { StyledProfileContainer } from '../../styles/profile/ProfileStyles';
 import StyledPaymentForm, { StyledPaymentContainer } from '../../styles/payment/PaymentStyles';
-import { StyledBalance, StyledHeader, StyledUserAlertContainer } from '../../styles/root/RootStyles';
+import { StyledBalance, StyledHeader, StyledUserAlertContainer, StyledInfoBox } from '../../styles/root/RootStyles';
 import OrderForm from '../order/OrderForm';
 import ResizedLogo from './LogoContainer';
 import UserAlert from './UserAlert';
@@ -19,11 +19,16 @@ const App: React.FC = () => {
   const choice = useSelector((state: any) => state.choiceReducer.choice);
 
 
-  //<StyledBalance />
   return (
     <QueryProvider>
       <StyledHeader>
         <ResizedLogo />
+        {order.totalCount > 0 ?
+          <StyledInfoBox>
+            <StyledBalance />
+          </StyledInfoBox> :
+          null
+        }
       </StyledHeader>
       <Switch>
         <Route

@@ -35,7 +35,11 @@ const OrderButton = ({ popButton }: { popButton: any }) => {
             />
           }
         />
-        <StyledFlavorCountBox theme={theme} >{order[popButton.popFlavor]}</StyledFlavorCountBox>
+        {order[popButton.popFlavor] > 0
+          ? <StyledFlavorCountBox theme={theme}
+          >{order[popButton.popFlavor]}</StyledFlavorCountBox>
+          : null}
+
       </>
     );
   }

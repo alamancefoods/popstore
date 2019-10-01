@@ -10,6 +10,7 @@ import StyledPaymentForm, { StyledPaymentContainer } from '../../styles/payment/
 import { StyledBalance, StyledHeader, StyledUserAlertContainer, StyledInfoBox } from '../../styles/root/RootStyles';
 import OrderForm from '../order/OrderForm';
 import ResizedLogo from './LogoContainer';
+import { ConditionalProfileLink } from '../main/Navigation';
 import UserAlert from './UserAlert';
 
 const App: React.FC = () => {
@@ -26,6 +27,7 @@ const App: React.FC = () => {
         {order.totalCount > 0 ?
           <StyledInfoBox>
             <StyledBalance />
+            <ConditionalProfileLink />
           </StyledInfoBox> :
           null
         }

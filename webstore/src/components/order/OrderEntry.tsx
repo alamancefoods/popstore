@@ -1,11 +1,19 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateChoice, updateOrder } from '../../redux/order/actions';
-import { updateFocus } from '../../redux/display/actions';
 import { NO_CHOICE, BUTTON_SVG } from '../../constants/constants';
 import { OrderEntryValueTypes } from './types';
 import { Formik, FormikActions, Form, ErrorMessage, Field } from 'formik';
-import { StyledPopForm, StyledPopField, StyledPopFieldButton, StyledFlavorIcon } from '../../styles/order/OrderStyles';
+import {
+  StyledPopForm,
+  StyledPopField,
+  StyledPopFieldButton,
+  StyledFlavorIcon,
+  ValueSubmissionContainer,
+  SelectionInfoContainer,
+  ValueModifierContainer,
+  AlertContainer
+} from '../../styles/order/OrderStyles';
 import * as Yup from 'yup';
 import popConverter from '../../utilities/popConverter';
 import svgResizer from '../../utilities/svgResizer';
@@ -59,35 +67,45 @@ const OrderEntry = () => {
     >
       {({ errors, touched }) => (
         <StyledPopForm className={'className'}>
-          <StyledFlavorIcon
-            theme={theme}
-            component={
-              <FlavorIcon
-                width={iconWidth}
-                height={iconHeight}
-              />
-            }
-          />
-          <StyledPopField
-            onFocus={() => dispatch(updateFocus(true))}
-            onBlur={() => dispatch(updateFocus(false))}
-            type="number"
-            className={'className'}
-            name="popCount"
-            placeholder="" />
-          <ErrorMessage name="popCount" />
-          <StyledPopFieldButton type="submit">Submit</StyledPopFieldButton>
-          <p>{order[choice]} {PICKED_POP!.popText}'s</p>
+          <SelectionInfoContainer>
+            <StyledFlavorIcon
+              theme={theme}
+              component={
+                <FlavorIcon
+                  width={iconWidth}
+                  height={iconHeight}
+                />
+              }
+            />
+            <h3>{PICKED_POP!.popText}</h3>
+          </SelectionInfoContainer>
+
+          <ValueModifierContainer>
+            <StyledPopField
+              type="number"
+              className={'className'}
+              name="popCount"
+            />
+          </ValueModifierContainer>
+
+          <ValueSubmissionContainer>
+            <StyledPopFieldButton type="submit">Submit</StyledPopFieldButton>
+            <EntryDeleteButton />
+          </ValueSubmissionContainer>
+
+          <AlertContainer >
+            <ErrorMessage name="popCount" />
+          </AlertContainer>
+
         </StyledPopForm>
       )}
     </Formik>
   );
 
   return (
-    <div>
+    <>
       <FormEntry />
-      <EntryDeleteButton />
-    </div>
+    </>
   );
 };
 

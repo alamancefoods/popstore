@@ -1,4 +1,4 @@
-import { UPDATE_DISPLAY, UPDATE_FOCUS } from '../actionTypes';
+import { UPDATE_DISPLAY } from '../actionTypes';
 
 export interface DisplayState {
   display: {
@@ -9,22 +9,9 @@ export interface DisplayState {
   };
 };
 
-export interface FocusState {
-  focus: {
-    isFocused: boolean;
-  };
-};
-
 interface UpdateDisplayAction {
   type: typeof UPDATE_DISPLAY;
   payload: DisplayState;
-  isFocused: boolean;
-};
-
-interface UpdateFocusAction {
-  type: typeof UPDATE_FOCUS;
-  payload: FocusState;
 };
 
 export type DisplayActionTypes = UpdateDisplayAction;
-export type FocusActionTypes = UpdateFocusAction;

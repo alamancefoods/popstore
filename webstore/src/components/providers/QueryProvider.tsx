@@ -13,18 +13,16 @@ const QueryProvider = (props: ProviderPropTypes) => {
   const [firstRender, setFirstRender] = useState(true);
   const dispatch = useDispatch();
   const display = useSelector((state: any) => state.displayReducer.display);
-  const focus = useSelector((state: any) => state.focusReducer.focus);
-  const activeElement = document.activeElement;
 
 
   // Update display dimensions if they change.
   useEffect(() => {
     window.addEventListener('resize', () => {
-      dispatch(updateDisplay(firstRender, focus.isFocused));
+      dispatch(updateDisplay(firstRender));
     });
     return () => {
       window.removeEventListener('resize', () => {
-        dispatch(updateDisplay(firstRender, focus.isFocused));
+        dispatch(updateDisplay(firstRender));
       });
     };
   });
@@ -33,7 +31,7 @@ const QueryProvider = (props: ProviderPropTypes) => {
   // Function to call on first load. Ensures that proper theme is set.
   const onMount = () => {
     if (firstRender) {
-      dispatch(updateDisplay(firstRender, focus.isFocused));
+      dispatch(updateDisplay(firstRender));
       setFirstRender(false);
     }
   };

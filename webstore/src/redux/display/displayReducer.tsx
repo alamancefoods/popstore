@@ -21,10 +21,6 @@ export function displayReducer(
         && action.payload.display.firstRender === false
       ) {
         return state;
-
-      } else if (action.isFocused === true) {
-        return state;
-
       } else {
         return {
           ...state,

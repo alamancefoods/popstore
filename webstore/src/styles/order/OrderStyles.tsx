@@ -73,29 +73,73 @@ secondRowBreak / start / bottom /stop
 `;
 
 const portraitEntryGrid = `
-"Picked-Pop Entry Entry"
-"Picked-Pop Entry Entry"
-"Error Error"
+"submission selection valMod"
+"alert alert alert"
 `;
 
 const landscapeEntryGrid = `
-"Picked-Pop Picked-Pop"
-"Entry Entry"
-"Error Error"
+  "selection"
+  "valMod"
+  "submission"
+  "alert"
 `;
 
-export const StyledEntryContainer = styled.div`
+const portraitEntryRowDimensions = `
+auto 10%
+`;
+
+const landscapeEntryRowDimensions = `
+auto auto auto 10%
+`;
+
+
+// The following containers should exist within the
+// StyledEntryContainer
+
+export const StyledPopForm = styled(Form)`
   display: grid;
   z-index: 1;
   grid-area: ${props => props.theme.isPortrait ? portraitEntryGridArea : landscapeEntryGridArea}
-  grid-template-areas: ${props => props.theme.isPortrait ? portraitEntryGrid : landscapeEntryGrid}
+  grid-template-rows: ${props => props.theme.isPortrait ?
+    portraitEntryRowDimensions :
+    `repeat(3, ${props.theme.windowHeight * 0.2}px) 1fr`};
+  grid-template-columns: ${props => props.theme.isPortrait ?
+    `repeat(3, ${props.theme.windowWidth / 3}px)` :
+    'auto'
+  };
+  grid-template-areas: ${props => props.theme.isPortrait ? portraitEntryGrid : landscapeEntryGrid};
+  align-items: center;
+  justiy-items: center;
 `;
 
-export const StyledPopForm = styled(Form)`
-  display: flex;
-  flex-direction: ${props => props.theme.isPortrait ? 'row' : 'column'};
-  align-items: center;
+export const ValueSubmissionContainer = styled.div`
+grid-area: submission;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: space-around;
 `;
+
+export const SelectionInfoContainer = styled.div`
+grid-area: selection;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+`;
+
+export const ValueModifierContainer = styled.div`
+grid-area: valMod; 
+display: flex;
+flex-direction: ${props => props.theme.isPortrait ? 'column' : 'row'};
+align-items: center;
+justify-content: center;
+`;
+
+export const AlertContainer = styled.div`
+grid-area: alert;
+`;
+
 
 export const StyledPopField = styled(Field)`
   display: flex;
@@ -121,6 +165,8 @@ export const StyledStatusContainer = styled.div`
   flex-direction: row;
   justify-content: space-around;
 `;
+
+
 
 export default StyledOrderForm;
 

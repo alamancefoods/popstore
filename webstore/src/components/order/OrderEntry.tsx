@@ -8,7 +8,7 @@ import {
   StyledPopForm,
   StyledPopField,
   StyledFlavorSubmitButton,
-  StyledFlavorIcon,
+  StyledFlavorChoice,
   StyledFlavorName,
   ValueSubmissionContainer,
   SelectionInfoContainer,
@@ -77,7 +77,7 @@ const OrderEntry = () => {
     >
       {({ errors, touched }) => (
         <StyledPopForm className={'className'}>
-          <StyledFlavorIcon
+          <StyledFlavorChoice
             theme={theme}
             component={
               <FlavorIcon

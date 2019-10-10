@@ -20,7 +20,7 @@ export const GridContainer = styled.div`
   [secondRowBreak] ${props => props.theme.isPortrait ? props.theme.windowHeight * 0.2 : 0}px
   [bottom];
   height: ${props => props.theme.windowHeight}px;
-  background: rgba(221, 179, 153, 0.25);
+  background: rgba(242, 221, 211, 0.75);
 `;
 
 export const HeaderPortraitGridArea = (

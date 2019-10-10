@@ -42,8 +42,12 @@ export const StyledButtonContainer = styled.div`
   grid-template-columns: ${props => props.theme.isPortrait ? "33% 33% 33%" : "20% 20% 20% 20% 20%"};
   grid-template-rows: auto;
   grid-template-areas: ${props => props.theme.isPortrait ? portraitButtonGrid : landscapeButtonGrid};
-  background: rgba(153, 186, 221, 0.3);
-  border: 0.25vh dashed #99ddbc;
+  background: rgba(211, 234, 242, 0.85);
+  border-top: 0.35vh dashed #99ddbc;
+  ${props => props.theme.isPortrait ?
+    `border-bottom: 0.35vh dashed #99ddbc;` :
+    `border-right: 0.35vh dashed #99ddbc;`
+  };
 `;
 
 
@@ -91,30 +95,30 @@ auto auto auto auto
 `;
 
 const landscapeEntryRowDimensions = `
-auto auto auto 10%
+auto auto auto auto 
 `;
 
 
 // The following containers should exist within the
 // StyledEntryContainer
+// 
 
 export const StyledPopForm = styled(Form)`
   display: grid;
   z-index: 1;
   grid-area: ${props => props.theme.isPortrait ? portraitEntryGridArea : landscapeEntryGridArea}
   grid-template-rows: ${props => props.theme.isPortrait ?
-    portraitEntryRowDimensions :
+    `auto repeat(3, ${props.theme.windowHeight / 15}px)` :
     `${props.theme.windowHeight * 0.2}px
- ${props.theme.windowHeight * 0.05}px
-     auto
+ ${props.theme.windowHeight * 0.05}px auto
      repeat(2, ${props.theme.windowHeight * 0.2}px)`};
   grid-template-columns: ${props => props.theme.isPortrait ?
     `repeat(3, ${props.theme.windowWidth / 3}px)` :
     `repeat(3, ${props.theme.windowWidth / 15}px)`
   };
   grid-template-areas: ${props => props.theme.isPortrait ? portraitEntryGrid : landscapeEntryGrid};
+  align-items: start;
   align-content: start;
-  justiy-items: center;
 `;
 
 export const StyledFlavorIcon = styled(({ component, ...props }) => React.cloneElement(component, props))`
@@ -125,8 +129,16 @@ export const StyledFlavorIcon = styled(({ component, ...props }) => React.cloneE
   align-self: center;
 `;
 
+export const StyledFlavorChoice = styled(({ component, ...props }) => React.cloneElement(component, props))`
+  display: flex;
+  z-index: auto;
+  grid-area: ${props => props.theme.gridArea};
+  justify-self: center;
+  align-self: end;
+`;
+
 export const StyledFlavorName = styled.h4`
-font-size: 2vh;
+font-size: 3vh;
 grid-area: name;
 justify-self: center;
 align-self: center;

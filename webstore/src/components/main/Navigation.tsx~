@@ -1,0 +1,32 @@
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
+import { BUTTON_SVG } from '../../constants/constants';
+import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
+import svgResizer from '../../utilities/svgResizer';
+
+export const ConditionalProfileLink = () => {
+  const order = useSelector((state: any) => state.orderReducer.order);
+  const display = useSelector((state: any) => state.displayReducer.display);
+  let linkHolder = null;
+  const { iconWidth, iconHeight } = svgResizer(display, BUTTON_SVG);
+  const styles = {
+    largeIcon: {
+      width: iconWidth,
+    },
+  };
+
+  if (order.totalCount < 5) {
+    linkHolder = null;
+  } else {
+    linkHolder = <NavLink
+      to='/checkout/shipping-details'>
+      <ShoppingCartOutlinedIcon
+        viewBox={`0 0 10 4`}
+      />
+    </NavLink>;
+  }
+  return (
+    linkHolder
+  );
+};

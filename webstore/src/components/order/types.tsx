@@ -32,5 +32,5 @@ export interface OrderFormProps {
 }
 
 export interface OrderEntryValueTypes {
-  popCount: number;
+  popCount: "";
 }

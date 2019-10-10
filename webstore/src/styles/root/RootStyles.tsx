@@ -20,6 +20,7 @@ export const GridContainer = styled.div`
   [secondRowBreak] ${props => props.theme.isPortrait ? props.theme.windowHeight * 0.2 : 0}px
   [bottom];
   height: ${props => props.theme.windowHeight}px;
+  background: rgba(221, 179, 153, 0.25);
 `;
 
 export const HeaderPortraitGridArea = (
@@ -32,7 +33,6 @@ export const HeaderLandscapeGridArea = (
 
 export const StyledHeader = styled.div`
   display: flex;
-  margin: 14px;
   justify-content: ${props => props.theme.isPortrait ? 'space-around' : 'space-between'};
   flex-direction: row;
   align-items: center;
@@ -43,11 +43,11 @@ export const StyledHeader = styled.div`
 `;
 
 export const StyledInfoBox = styled.div`
-    display: flex;
-    margin: 10px;
-    flex-direction: column;
+    margin: 10px;  
+    display: grid;
+    justify-items: center;
     align-items: center;
-    justify-content: space-between;
+    font-size: ${props => props.theme.windowHeight * 0.03}px;
 `;
 
 export const StyledBalance = styled(props => <Balance {...props} />)`
@@ -57,7 +57,6 @@ export const StyledBalance = styled(props => <Balance {...props} />)`
 
 export const StyledLogo = styled(({ component, ...props }) =>
   React.cloneElement(component, props))`
-  filter: drop-shadow(2px 3px 1px #4444dd);
 `;
 
 const alertPortraitGridArea = 'secondRowBreak / firstColBreak / bottom / secondColBreak;';
@@ -90,5 +89,22 @@ svg {
   textarea {
     resize: none
 }
+
+  .headerIcon {
+   grid-column: 1;
+   grid-row: 1;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none; 
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance:textfield;
+}
+
+
 `;
 

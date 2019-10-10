@@ -1,4 +1,4 @@
-import { LOGO_SVG, BUTTON_SVG } from '../constants/constants';
+import { LOGO_SVG, BUTTON_SVG, PLUS_SVG, MINUS_SVG } from '../constants/constants';
 
 const svgResizer = (display: any, svgType: string) => {
   let iconWidth = null;
@@ -9,8 +9,8 @@ const svgResizer = (display: any, svgType: string) => {
         iconWidth = display.windowWidth * 0.15;
         iconHeight = display.windowHeight * 0.1;
       } else {
-        iconWidth = display.windowWidth * 0.1;
-        iconHeight = display.windowHeight * 0.1;
+        iconWidth = display.windowWidth * 0.15;
+        iconHeight = display.windowHeight * 0.15;
       }
       break;
     case LOGO_SVG:
@@ -20,6 +20,24 @@ const svgResizer = (display: any, svgType: string) => {
       } else {
         iconWidth = display.windowWidth * 0.5;
         iconHeight = display.windowHeight * 0.15;
+      }
+      break;
+    case PLUS_SVG:
+      if (display.isPortrait) {
+        iconWidth = display.windowWidth * 0.05;
+        iconHeight = display.windowHeight * 0.05;
+      } else {
+        iconWidth = display.windowWidth * 0.05;
+        iconHeight = display.windowHeight * 0.05;
+      }
+      break;
+    case MINUS_SVG:
+      if (display.isPortrait) {
+        iconWidth = display.windowWidth * 0.04;
+        iconHeight = display.windowHeight * 0.04;
+      } else {
+        iconWidth = display.windowWidth * 0.02;
+        iconHeight = display.windowHeight * 0.02;
       }
       break;
     default:

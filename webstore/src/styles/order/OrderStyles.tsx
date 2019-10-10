@@ -2,6 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import OrderForm from '../../components/order/OrderForm';
 import { Form, Field, ErrorMessage } from 'formik';
+import { ReactComponent as PlusIcon } from '../../static/plusSign.svg';
+import { ReactComponent as MinusIcon } from '../../static/minusSign.svg';
+import { FlavorDeleteButton } from '../../components/order/FlavorDeleteBtn';
 
 const StyledOrderForm = styled(props => <OrderForm {...props} />)`
   display: flex;
@@ -39,14 +42,10 @@ export const StyledButtonContainer = styled.div`
   grid-template-columns: ${props => props.theme.isPortrait ? "33% 33% 33%" : "20% 20% 20% 20% 20%"};
   grid-template-rows: auto;
   grid-template-areas: ${props => props.theme.isPortrait ? portraitButtonGrid : landscapeButtonGrid};
+  background: rgba(153, 186, 221, 0.3);
+  border: 0.25vh dashed #99ddbc;
 `;
 
-export const StyledFlavorIcon = styled(({ component, ...props }) => React.cloneElement(component, props))`
-  display: flex;
-  z-index: auto;
-  grid-area: ${props => props.theme.gridArea};
-  filter: drop-shadow(4px 3px 1px #757575);
-`;
 
 export const StyledFlavorCountBox = styled.h5`
   display: flex; 
@@ -73,19 +72,22 @@ secondRowBreak / start / bottom /stop
 `;
 
 const portraitEntryGrid = `
-"submission selection valMod"
 "alert alert alert"
+"submission selection plus"
+"submission selection input"
+"submission name minus"
 `;
 
 const landscapeEntryGrid = `
-  "selection"
-  "valMod"
-  "submission"
-  "alert"
+  "selection selection selection"
+  "name name name"
+  "alert alert alert"
+  "minus input plus"
+  "submission submission submission"
 `;
 
 const portraitEntryRowDimensions = `
-auto 10%
+auto auto auto auto
 `;
 
 const landscapeEntryRowDimensions = `
@@ -102,14 +104,56 @@ export const StyledPopForm = styled(Form)`
   grid-area: ${props => props.theme.isPortrait ? portraitEntryGridArea : landscapeEntryGridArea}
   grid-template-rows: ${props => props.theme.isPortrait ?
     portraitEntryRowDimensions :
-    `repeat(3, ${props.theme.windowHeight * 0.2}px) 1fr`};
+    `${props.theme.windowHeight * 0.2}px
+ ${props.theme.windowHeight * 0.05}px
+     auto
+     repeat(2, ${props.theme.windowHeight * 0.2}px)`};
   grid-template-columns: ${props => props.theme.isPortrait ?
     `repeat(3, ${props.theme.windowWidth / 3}px)` :
-    'auto'
+    `repeat(3, ${props.theme.windowWidth / 15}px)`
   };
   grid-template-areas: ${props => props.theme.isPortrait ? portraitEntryGrid : landscapeEntryGrid};
-  align-items: center;
+  align-content: start;
   justiy-items: center;
+`;
+
+export const StyledFlavorIcon = styled(({ component, ...props }) => React.cloneElement(component, props))`
+  display: flex;
+  z-index: auto;
+  grid-area: ${props => props.theme.gridArea};
+  justify-self: center;
+  align-self: center;
+`;
+
+export const StyledFlavorName = styled.h4`
+font-size: 2vh;
+grid-area: name;
+justify-self: center;
+align-self: center;
+`;
+
+export const StyledPlusIcon = styled(PlusIcon)`
+grid-area: plus;
+justify-self: center;
+align-self: center;
+`;
+
+export const StyledMinusIcon = styled(MinusIcon)`
+grid-area: minus;
+justify-self: center;
+align-self: center;
+`;
+
+export const StyledPopField = styled(Field)`
+  grid-area: input; 
+  display: flex;
+  height: ${props => props.theme.windowHeight * 0.05}px;
+  width: ${props => props.theme.windowHeight * 0.05}px;
+  border: 2px solid red;
+  border-radius: ${props => props.theme.windowHeight * 0.05}px;
+  text-align: center;
+  justify-self: center;
+  align-self: center;
 `;
 
 export const ValueSubmissionContainer = styled.div`
@@ -117,7 +161,7 @@ grid-area: submission;
 display: flex;
 flex-direction: column;
 align-items: center;
-justify-content: space-around;
+justify-content: flex-start;
 `;
 
 export const SelectionInfoContainer = styled.div`
@@ -128,34 +172,29 @@ align-items: center;
 justify-content: center;
 `;
 
-export const ValueModifierContainer = styled.div`
-grid-area: valMod; 
-display: flex;
-flex-direction: ${props => props.theme.isPortrait ? 'column' : 'row'};
-align-items: center;
-justify-content: center;
-`;
 
 export const AlertContainer = styled.div`
 grid-area: alert;
 `;
 
 
-export const StyledPopField = styled(Field)`
-  display: flex;
-  height: 30px;
-  width: 30px;
-  border: 2px solid red;
-  border-radius: 30px;
-  text-align: center;
+
+
+export const StyledFlavorSubmitButton = styled.button`
+  display: table;
+  font-size: 3vh;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border: 2px solid palevioletred;
+  border-radius: ${props => props.theme.windowHeight * 0.05}px;
 `;
 
-export const StyledPopFieldButton = styled.button`
+export const StyledFlavorDeleteButton = styled(FlavorDeleteButton)`
   display: table;
   font-size: 1em;
   margin: 1em;
   padding: 0.25em 1em;
-  border: 2px solid palevioletred;
+  border: 2px solid blue;
   border-radius: 3px;
 `;
 

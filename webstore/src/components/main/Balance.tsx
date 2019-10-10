@@ -7,9 +7,7 @@ const Balance = ({ className }: { className?: string }) => {
 
   if (order.totalCount > 0) {
     return (
-      <div>
-        Balance: ${convertPopCountToCharge(order.totalCount, false)}
-      </div>
+      <h4 className={'headerIcon'}> ${convertPopCountToCharge(order.totalCount, false)}</h4>
     );
   } else {
     return (

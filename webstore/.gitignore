@@ -18,6 +18,12 @@
 .env.test.local
 .env.production.local
 
+# emacs recoveries
+*.*#
+*.*~
+.#.*
+#*#
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*

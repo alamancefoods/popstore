@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateChoice } from '../../redux/order/actions';
 import { NO_CHOICE, BUTTON_SVG } from '../../constants/constants';
-import { StyledFlavorIcon, StyledFlavorCountBox } from '../../styles/order/OrderStyles';
+import { AnimatedFlavorIcon, StyledFlavorCountBox } from '../../styles/order/OrderStyles';
 import popConverter from '../../utilities/popConverter';
 import svgResizer from '../../utilities/svgResizer';
 
@@ -23,12 +23,13 @@ const OrderButton = ({ popButton }: { popButton: any }) => {
   } else {
     return (
       <>
-        <StyledFlavorIcon
+        <AnimatedFlavorIcon
           theme={theme}
           component={
             <FlavorIcon
               width={iconWidth}
               height={iconHeight}
+              newWord={"dumbo"}
               onClick={
                 () => choice === NO_CHOICE ? dispatch(updateChoice(popButton.popFlavor)) : ''
               }

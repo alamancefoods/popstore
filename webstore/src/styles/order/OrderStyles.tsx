@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { animated } from 'react-spring';
 import OrderForm from '../../components/order/OrderForm';
 import { Form, Field, ErrorMessage } from 'formik';
 import { ReactComponent as PlusIcon } from '../../static/plusSign.svg';
@@ -27,7 +28,7 @@ const portraitButtonGrid = `
 
 const landscapeButtonGrid = `
   "strawberry orange bluePunch grape watermelon"
-  "lemonLime cherry pineapple guava mojito"
+  "pineapple cherry lemonLime guava mojito"
   "papaya mango coconut greenApple banana"
 `;
 
@@ -43,11 +44,6 @@ export const StyledButtonContainer = styled.div`
   grid-template-rows: auto;
   grid-template-areas: ${props => props.theme.isPortrait ? portraitButtonGrid : landscapeButtonGrid};
   background: rgba(211, 234, 242, 0.85);
-  border-top: 0.35vh dashed #99ddbc;
-  ${props => props.theme.isPortrait ?
-    `border-bottom: 0.35vh dashed #99ddbc;` :
-    `border-right: 0.35vh dashed #99ddbc;`
-  };
 `;
 
 
@@ -106,7 +102,7 @@ auto auto auto auto
 export const StyledPopForm = styled(Form)`
   display: grid;
   z-index: 1;
-  grid-area: ${props => props.theme.isPortrait ? portraitEntryGridArea : landscapeEntryGridArea}
+  grid-area: ${props => props.theme.isPortrait ? portraitEntryGridArea : landscapeEntryGridArea};
   grid-template-rows: ${props => props.theme.isPortrait ?
     `auto repeat(3, ${props.theme.windowHeight / 15}px)` :
     `${props.theme.windowHeight * 0.2}px
@@ -127,6 +123,7 @@ export const StyledFlavorIcon = styled(({ component, ...props }) => React.cloneE
   grid-area: ${props => props.theme.gridArea};
   justify-self: center;
   align-self: center;
+  filter: drop-shadow(5px 5px 2px #757575);
 `;
 
 export const StyledFlavorChoice = styled(({ component, ...props }) => React.cloneElement(component, props))`
@@ -136,6 +133,8 @@ export const StyledFlavorChoice = styled(({ component, ...props }) => React.clon
   justify-self: center;
   align-self: end;
 `;
+
+export const AnimatedFlavorIcon = animated(StyledFlavorIcon);
 
 export const StyledFlavorName = styled.h4`
 font-size: 3vh;

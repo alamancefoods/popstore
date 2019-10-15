@@ -20,6 +20,7 @@ export const LOGO_SVG = 'LOGO_SVG';
 export const BUTTON_SVG = 'BUTTON_SVG';
 export const MINUS_SVG = 'MINUS_SVG';
 export const PLUS_SVG = 'PLUS_SVG';
+export const CART_SVG = 'CART_SVG';
 export const NO_CHOICE = 'NO_CHOICE';
 
 // List of button objects.

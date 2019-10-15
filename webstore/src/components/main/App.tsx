@@ -26,8 +26,8 @@ const App: React.FC = () => {
         <ResizedLogo />
         {order.totalCount > 0 ?
           <StyledInfoBox>
-            <StyledBalance />
             <ConditionalProfileLink />
+            <StyledBalance />
           </StyledInfoBox> :
           null
         }

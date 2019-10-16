@@ -43,9 +43,6 @@ export const StyledHeader = styled.div`
   grid-template-areas: "left center right"
 `;
 
-export const StyledBalance = styled(Balance)`
-  font-size: 3vh;
-`;
 
 export const StyledLogo = styled(({ component, ...props }) =>
   React.cloneElement(component, props))`
@@ -58,10 +55,19 @@ export const StyledInfoBox = styled.div`
     margin-right: 20px;
     display: flex;
     justify-self: right;
+    justify-content: center;
     flex-direction: column;
     align-items: center;
     grid-area: right;
     `;
+
+export const StyledBalance = styled.h4`
+  font-size: ${props => props.theme.isPortrait ? props.theme.windowHeight * 0.02 : props.theme.windowHeight * 0.03}px;
+  font-family: 'Carter One', cursive;
+`;
+
+export const StyledCartIcon = styled(CartIcon)`
+`;
 
 const alertPortraitGridArea = `secondRowBreak / firstColGreak / bottom / secondColBreak`;
 const alertLandscapeGridArea = 'firstRowBreak / secondColBreak / secondRowBreak / stop';
@@ -81,7 +87,10 @@ export const GlobalStyle = createGlobalStyle`
       resize: none;
     }
 
+    #root {
+    }
     body {
+      font-family: 'Carter One' cursive;
       background-color: #FFFFFF;
     }
 
@@ -93,10 +102,6 @@ export const GlobalStyle = createGlobalStyle`
       resize: none
     }
 
-  .headerIcon {
-    grid-column: 1;
-    grid-row: 1;
-}
 
 input:: -webkit-outer-spin-button,
   input:: -webkit-inner-spin-button {

@@ -7,7 +7,8 @@ import QueryProvider from '../providers/QueryProvider';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import StyledProfileForm, { StyledProfileContainer } from '../../styles/profile/ProfileStyles';
 import StyledPaymentForm, { StyledPaymentContainer } from '../../styles/payment/PaymentStyles';
-import { StyledBalance, StyledHeader, StyledUserAlertContainer, StyledInfoBox } from '../../styles/root/RootStyles';
+import { StyledHeader, StyledUserAlertContainer, StyledInfoBox } from '../../styles/root/RootStyles';
+import Balance from './Balance';
 import OrderForm from '../order/OrderForm';
 import ResizedLogo from './LogoContainer';
 import { ConditionalProfileLink } from '../main/Navigation';
@@ -27,7 +28,7 @@ const App: React.FC = () => {
         {order.totalCount > 0 ?
           <StyledInfoBox>
             <ConditionalProfileLink />
-            <StyledBalance />
+            <Balance />
           </StyledInfoBox> :
           null
         }

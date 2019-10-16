@@ -15,8 +15,8 @@ const svgResizer = (display: any, svgType: string) => {
       break;
     case LOGO_SVG:
       if (display.isPortrait) {
-        iconWidth = display.windowWidth * 0.35;
-        iconHeight = display.windowHeight * 0.2;
+        iconWidth = display.windowWidth * 0.5;
+        iconHeight = display.windowHeight * 0.1;
       } else {
         iconWidth = display.windowWidth * 0.3;
         iconHeight = display.windowHeight * 0.17;
@@ -27,8 +27,8 @@ const svgResizer = (display: any, svgType: string) => {
         iconWidth = display.windowWidth * 0.05;
         iconHeight = display.windowHeight * 0.05;
       } else {
-        iconWidth = display.windowWidth * 0.05;
-        iconHeight = display.windowHeight * 0.05;
+        iconWidth = display.windowWidth * 0.06;
+        iconHeight = display.windowHeight * 0.06;
       }
       break;
     case MINUS_SVG:
@@ -36,17 +36,17 @@ const svgResizer = (display: any, svgType: string) => {
         iconWidth = display.windowWidth * 0.04;
         iconHeight = display.windowHeight * 0.04;
       } else {
-        iconWidth = display.windowWidth * 0.02;
-        iconHeight = display.windowHeight * 0.02;
+        iconWidth = display.windowWidth * 0.03;
+        iconHeight = display.windowHeight * 0.03;
       }
       break;
     case CART_SVG:
       if (display.isPortrait) {
-        iconWidth = display.windowWidth * 0.04;
-        iconHeight = display.windowHeight * 0.04;
-      } else {
         iconWidth = display.windowWidth * 0.10;
-        iconHeight = display.windowHeight * 0.10;
+        iconHeight = display.windowHeight * 0.06;
+      } else {
+        iconWidth = display.windowWidth * 0.06;
+        iconHeight = display.windowHeight * 0.06;
       }
       break;
     default:

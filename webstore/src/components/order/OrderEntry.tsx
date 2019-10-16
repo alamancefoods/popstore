@@ -35,6 +35,7 @@ const OrderEntry = () => {
   const display = useSelector((state: any) => state.displayReducer.display);
   const choice = useSelector((state: any) => state.choiceReducer.choice);
   const dispatch = useDispatch();
+  const choiceCount = order[choice];
 
 
   // Determine the correct SVG to use based on the picked pop state.
@@ -55,7 +56,22 @@ const OrderEntry = () => {
     gridArea: 'selection'
   };
 
+  const selectionAddOne = () => {
+    let newChoice = choiceCount + 1;
+    dispatch(updateOrder(choice, newChoice));
+  };
 
+  const selectionMinusOne = () => {
+    if (choiceCount > 0) {
+      let newChoice = choiceCount - 1;
+      dispatch(updateOrder(choice, newChoice));
+    }
+  };
+
+  const removeItem = () => {
+    dispatch(updateOrder(choice, 0));
+    dispatch(updateChoice(NO_CHOICE));
+  };
 
 
   const FormEntry = () => (
@@ -92,6 +108,7 @@ const OrderEntry = () => {
           <StyledMinusIcon
             width={minusIconWidth}
             height={minusIconHeight}
+            onClick={selectionMinusOne}
           />
           <StyledPopField
             type="number"
@@ -103,6 +120,7 @@ const OrderEntry = () => {
           <StyledPlusIcon
             width={plusIconWidth}
             height={plusIconHeight}
+            onClick={selectionAddOne}
           />
 
           <ValueSubmissionContainer>
@@ -110,7 +128,9 @@ const OrderEntry = () => {
               type="submit">
               Submit
             </StyledFlavorSubmitButton>
-            <StyledFlavorDeleteButton />
+            <StyledFlavorDeleteButton onClick={removeItem}>
+              Delete
+            </StyledFlavorDeleteButton>
           </ValueSubmissionContainer>
 
           <AlertContainer >

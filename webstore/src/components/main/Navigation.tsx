@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { CART_SVG } from '../../constants/constants';
 import { useHistory } from 'react-router-dom';
 import { ReactComponent as CartIcon } from '../../static/cart.svg';
+import { StyledCartIcon } from '../../styles/root/RootStyles';
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import svgResizer from '../../utilities/svgResizer';
 
@@ -14,14 +15,14 @@ export const ConditionalProfileLink = () => {
   const { iconWidth, iconHeight } = svgResizer(display, CART_SVG);
 
   const handleClick = () => {
-    setTimeout(() => history.push("/checkout/shipping-details"), 500);
+    setTimeout(() => history.push("/checkout/shipping-details"), 10);
   };
 
   if (order.totalCount < 5) {
     linkHolder = null;
   } else {
     linkHolder =
-      <CartIcon
+      <StyledCartIcon
         width={iconWidth}
         height={iconHeight}
         onClick={handleClick}

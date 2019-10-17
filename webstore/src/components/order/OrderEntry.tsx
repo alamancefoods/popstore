@@ -34,6 +34,7 @@ const OrderEntry = () => {
   const order = useSelector((state: any) => state.orderReducer.order);
   const display = useSelector((state: any) => state.displayReducer.display);
   const choice = useSelector((state: any) => state.choiceReducer.choice);
+  const siteLocation = useSelector((state: any) => state.locationReducer.location);
   const dispatch = useDispatch();
   const choiceCount = order[choice];
 
@@ -58,6 +59,7 @@ const OrderEntry = () => {
 
   const selectionAddOne = () => {
     let newChoice = choiceCount + 1;
+    console.log(siteLocation);
     dispatch(updateOrder(choice, newChoice));
   };
 

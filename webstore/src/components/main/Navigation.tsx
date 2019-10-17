@@ -1,7 +1,8 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { CART_SVG } from '../../constants/constants';
+import { useSelector, useDispatch } from 'react-redux';
+import { CART_SVG, PROFILE } from '../../constants/constants';
 import { useHistory } from 'react-router-dom';
+import { updateLocation } from '../../redux/location/actions';
 import { ReactComponent as CartIcon } from '../../static/cart.svg';
 import { StyledCartIcon } from '../../styles/root/RootStyles';
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
@@ -12,10 +13,12 @@ export const ConditionalProfileLink = () => {
   const display = useSelector((state: any) => state.displayReducer.display);
   let history = useHistory();
   let linkHolder = null;
+  const dispatch = useDispatch();
   const { iconWidth, iconHeight } = svgResizer(display, CART_SVG);
 
   const handleClick = () => {
-    setTimeout(() => history.push("/checkout/shipping-details"), 10);
+    dispatch(updateLocation(PROFILE));
+    setTimeout(() => history.push("/checkout/shipping-details"), 1000);
   };
 
   if (order.totalCount < 5) {

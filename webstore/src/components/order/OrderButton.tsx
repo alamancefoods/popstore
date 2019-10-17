@@ -1,9 +1,11 @@
 import React, { useContext } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { animated } from 'react-spring';
 import { updateChoice } from '../../redux/order/actions';
 import { NO_CHOICE, BUTTON_SVG } from '../../constants/constants';
+import { PopButtonProps } from './types';
 import {
-  AnimatedFlavorIcon,
+  StyledFlavorIcon,
   StyledFlavorCountBox,
   StyledCountText,
   StyledBackgroundCircle
@@ -11,7 +13,7 @@ import {
 import popConverter from '../../utilities/popConverter';
 import svgResizer from '../../utilities/svgResizer';
 
-const OrderButton = ({ popButton }: { popButton: any }) => {
+const OrderButton = ({ popButton }: PopButtonProps) => {
   const display = useSelector((state: any) => state.displayReducer.display);
   const choice = useSelector((state: any) => state.choiceReducer.choice);
   const order = useSelector((state: any) => state.orderReducer.order);
@@ -24,10 +26,10 @@ const OrderButton = ({ popButton }: { popButton: any }) => {
   const offsetY = iconWidth * 0.2;
   const xyAvg = (iconWidth + iconHeight) / 2;
   const theme = {
-    gridArea: popButton.popFlavor,
     offsetX: offsetX,
     offsetY: offsetY,
-    countFontSize: countFontSize
+    countFontSize: countFontSize,
+    gridArea: popButton.popFlavor
   };
 
   if (choice === popButton.popFlavor) {
@@ -35,7 +37,7 @@ const OrderButton = ({ popButton }: { popButton: any }) => {
   } else {
     return (
       <>
-        <AnimatedFlavorIcon
+        <StyledFlavorIcon
           theme={theme}
           component={
             <FlavorIcon
@@ -56,7 +58,6 @@ const OrderButton = ({ popButton }: { popButton: any }) => {
             </StyledFlavorCountBox>
           </>
           : null}
-
       </>
     );
   }

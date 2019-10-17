@@ -23,6 +23,11 @@ export const PLUS_SVG = 'PLUS_SVG';
 export const CART_SVG = 'CART_SVG';
 export const NO_CHOICE = 'NO_CHOICE';
 
+// Constants for tracking site location.
+export const ORDER = 'ORDER';
+export const PROFILE = 'PROFLIE';
+export const CHECKOUT = 'CHECKOUT';
+
 // List of button objects.
 export const BUTTON_OBJECTS = [
   {

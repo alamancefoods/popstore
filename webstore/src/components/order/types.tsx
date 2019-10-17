@@ -19,6 +19,14 @@ export interface OrderInterface {
   [index: string]: number;
 }
 
+interface animationStyle {
+  s: number;
+};
+
+export interface PopButtonProps {
+  style?: animationStyle;
+  popButton: any;
+}
 
 export interface OrderFormProps {
   addPopToOrder: (popFlavor: string) => void;
@@ -30,6 +38,7 @@ export interface OrderFormProps {
   buttonList: string[];
   className?: string;
 }
+
 
 export interface OrderEntryValueTypes {
   popCount: "";

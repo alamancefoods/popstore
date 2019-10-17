@@ -1,10 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import { animated } from 'react-spring';
+import { interpolate, animated } from 'react-spring';
 import OrderForm from '../../components/order/OrderForm';
 import { Form, Field, ErrorMessage } from 'formik';
 import { ReactComponent as PlusIcon } from '../../static/plusSign.svg';
 import { ReactComponent as MinusIcon } from '../../static/minusSign.svg';
+import OrderButton from '../../components/order/OrderButton';
+
+import { ScaleAttrs, ScaleProps } from './types';
 
 const StyledOrderForm = styled(props => <OrderForm {...props} />)`
   display: flex;
@@ -45,6 +48,7 @@ export const StyledButtonContainer = styled.div`
   background: rgba(211, 234, 242, 0.85);
   border-top-right-radius: ${props => props.theme.isPortrait ? '0%' : '10% 15%'}; 
 `;
+
 
 
 export const StyledFlavorCountBox = styled.span`
@@ -141,14 +145,36 @@ export const StyledPopForm = styled(Form)`
   align-content: start;
 `;
 
+
+export const ScalingDiv = styled(animated.div).attrs<ScaleAttrs>(({ s }) => ({
+  style: {
+    // @ts-ignore
+    transform: s.interpolate(s => `scale(${s})`),
+    // @ts-ignore
+    opacity: s.interpolate(s => `${s}`),
+  }
+}))`
+   grid-area: ${props => props.theme.gridArea};
+   height: 50px;
+`;
+
 export const StyledFlavorIcon = styled(({ component, ...props }) => React.cloneElement(component, props))`
+  grid-area: ${props => props.theme.gridArea};
   display: flex;
   z-index: 1;
-  grid-area: ${props => props.theme.gridArea};
   justify-self: center;
   align-self: center;
   filter: drop-shadow(5px 5px 2px #757575);
 `;
+
+
+//const AnimatedFlavorIcon = styled(StyledFlavorIcon).attrs(({ s }) => ({
+// style: {
+// @ts-ignore
+//   transform: s.interpolate(s => `scale(${s})`),
+// }
+//}))``;
+
 
 export const StyledFlavorChoice = styled(({ component, ...props }) => React.cloneElement(component, props))`
   display: flex;
@@ -158,10 +184,9 @@ export const StyledFlavorChoice = styled(({ component, ...props }) => React.clon
   align-self: end;
 `;
 
-export const AnimatedFlavorIcon = animated(StyledFlavorIcon);
 
 export const StyledFlavorName = styled.h4`
-font-size: 3vh;
+font-size: ${props => props.theme.isPortrait ? props.theme.windowHeight * 0.03 : props.theme.windowHeight * 0.05}px;
 font-family: 'Baloo Bhaina', cursive;
 grid-area: name;
 justify-self: center;
@@ -213,8 +238,6 @@ justify-content: center;
 export const AlertContainer = styled.div`
 grid-area: alert;
 `;
-
-
 
 
 export const StyledFlavorSubmitButton = styled.button`

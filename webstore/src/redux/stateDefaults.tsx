@@ -1,4 +1,4 @@
-import { NO_CHOICE } from '../constants/constants';
+import { NO_CHOICE, ORDER } from '../constants/constants';
 // Default for state initialization.
 export const CHOICE_DEFAULT = { choice: NO_CHOICE };
 
@@ -33,5 +33,9 @@ export const DISPLAY_DEFAULT = {
     windowHeight: 700,
     firstRender: true
   }
+};
+
+export const LOCATION_DEFAULT = {
+  location: ORDER
 };
 

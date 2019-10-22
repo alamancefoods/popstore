@@ -61,4 +61,3 @@ interface UpdateInitAction {
 export type OrderActionTypes = UpdateOrderAction;
 export type ChoiceActionTypes = UpdateChoiceAction;
 export type InitActionTypes = UpdateInitAction;
-

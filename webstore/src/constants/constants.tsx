@@ -28,6 +28,9 @@ export const ORDER = 'ORDER';
 export const PROFILE = 'PROFLIE';
 export const CHECKOUT = 'CHECKOUT';
 
+// Constants for route urls.
+export const PROFILE_ROUTE = "/checkout/shipping-details";
+
 // List of button objects.
 export const BUTTON_OBJECTS = [
   {

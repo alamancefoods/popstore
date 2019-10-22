@@ -1,22 +1,20 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { updateProfile, updateProfileComplete } from '../../redux/profile/actions';
 import { Formik, FormikActions, Form, ErrorMessage, Field } from 'formik';
-import { ProfileFormProps, ProfileInterface } from './types';
 import { STATE_LIST } from '../../constants/constants';
+import { ProfileInterface } from './types';
 import { StyledFormPaper } from '../../styles/profile/ProfileStyles';
 import { ProfileEntrySchema } from './formSchemas';
 import { NavLink } from 'react-router-dom';
 
 
-const ProfileForm = (
-  {
-    setProfile,
-    setProfileCompletion,
-    isProfileComplete,
-    profile,
-    className
-  }: ProfileFormProps) => {
+const ProfileForm = ({ className }: { className?: string }) => {
+  const dispatch = useDispatch();
+  const profile = useSelector((state: any) => state.profileReducer.profile);
 
   const ConditionalPaymentLink = () => {
+    const isProfileComplete = useSelector((state: any) => state.profileCompletionReducer.isComplete);
     let linkHolder = null;
     if (isProfileComplete) {
       linkHolder = (
@@ -31,34 +29,8 @@ const ProfileForm = (
   };
 
 
-  let updateProfile = (
-    email: string,
-    name: string,
-    city: string,
-    country: string,
-    state: string,
-    addressLineOne: string,
-    addressLineTwo: string,
-    postalCode: string
-  ) => {
-    console.log('hello');
-    setProfile(prevState => {
-      return {
-        ...prevState,
-        email: email,
-        name: name,
-        city: city,
-        country: country,
-        state: state,
-        addressLineOne: addressLineOne,
-        addressLineTwo: addressLineTwo,
-        postalCode: postalCode
-      };
-    });
-    setProfileCompletion(true);
-  };
 
-  const ProfileFormEntry = () => {
+  const ProfileFormEntry = ({ className }: { className?: string }) => {
     return (
       <div>
         <Formik
@@ -66,7 +38,7 @@ const ProfileForm = (
             email: profile.email,
             name: profile.name,
             city: profile.city,
-            country: 'U.S.A.',
+            country: profile.country,
             state: profile.state,
             addressLineOne: profile.addressLineOne,
             addressLineTwo: profile.addressLineTwo,
@@ -74,16 +46,20 @@ const ProfileForm = (
           }}
           validationSchema={ProfileEntrySchema}
           onSubmit={(values: ProfileInterface, actions: FormikActions<ProfileInterface>) => {
-            updateProfile(
-              values.email,
-              values.name,
-              values.city,
-              values.country,
-              values.state,
-              values.addressLineOne,
-              values.addressLineTwo,
-              values.postalCode
-            )
+            dispatch(
+              updateProfile(
+                values.email,
+                values.name,
+                values.city,
+                values.country,
+                values.state,
+                values.addressLineOne,
+                values.addressLineTwo,
+                values.postalCode
+              ));
+            dispatch(
+              updateProfileComplete(true)
+            );
           }}
         >
           {({ errors, touched }) => (

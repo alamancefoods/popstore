@@ -1,6 +1,7 @@
 import { UPDATE_DISPLAY } from '../actionTypes';
 import { DisplayActionTypes } from './types';
 
+/** Sends Display Data to Redux Store*/
 export function updateDisplay(firstRender: boolean): DisplayActionTypes {
   let isPortrait = true;
   let aspectRatio = window.innerWidth / window.innerHeight;

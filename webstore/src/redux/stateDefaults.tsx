@@ -39,3 +39,20 @@ export const LOCATION_DEFAULT = {
   location: ORDER
 };
 
+
+export const PROFILE_DEFAULT = {
+  profile: {
+    email: "",
+    name: "",
+    city: "",
+    country: "US",
+    state: "NC",
+    addressLineOne: "",
+    addressLineTwo: "",
+    postalCode: ""
+  }
+};
+
+export const PROFILE_COMPLETION_DEFAULT = {
+  isComplete: false
+};

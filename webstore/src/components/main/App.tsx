@@ -5,6 +5,7 @@ import { StripeProvider, Elements } from 'react-stripe-elements';
 import { ProfileInterface } from '../profile/types';
 import QueryProvider from '../providers/QueryProvider';
 import { Route, Switch, Redirect } from 'react-router-dom';
+import ProfileForm from '../profile/ProfileForm';
 import StyledProfileForm, { StyledProfileContainer } from '../../styles/profile/ProfileStyles';
 import StyledPaymentForm, { StyledPaymentContainer } from '../../styles/payment/PaymentStyles';
 import { StyledHeader, StyledUserAlertContainer, StyledInfoBox } from '../../styles/root/RootStyles';
@@ -16,7 +17,7 @@ import UserAlert from './UserAlert';
 
 const App: React.FC = () => {
   const [profile, setProfile] = useState<ProfileInterface>(store.customerProfile);
-  const [isProfileComplete, setProfileCompletion] = useState(false);
+  const isProfileComplete = useSelector((state: any) => state.profileCompletionReducer.isComplete);
   const order = useSelector((state: any) => state.orderReducer.order);
   const choice = useSelector((state: any) => state.choiceReducer.choice);
 
@@ -27,7 +28,10 @@ const App: React.FC = () => {
         <ResizedLogo />
         {order.totalCount > 0 ?
           <StyledInfoBox>
-            <ConditionalProfileLink />
+            {order.totalCount > 5 ?
+              <ConditionalProfileLink /> :
+              null
+            }
             <Balance />
           </StyledInfoBox> :
           null
@@ -41,15 +45,10 @@ const App: React.FC = () => {
         />
         <Route
           path="/checkout/shipping-details"
-          render={props =>
+          render={() =>
             (order.totalCount >= 5)
               ?
-              <StyledProfileForm {...props}
-                setProfile={setProfile}
-                setProfileCompletion={setProfileCompletion}
-                isProfileComplete={isProfileComplete}
-                profile={profile}
-              />
+              <ProfileForm />
               :
               <Redirect to="/" />
           }

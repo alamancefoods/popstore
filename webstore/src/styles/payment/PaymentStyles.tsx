@@ -4,11 +4,31 @@ import PaymentForm from '../../components/payment/PaymentForm';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 
 
-export const StyledPaymentContainer = styled.div`
-  grid-area: firstRowBreak / firstColBreak / bottom / secondColBreak;
-  display: flex;
-  align-content: center;
-  align-items: center;
+const portraitPaymentGrid = `
+"order order"
+"payment payment"
+"back submit"
+`;
+
+const landscapePaymentGrid = `
+"order payment submit"
+"order payment back"
+"order payment back"
+`;
+
+
+
+export const StyledPaymentContainer = styled.main`
+  display: grid;
+  grid-area: firstRowBreak / firstColBreak / bottom / stop;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  justify-items: center;
+  justify-content: center;
+  grid-template-columns: ${props => props.theme.isPortrait ? "repeat(2, 50%)" : "repeat(3, 33%)"};
+  grid-template-rows: ${props => props.theme.isPortrait ? "75% 25%" : "repeat(3, 33%)"};
+  grid-template-areas: ${props => props.theme.isPortrait ? portraitPaymentGrid : landscapePaymentGrid};
 `;
 
 const StyledPaymentForm = styled(props => <PaymentForm {...props} />)`

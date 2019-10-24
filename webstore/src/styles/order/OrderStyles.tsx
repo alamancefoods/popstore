@@ -34,7 +34,7 @@ const landscapeButtonGrid = `
   "papaya mango coconut greenApple banana"
 `;
 
-export const StyledButtonContainer = styled.div`
+export const StyledButtonContainer = styled.main`
   display: grid;
   grid-area: firstRowBreak / firstColBreak / secondRowBreak / secondColBreak;
   height: 100%;
@@ -146,7 +146,7 @@ export const StyledPopForm = styled(Form)`
 `;
 
 
-export const ScalingDiv = styled(animated.div).attrs<ScaleAttrs>(({ s }) => ({
+export const ScalingDiv = styled(animated.button).attrs<ScaleAttrs>(({ s }) => ({
   style: {
     // @ts-ignore
     transform: s.interpolate(s => `scale(${s})`),
@@ -156,6 +156,10 @@ export const ScalingDiv = styled(animated.div).attrs<ScaleAttrs>(({ s }) => ({
 }))`
    grid-area: ${props => props.theme.gridArea};
    height: 50px;
+   border: none;
+   background: none;
+   cursor: pointer;
+   outline: none;
 `;
 
 export const StyledFlavorIcon = styled(({ component, ...props }) => React.cloneElement(component, props))`

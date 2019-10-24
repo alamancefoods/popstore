@@ -4,7 +4,7 @@ import { ThemeProvider } from 'styled-components';
 import { ProviderPropTypes } from './types';
 import { DisplayState } from '../../redux/display/types';
 import { DISPLAY_DEFAULT } from '../../redux/stateDefaults';
-import { GlobalStyle, GridContainer } from '../../styles/root/RootStyles';
+import { GlobalStyle } from '../../styles/root/RootStyles';
 import { updateDisplay } from '../../redux/display/actions';
 
 
@@ -40,18 +40,16 @@ const QueryProvider = (props: ProviderPropTypes) => {
 
 
   return (
-    <div id='queryContainer'>
+    <>
       <ThemeProvider theme={() => (display)}>
         <>
           <GlobalStyle />
-          <GridContainer >
-            {props.children}
-          </GridContainer>
+          {props.children}
         </>
       </ThemeProvider>
-    </div>
+    </>
   );
 };
 
-export type ThemeType = typeof DISPLAY_DEFAULT;
+export type ThemeType = typeof DISPLAY_DEFAULT.display;
 export default QueryProvider;

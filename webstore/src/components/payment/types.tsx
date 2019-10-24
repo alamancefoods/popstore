@@ -1,4 +1,4 @@
-import { OrderInterface } from '../order/types'
+import { OrderInterface } from '../order/types';
 
 
 export interface CheckoutFormProps {
@@ -44,6 +44,5 @@ export interface PaymentFormProps {
   stripe?: any;
   order: OrderInterface;
   profile: ProfileInterface;
-  className: string;
 }
 

@@ -19,3 +19,8 @@ export const TestButton = styled.button`
 grid-column: start / firstColBreak;
 grid-row: top / firstRowBreak;
 `;
+
+export interface LinkProps {
+  location: string;
+  route: string;
+};

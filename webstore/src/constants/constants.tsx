@@ -25,11 +25,15 @@ export const NO_CHOICE = 'NO_CHOICE';
 
 // Constants for tracking site location.
 export const ORDER = 'ORDER';
+export const ORDER_TO_PROFILE = 'ORDER_TO_PROFILE';
+export const CHECKOUT_TO_PROFILE = 'CHECKOUT_TO_PROFILE';
 export const PROFILE = 'PROFLIE';
 export const CHECKOUT = 'CHECKOUT';
 
 // Constants for route urls.
+export const ORDER_ROUTE = "/";
 export const PROFILE_ROUTE = "/checkout/shipping-details";
+export const CHECKOUT_ROUTE = "/complete-purchase";
 
 // List of button objects.
 export const BUTTON_OBJECTS = [

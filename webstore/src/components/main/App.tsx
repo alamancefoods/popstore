@@ -5,14 +5,15 @@ import { StripeProvider, Elements } from 'react-stripe-elements';
 import { ProfileInterface } from '../profile/types';
 import QueryProvider from '../providers/QueryProvider';
 import { Route, Switch, Redirect } from 'react-router-dom';
+import { ORDER_TO_PROFILE, PROFILE_ROUTE } from '../../constants/constants';
 import ProfileForm from '../profile/ProfileForm';
-import StyledProfileForm, { StyledProfileContainer } from '../../styles/profile/ProfileStyles';
 import StyledPaymentForm, { StyledPaymentContainer } from '../../styles/payment/PaymentStyles';
 import { StyledHeader, StyledUserAlertContainer, StyledInfoBox } from '../../styles/root/RootStyles';
 import Balance from './Balance';
 import OrderForm from '../order/OrderForm';
+import PaymentForm from '../payment/PaymentForm';
 import ResizedLogo from './LogoContainer';
-import { ConditionalProfileLink } from '../main/Navigation';
+import { ConditionalLink } from '../main/Navigation';
 import UserAlert from './UserAlert';
 
 const App: React.FC = () => {
@@ -29,7 +30,7 @@ const App: React.FC = () => {
         {order.totalCount > 0 ?
           <StyledInfoBox>
             {order.totalCount > 5 ?
-              <ConditionalProfileLink /> :
+              <ConditionalLink location={ORDER_TO_PROFILE} route={PROFILE_ROUTE} /> :
               null
             }
             <Balance />
@@ -59,14 +60,9 @@ const App: React.FC = () => {
             isProfileComplete
               ?
               <StripeProvider apiKey='pk_test_G0og7jUXcWI9WxiK1YUfgZKe00w9QSGkKy'>
-                <StyledPaymentContainer>
-                  <Elements>
-                    <StyledPaymentForm {...props}
-                      order={order}
-                      profile={profile}
-                    />
-                  </Elements>
-                </StyledPaymentContainer>
+                <Elements>
+                  <PaymentForm />
+                </Elements>
               </StripeProvider>
               :
               <Redirect to="/checkout/shipping-details" />

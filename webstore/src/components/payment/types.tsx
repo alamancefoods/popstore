@@ -44,5 +44,6 @@ export interface PaymentFormProps {
   stripe?: any;
   order: OrderInterface;
   profile: ProfileInterface;
+  dispatch: any;
 }
 

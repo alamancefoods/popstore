@@ -1,11 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { completePurchase } from '../../redux/payment/actions';
 import { CardElement, injectStripe } from 'react-stripe-elements';
 import { Formik, FormikActions, Form, ErrorMessage, Field } from 'formik';
 import { devRootURL } from '../../utilities/rootURLS';
 import { PaymentFormProps } from './types';
 import { NavLink } from 'react-router-dom';
-import { StyledCardContainer, StyledPaymentContainer } from '../../styles/payment/PaymentStyles';
+import {
+  StyledCardContainer,
+  StyledPaymentContainer,
+  StyledLinkContainer,
+  StyledOrderLink,
+  StyledProfileLink,
+  StyledSubmitButton
+} from '../../styles/payment/PaymentStyles';
 import { ConditionalLink } from '../main/Navigation';
 import { ORDER, CHECKOUT_TO_PROFILE, ORDER_ROUTE, PROFILE_ROUTE } from '../../constants/constants';
 
@@ -16,57 +24,61 @@ function mapStateToProps(state: any) {
   };
 };
 
+
 class PaymentForm extends Component<PaymentFormProps, {}> {
   constructor(props: PaymentFormProps) {
     super(props);
     this.submit = this.submit.bind(this);
-    this.paymentFormEntry = this.paymentFormEntry.bind(this);
   }
 
   async submit() {
-    let { token } = await this.props.stripe.createToken({ name: 'Name' })
-      // @ts-ignore
-      .then(function(result) {
-        result.error ?
-          console.log(result.error) :
-          console.log("success!");
-        return result;
-      });
-    if (typeof token !== 'undefined') {
-      console.log(this.props.order);
+    let token;
+    try {
+      token = await this.props.stripe.createToken({ name: 'Name' });
+    } catch (e) {
+      console.log(e);
+    }
+    if (typeof token.token !== 'undefined') {
       let payload = {
-        token: token, order: { order: "dooop" }, profile:
-          { profile: "poop" }
+        token: token.token, order: this.props.order, profile: this.props.profile
       };
-      let response = await fetch(`${devRootURL}/charge/`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-      let myOK = await response.ok;
-      if (myOK) console.log('Oll Korrect!');
+      console.log(payload);
+      let response: any;
+      try {
+        response = await fetch(`${devRootURL}/charge/`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+      } catch (e) {
+        console.log(e);
+      }
+      if (response!.ok) {
+        this.props.dispatch(completePurchase());
+        console.log('yay!');
+      } else {
+        console.log('failure');
+        console.log(response);
+      }
     } else {
-      console.log("Please enter your credit card information");
-      console.log(this.props.stripe);
+      console.log('That value doesn\'t work!');
     }
   }
 
-  paymentFormEntry() {
-    return (
-      <StyledCardContainer>
-        <label>Payment:</label>
-        <CardElement hidePostalCode={true} />
-        <button onClick={this.submit}>Submit Payment</button>
-      </StyledCardContainer>
-    );
-  }
+
 
   render() {
     return (
       <StyledPaymentContainer>
-        {this.paymentFormEntry()}
-        <ConditionalLink location={ORDER} route={ORDER_ROUTE} />
-        <ConditionalLink location={CHECKOUT_TO_PROFILE} route={PROFILE_ROUTE} />
+        <StyledCardContainer>
+          <label>Payment:</label>
+          <CardElement hidePostalCode={true} />
+        </StyledCardContainer>
+        <StyledSubmitButton onClick={this.submit}>Submit Payment</StyledSubmitButton>
+        <StyledLinkContainer>
+          <StyledOrderLink location={ORDER} route={ORDER_ROUTE} />
+          <StyledProfileLink location={CHECKOUT_TO_PROFILE} route={PROFILE_ROUTE} />
+        </StyledLinkContainer>
       </StyledPaymentContainer>
     );
   }

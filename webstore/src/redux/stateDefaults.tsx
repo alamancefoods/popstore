@@ -56,3 +56,7 @@ export const PROFILE_DEFAULT = {
 export const PROFILE_COMPLETION_DEFAULT = {
   isComplete: false
 };
+
+export const PURCHASE_DEFAULT = {
+  isComplete: false
+};

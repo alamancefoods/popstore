@@ -7,7 +7,6 @@ import QueryProvider from '../providers/QueryProvider';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { ORDER_TO_PROFILE, PROFILE_ROUTE } from '../../constants/constants';
 import ProfileForm from '../profile/ProfileForm';
-import StyledPaymentForm, { StyledPaymentContainer } from '../../styles/payment/PaymentStyles';
 import { StyledHeader, StyledUserAlertContainer, StyledInfoBox } from '../../styles/root/RootStyles';
 import Balance from './Balance';
 import OrderForm from '../order/OrderForm';

@@ -5,7 +5,7 @@ import { StripeProvider, Elements } from 'react-stripe-elements';
 import { ProfileInterface } from '../profile/types';
 import QueryProvider from '../providers/QueryProvider';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import { ORDER_TO_PROFILE, PROFILE_ROUTE } from '../../constants/constants';
+import { ORDER_TO_PROFILE, PROFILE_ROUTE, ORDER } from '../../constants/constants';
 import ProfileForm from '../profile/ProfileForm';
 import { StyledHeader, StyledUserAlertContainer, StyledInfoBox } from '../../styles/root/RootStyles';
 import Balance from './Balance';
@@ -20,13 +20,14 @@ const App: React.FC = () => {
   const isProfileComplete = useSelector((state: any) => state.profileCompletionReducer.isComplete);
   const order = useSelector((state: any) => state.orderReducer.order);
   const choice = useSelector((state: any) => state.choiceReducer.choice);
+  const siteLocation = useSelector((state: any) => state.locationReducer.location);
 
 
   return (
     <QueryProvider>
       <StyledHeader>
         <ResizedLogo />
-        {order.totalCount > 0 ?
+        {siteLocation === ORDER && order.totalCount > 0 ?
           <StyledInfoBox>
             {order.totalCount > 5 ?
               <ConditionalLink location={ORDER_TO_PROFILE} route={PROFILE_ROUTE} /> :

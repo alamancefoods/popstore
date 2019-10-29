@@ -6,13 +6,17 @@ import { Formik, FormikActions, Form, ErrorMessage, Field } from 'formik';
 import { devRootURL } from '../../utilities/rootURLS';
 import { PaymentFormProps } from './types';
 import { NavLink } from 'react-router-dom';
+import { popStringify } from '../../utilities/popConverter';
+import { convertPopCountToCharge } from '../../utilities/convertPopCountToCharge';
 import {
   StyledCardContainer,
   StyledPaymentContainer,
   StyledLinkContainer,
   StyledOrderLink,
   StyledProfileLink,
-  StyledSubmitButton
+  StyledSubmitButton,
+  StyledProfileContainer,
+  StyledOrderContainer
 } from '../../styles/payment/PaymentStyles';
 import { ConditionalLink } from '../main/Navigation';
 import { ORDER, CHECKOUT_TO_PROFILE, ORDER_ROUTE, PROFILE_ROUTE } from '../../constants/constants';
@@ -25,11 +29,42 @@ function mapStateToProps(state: any) {
 };
 
 
+
+
 class PaymentForm extends Component<PaymentFormProps, {}> {
   constructor(props: PaymentFormProps) {
     super(props);
     this.submit = this.submit.bind(this);
+    this.orderParser = this.orderParser.bind(this);
+    this.orderMapper = this.orderMapper.bind(this);
   }
+
+
+  orderParser(returnBalance: boolean): any {
+    const balance = this.props.order.totalCount;
+    let orderCopy = Object.assign({}, this.props.order);
+    delete orderCopy.balance;
+    delete orderCopy.totalCount;
+    console.log(orderCopy);
+    if (returnBalance) {
+      return convertPopCountToCharge(balance, false);
+    } else {
+      // Return array of key value pairs
+      return Object.entries(orderCopy);
+    }
+  };
+
+
+  orderMapper() {
+    return (
+      this.orderParser(false).map(function(kvArray: [string, number]) {
+        if (kvArray[1] > 0) {
+          return <h3>{popStringify(kvArray[0])} : {kvArray[1]}</h3>;
+        };
+      }));
+  };
+
+
 
   async submit() {
     let token;
@@ -70,6 +105,22 @@ class PaymentForm extends Component<PaymentFormProps, {}> {
   render() {
     return (
       <StyledPaymentContainer>
+        <StyledOrderContainer>
+          <h1>Balance: ${this.orderParser(true)}</h1>
+          {this.orderMapper()}
+        </StyledOrderContainer>
+        <StyledProfileContainer>
+          <h1>Name:</h1>
+          <h3>{this.props.profile.name}</h3>
+          <h1>Address: </h1>
+          <h3>{this.props.profile.addressLineOne}</h3>
+          {this.props.profile.addressLineTwo.length > 0 ?
+            <h3>{this.props.profile.addressLineTwo}</h3> :
+            null
+          }
+          <h3>{this.props.profile.city}, {this.props.profile.state}</h3>
+          <h3>{this.props.profile.postalCode}</h3>
+        </StyledProfileContainer>
         <StyledCardContainer>
           <label>Payment:</label>
           <CardElement hidePostalCode={true} />

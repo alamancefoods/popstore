@@ -22,6 +22,8 @@ export const ConditionalLink = ({ location, route }: LinkProps) => {
 
   function locationTransition() {
     dispatch(updateLocation(location));
+    console.log(route);
+    console.log(order.totalCount);
     setTimeout(() => history.push(route), 1000);
   };
 

@@ -32,6 +32,20 @@ export const StyledPaymentContainer = styled.main`
   grid-template-areas: ${props => props.theme.isPortrait ? portraitPaymentGrid : landscapePaymentGrid};
 `;
 
+export const StyledOrderContainer = styled.div`
+grid-area: order;
+display: flex;
+flex-grow: 1;
+flex-direction: column;
+`;
+
+export const StyledProfileContainer = styled.div`
+grid-area: profile;
+display: flex;
+flex-grow: 1;
+flex-direction: column;
+`;
+
 export const StyledCardContainer = styled.div`
   grid-area: payment;
   display: flex;

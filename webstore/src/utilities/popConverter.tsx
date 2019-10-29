@@ -5,4 +5,10 @@ const popConverter = (popFlavor: string) => {
   return buttonObject;
 };
 
+export const popStringify = (popFlavor: string) => {
+  const buttonObject = BUTTON_OBJECTS.find(button => button.popFlavor === popFlavor);
+  return buttonObject!.popText;
+};
+
+
 export default popConverter;

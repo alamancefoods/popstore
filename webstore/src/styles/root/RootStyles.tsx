@@ -1,10 +1,6 @@
 import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
-import { ReactComponent as Logo } from '../../static/logo_header.svg';
-import { ReactComponent as Banana } from '../../static/banana.svg';
 import { ReactComponent as CartIcon } from '../../static/cart.svg';
-import Balance from '../../components/main/Balance';
-import UserAlert from '../../components/main/UserAlert';
 import { ThemeType } from '../../components/providers/QueryProvider';
 
 

@@ -1,6 +1,5 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { animated } from 'react-spring';
 import { updateChoice } from '../../redux/order/actions';
 import { NO_CHOICE, BUTTON_SVG } from '../../constants/constants';
 import { PopButtonProps } from './types';
@@ -10,7 +9,6 @@ import {
   StyledCountText,
   StyledBackgroundCircle
 } from '../../styles/order/OrderStyles';
-import popConverter from '../../utilities/popConverter';
 import svgResizer from '../../utilities/svgResizer';
 
 const OrderButton = ({ popButton }: PopButtonProps) => {
@@ -24,7 +22,6 @@ const OrderButton = ({ popButton }: PopButtonProps) => {
   const countFontSize = display.isPortrait ? display.windowHeight * 0.02 : display.windowHeight * 0.03;
   const offsetX = iconHeight * 0.5;
   const offsetY = iconWidth * 0.2;
-  const xyAvg = (iconWidth + iconHeight) / 2;
   const theme = {
     offsetX: offsetX,
     offsetY: offsetY,

@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { updateChoice, updateOrder } from '../../redux/order/actions';
 import { NO_CHOICE, BUTTON_SVG, PLUS_SVG, MINUS_SVG } from '../../constants/constants';
 import { OrderEntryValueTypes } from './types';
-import { Formik, FormikActions, Form, ErrorMessage, Field } from 'formik';
+import { Formik, FormikActions, ErrorMessage } from 'formik';
 import {
   StyledPopForm,
   StyledPopField,
@@ -11,7 +11,6 @@ import {
   StyledFlavorChoice,
   StyledFlavorName,
   ValueSubmissionContainer,
-  SelectionInfoContainer,
   AlertContainer,
   StyledPlusIcon,
   StyledMinusIcon,
@@ -117,7 +116,6 @@ const OrderEntry = () => {
             className={'className'}
             name="popCount"
             placeholder={order[choice]}
-            setFieldValue
           />
           <StyledPlusIcon
             width={plusIconWidth}

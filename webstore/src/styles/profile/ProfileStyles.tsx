@@ -1,7 +1,5 @@
-import React from 'react';
 import styled from 'styled-components';
-import ProfileForm from '../../components/profile/ProfileForm';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Form } from 'formik';
 
 
 

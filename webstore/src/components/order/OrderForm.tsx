@@ -1,16 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
-import { interpolate, useTrail } from 'react-spring';
+import { useTrail } from 'react-spring';
 import { BUTTON_OBJECTS } from '../../constants/constants';
 import { NO_CHOICE, ORDER } from '../../constants/constants';
 import {
   StyledButtonContainer,
-  StyledStatusContainer,
   ScalingDiv
 } from '../../styles/order/OrderStyles';
 import OrderButton from './OrderButton';
 import OrderEntry from './OrderEntry';
-import { NavLink } from 'react-router-dom';
 
 
 const OrderForm = ({ className }: { className?: string }) => {
@@ -22,7 +20,7 @@ const OrderForm = ({ className }: { className?: string }) => {
   let friction = 25;
   let velocity = 30;
   // My hacky way of changing configs during transitions.
-  if (siteLocation != ORDER) {
+  if (siteLocation !== ORDER) {
     mass = 0.5;
     tension = 800;
     friction = 30;
@@ -43,7 +41,10 @@ const OrderForm = ({ className }: { className?: string }) => {
       <StyledButtonContainer>
         {trail.map(({ s, ...rest }, index) => (
           // @ts-ignore
-          <ScalingDiv s={s} theme={{ gridArea: BUTTON_OBJECTS[index].popFlavor }}>
+          <ScalingDiv
+            key={BUTTON_OBJECTS[index].popFlavor}
+            s={s}
+            theme={{ gridArea: BUTTON_OBJECTS[index].popFlavor }}>
             <OrderButton
               key={BUTTON_OBJECTS[index].popFlavor}
               popButton={BUTTON_OBJECTS[index]}

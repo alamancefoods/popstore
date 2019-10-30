@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateProfile, updateProfileComplete } from '../../redux/profile/actions';
-import { Formik, FormikActions, Form, ErrorMessage, Field } from 'formik';
+import { Formik, FormikActions, ErrorMessage, Field } from 'formik';
 import { STATE_LIST, CHECKOUT, CHECKOUT_ROUTE, ORDER, ORDER_ROUTE } from '../../constants/constants';
 import { ProfileInterface } from './types';
 import {
@@ -10,7 +10,6 @@ import {
   SubmitButton
 } from '../../styles/profile/ProfileStyles';
 import { ProfileEntrySchema } from './formSchemas';
-import { NavLink } from 'react-router-dom';
 import { ConditionalLink } from '../main/Navigation';
 
 
@@ -19,6 +18,7 @@ const ProfileForm = ({ className }: { className?: string }) => {
   const dispatch = useDispatch();
   const profile = useSelector((state: any) => state.profileReducer.profile);
   const isProfileComplete = useSelector((state: any) => state.profileCompletionReducer.isComplete);
+  const display = useSelector((state: any) => state.displayReducer.display);
 
 
 
@@ -81,8 +81,11 @@ const ProfileForm = ({ className }: { className?: string }) => {
               <div>
                 <label>State:</label>
                 <Field component="select" name="state">
-                  {STATE_LIST.map((state) =>
-                    <option value={state}>{state}</option>
+                  {STATE_LIST.map((state) => <option
+                    value={state}
+                    key={state}
+                  > {state}
+                  </option>
                   )}
                 </Field>
               </div>
@@ -100,12 +103,19 @@ const ProfileForm = ({ className }: { className?: string }) => {
 
             <SubmitButton type="submit">Submit</SubmitButton>
 
-            <ConditionalLink location={ORDER} route={ORDER_ROUTE} />
 
-            {isProfileComplete ?
-              <ConditionalLink location={CHECKOUT} route={CHECKOUT_ROUTE} /> :
-              null
+            {/* Incredibly ugly, but hopefully temporary and remedial.**/}
+            {display.isPortrait ?
+              <>
+                <ConditionalLink location={ORDER} route={ORDER_ROUTE} />
+                {isProfileComplete ?
+                  <ConditionalLink location={CHECKOUT} route={CHECKOUT_ROUTE} /> :
+                  null
+                }
+              </>
+              : null
             }
+
           </StyledProfileForm>
         )}
       </Formik>

@@ -2,10 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { completePurchase } from '../../redux/payment/actions';
 import { CardElement, injectStripe } from 'react-stripe-elements';
-import { Formik, FormikActions, Form, ErrorMessage, Field } from 'formik';
 import { devRootURL } from '../../utilities/rootURLS';
 import { PaymentFormProps } from './types';
-import { NavLink } from 'react-router-dom';
 import { popStringify } from '../../utilities/popConverter';
 import { convertPopCountToCharge } from '../../utilities/convertPopCountToCharge';
 import {
@@ -16,15 +14,18 @@ import {
   StyledProfileLink,
   StyledSubmitButton,
   StyledProfileContainer,
-  StyledOrderContainer
+  StyledOrderContainer,
+  StyledFlavorContainer,
+  StyledH1,
+  StyledH3
 } from '../../styles/payment/PaymentStyles';
-import { ConditionalLink } from '../main/Navigation';
 import { ORDER, CHECKOUT_TO_PROFILE, ORDER_ROUTE, PROFILE_ROUTE } from '../../constants/constants';
 
 function mapStateToProps(state: any) {
   return {
     profile: state.profileReducer.profile,
-    order: state.orderReducer.order
+    order: state.orderReducer.order,
+    display: state.displayReducer.display
   };
 };
 
@@ -45,7 +46,6 @@ class PaymentForm extends Component<PaymentFormProps, {}> {
     let orderCopy = Object.assign({}, this.props.order);
     delete orderCopy.balance;
     delete orderCopy.totalCount;
-    console.log(orderCopy);
     if (returnBalance) {
       return convertPopCountToCharge(balance, false);
     } else {
@@ -59,7 +59,10 @@ class PaymentForm extends Component<PaymentFormProps, {}> {
     return (
       this.orderParser(false).map(function(kvArray: [string, number]) {
         if (kvArray[1] > 0) {
-          return <h3>{popStringify(kvArray[0])} : {kvArray[1]}</h3>;
+          return <StyledH3
+            key={popStringify(kvArray[0])}>
+            {popStringify(kvArray[0])} : {kvArray[1]}
+          </StyledH3>;
         };
       }));
   };
@@ -77,7 +80,6 @@ class PaymentForm extends Component<PaymentFormProps, {}> {
       let payload = {
         token: token.token, order: this.props.order, profile: this.props.profile
       };
-      console.log(payload);
       let response: any;
       try {
         response = await fetch(`${devRootURL}/charge/`, {
@@ -90,9 +92,7 @@ class PaymentForm extends Component<PaymentFormProps, {}> {
       }
       if (response!.ok) {
         this.props.dispatch(completePurchase());
-        console.log('yay!');
       } else {
-        console.log('failure');
         console.log(response);
       }
     } else {
@@ -106,30 +106,35 @@ class PaymentForm extends Component<PaymentFormProps, {}> {
     return (
       <StyledPaymentContainer>
         <StyledOrderContainer>
-          <h1>Balance: ${this.orderParser(true)}</h1>
-          {this.orderMapper()}
+          <StyledFlavorContainer>
+            <StyledH1>Balance: ${this.orderParser(true)}</StyledH1>
+            {this.orderMapper()}
+          </StyledFlavorContainer>
         </StyledOrderContainer>
         <StyledProfileContainer>
-          <h1>Name:</h1>
-          <h3>{this.props.profile.name}</h3>
-          <h1>Address: </h1>
-          <h3>{this.props.profile.addressLineOne}</h3>
+          <StyledH1>Name:</StyledH1>
+          <StyledH3>{this.props.profile.name}</StyledH3>
+          <StyledH1>Address: </StyledH1>
+          <StyledH3>{this.props.profile.addressLineOne}</StyledH3>
           {this.props.profile.addressLineTwo.length > 0 ?
-            <h3>{this.props.profile.addressLineTwo}</h3> :
+            <StyledH3>{this.props.profile.addressLineTwo}</StyledH3> :
             null
           }
-          <h3>{this.props.profile.city}, {this.props.profile.state}</h3>
-          <h3>{this.props.profile.postalCode}</h3>
+          <StyledH3>{this.props.profile.city}, {this.props.profile.state}</StyledH3>
+          <StyledH3>{this.props.profile.postalCode}</StyledH3>
         </StyledProfileContainer>
         <StyledCardContainer>
           <label>Payment:</label>
           <CardElement hidePostalCode={true} />
         </StyledCardContainer>
         <StyledSubmitButton onClick={this.submit}>Submit Payment</StyledSubmitButton>
-        <StyledLinkContainer>
-          <StyledOrderLink location={ORDER} route={ORDER_ROUTE} />
-          <StyledProfileLink location={CHECKOUT_TO_PROFILE} route={PROFILE_ROUTE} />
-        </StyledLinkContainer>
+        {this.props.display.isTrue ?
+          <StyledLinkContainer>
+            <StyledOrderLink location={ORDER} route={ORDER_ROUTE} />
+            <StyledProfileLink location={CHECKOUT_TO_PROFILE} route={PROFILE_ROUTE} />
+          </StyledLinkContainer>
+          : null
+        }
       </StyledPaymentContainer>
     );
   }

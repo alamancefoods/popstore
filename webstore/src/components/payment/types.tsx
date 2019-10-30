@@ -45,5 +45,6 @@ export interface PaymentFormProps {
   order: OrderInterface;
   profile: ProfileInterface;
   dispatch: any;
+  display: any;
 }
 

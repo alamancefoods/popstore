@@ -1,4 +1,3 @@
-import React from 'react';
 import { ReactComponent as Banana } from '../static/banana.svg';
 import { ReactComponent as BluePunch } from '../static/blue_punch.svg';
 import { ReactComponent as Cherry } from '../static/cherries.svg';
@@ -14,6 +13,9 @@ import { ReactComponent as Papaya } from '../static/papaya.svg';
 import { ReactComponent as Pineapple } from '../static/pineapple.svg';
 import { ReactComponent as Strawberry } from '../static/strawberry.svg';
 import { ReactComponent as Watermelon } from '../static/watermelon.svg';
+
+// API Key
+export const STRIPE_API_KEY = 'pk_test_G0og7jUXcWI9WxiK1YUfgZKe00w9QSGkKy';
 
 // Simple Constants.
 export const LOGO_SVG = 'LOGO_SVG';

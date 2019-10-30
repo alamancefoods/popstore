@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
 import { ProviderPropTypes } from './types';
-import { DisplayState } from '../../redux/display/types';
 import { DISPLAY_DEFAULT } from '../../redux/stateDefaults';
 import { GlobalStyle } from '../../styles/root/RootStyles';
 import { updateDisplay } from '../../redux/display/actions';

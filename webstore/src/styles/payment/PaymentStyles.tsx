@@ -1,7 +1,4 @@
-import React from 'react';
 import styled from 'styled-components';
-import PaymentForm from '../../components/payment/PaymentForm';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { ConditionalLink } from '../../components/main/Navigation';
 
 
@@ -39,6 +36,29 @@ flex-grow: 1;
 flex-direction: column;
 `;
 
+export const StyledFlavorContainer = styled.div`
+display: flex;
+flex-grow: 1;
+flex-direction: column;
+flex-wrap: wrap;
+`;
+
+export const StyledH1 = styled.h1`
+font-size: ${
+  props => props.theme.isPortrait ?
+    `${props.theme.windowHeight * 0.02}px` :
+    `${props.theme.windowHeight * 0.025}px`
+  };
+`;
+
+export const StyledH3 = styled.h3`
+font-size: ${
+  props => props.theme.isPortrait ?
+    `${props.theme.windowHeight * 0.015}px` :
+    `${props.theme.windowHeight * 0.02}px`
+  };
+`;
+
 export const StyledProfileContainer = styled.div`
 grid-area: profile;
 display: flex;
@@ -47,31 +67,32 @@ flex-direction: column;
 `;
 
 export const StyledCardContainer = styled.div`
-  grid-area: payment;
-  display: flex;
-  flex-grow: 1;
-  flex-direction: column;
-  justify-content: center;
-  width: 75%;
+grid-area: payment;
+display: flex;
+flex-grow: 1;
+flex-direction: column;
+justify-content: center;
+width: 75%;
 `;
 
 export const StyledLinkContainer = styled.div`
-  grid-area: back;
-  display: flex;
-  flex-grow: 1;
-  flex-direction: column;
-  justify-content: center;
+grid-area: back;
+display: flex;
+flex-grow: 1;
+flex-direction: column;
+justify-content: center;
 `;
 
 export const StyledOrderLink = styled(ConditionalLink)`
-`;
+
+  `;
 
 export const StyledProfileLink = styled(ConditionalLink)`
-`;
+  `;
 
 export const StyledSubmitButton = styled.button`
-    grid-area: submit;
-    justify-self: center;
+grid-area: submit;
+justify-self: center;
 `;
 
 

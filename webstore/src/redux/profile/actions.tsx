@@ -1,5 +1,5 @@
 import { UPDATE_PROFILE, COMPLETE_PROFILE } from '../actionTypes';
-import { ProfileActionTypes, ProfileState } from './types';
+import { ProfileActionTypes } from './types';
 
 /**Sends Profile Data to Redux Store*/
 export function updateProfile(

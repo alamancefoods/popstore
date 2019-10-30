@@ -1,13 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { interpolate, animated } from 'react-spring';
+import { animated } from 'react-spring';
 import OrderForm from '../../components/order/OrderForm';
 import { Form, Field, ErrorMessage } from 'formik';
 import { ReactComponent as PlusIcon } from '../../static/plusSign.svg';
 import { ReactComponent as MinusIcon } from '../../static/minusSign.svg';
-import OrderButton from '../../components/order/OrderButton';
 
-import { ScaleAttrs, ScaleProps } from './types';
+import { ScaleAttrs } from './types';
 
 const StyledOrderForm = styled(props => <OrderForm {...props} />)`
   display: flex;
@@ -113,15 +112,6 @@ const landscapeEntryGrid = `
   "minus input plus"
   "submission submission submission"
 `;
-
-const portraitEntryRowDimensions = `
-auto auto auto auto
-`;
-
-const landscapeEntryRowDimensions = `
-auto auto auto auto 
-`;
-
 
 // The following containers should exist within the
 // StyledEntryContainer

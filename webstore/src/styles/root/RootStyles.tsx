@@ -75,7 +75,9 @@ export const StyledHeader = styled.header`
   props => props.theme.isPortrait ?
     HeaderPortraitGridArea :
     HeaderLandscapeGridArea};
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: ${props => props.theme.isPortrait ?
+    "repeat(3, 1fr)" :
+    "40% 40% 20%"};
   grid-template-rows: 1fr;
   grid-template-areas: "left center right"
 `;

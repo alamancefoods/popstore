@@ -31,14 +31,17 @@ export const StyledPaymentContainer = styled.main`
 
 export const StyledOrderContainer = styled.div`
 grid-area: order;
-display: flex;
-flex-grow: 1;
+display: inline-flex;
+flex-shrink: 1;
 flex-direction: column;
+justify-content: flex-start;
+align-items: ${props => props.theme.isPortrait ? 'center' : 'flex-start'};
+width: 100%;
 `;
 
-export const StyledFlavorContainer = styled.div`
+export const StyledInfoContainer = styled.div`
 display: flex;
-flex-grow: 1;
+padding: 5px;
 flex-direction: column;
 flex-wrap: wrap;
 `;
@@ -64,6 +67,9 @@ grid-area: profile;
 display: flex;
 flex-grow: 1;
 flex-direction: column;
+justify-content: flex-start; 
+align-items: ${props => props.theme.isPortrait ? 'center' : 'flex-start'};
+width: 100%;
 `;
 
 export const StyledCardContainer = styled.div`
@@ -90,8 +96,9 @@ export const StyledOrderLink = styled(ConditionalLink)`
 export const StyledProfileLink = styled(ConditionalLink)`
   `;
 
-export const StyledSubmitButton = styled.button`
+export const StyledFormButton = styled.button`
 grid-area: submit;
+height: ${props => props.theme.isPortrait ? '5' : '10'}vh;
 justify-self: center;
 `;
 

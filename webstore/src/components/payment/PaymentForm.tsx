@@ -12,14 +12,14 @@ import {
   StyledLinkContainer,
   StyledOrderLink,
   StyledProfileLink,
-  StyledSubmitButton,
+  StyledFormButton,
   StyledProfileContainer,
   StyledOrderContainer,
-  StyledFlavorContainer,
+  StyledInfoContainer,
   StyledH1,
   StyledH3
 } from '../../styles/payment/PaymentStyles';
-import { ORDER, CHECKOUT_TO_PROFILE, ORDER_ROUTE, PROFILE_ROUTE } from '../../constants/constants';
+import { ORDER, PORTRAIT_CHECKOUT_TO_PROFILE, ORDER_ROUTE, PROFILE_ROUTE } from '../../constants/constants';
 
 function mapStateToProps(state: any) {
   return {
@@ -106,32 +106,34 @@ class PaymentForm extends Component<PaymentFormProps, {}> {
     return (
       <StyledPaymentContainer>
         <StyledOrderContainer>
-          <StyledFlavorContainer>
+          <StyledInfoContainer>
             <StyledH1>Balance: ${this.orderParser(true)}</StyledH1>
             {this.orderMapper()}
-          </StyledFlavorContainer>
+          </StyledInfoContainer>
         </StyledOrderContainer>
         <StyledProfileContainer>
-          <StyledH1>Name:</StyledH1>
-          <StyledH3>{this.props.profile.name}</StyledH3>
-          <StyledH1>Address: </StyledH1>
-          <StyledH3>{this.props.profile.addressLineOne}</StyledH3>
-          {this.props.profile.addressLineTwo.length > 0 ?
-            <StyledH3>{this.props.profile.addressLineTwo}</StyledH3> :
-            null
-          }
-          <StyledH3>{this.props.profile.city}, {this.props.profile.state}</StyledH3>
-          <StyledH3>{this.props.profile.postalCode}</StyledH3>
+          <StyledInfoContainer>
+            <StyledH1>Name:</StyledH1>
+            <StyledH3>{this.props.profile.name}</StyledH3>
+            <StyledH1>Address: </StyledH1>
+            <StyledH3>{this.props.profile.addressLineOne}</StyledH3>
+            {this.props.profile.addressLineTwo.length > 0 ?
+              <StyledH3>{this.props.profile.addressLineTwo}</StyledH3> :
+              null
+            }
+            <StyledH3>{this.props.profile.city}, {this.props.profile.state}</StyledH3>
+            <StyledH3>{this.props.profile.postalCode}</StyledH3>
+          </StyledInfoContainer>
         </StyledProfileContainer>
         <StyledCardContainer>
           <label>Payment:</label>
           <CardElement hidePostalCode={true} />
         </StyledCardContainer>
-        <StyledSubmitButton onClick={this.submit}>Submit Payment</StyledSubmitButton>
-        {this.props.display.isTrue ?
+        <StyledFormButton onClick={this.submit}>Submit Payment</StyledFormButton>
+        {/**Super hacky. Quick fix for conditional links.*/}
+        {this.props.display.isPortrait ?
           <StyledLinkContainer>
-            <StyledOrderLink location={ORDER} route={ORDER_ROUTE} />
-            <StyledProfileLink location={CHECKOUT_TO_PROFILE} route={PROFILE_ROUTE} />
+            <StyledProfileLink location={PORTRAIT_CHECKOUT_TO_PROFILE} route={PROFILE_ROUTE} />
           </StyledLinkContainer>
           : null
         }

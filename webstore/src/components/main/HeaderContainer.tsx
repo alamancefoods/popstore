@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   ORDER_TO_PROFILE,
-  CHECKOUT_TO_PROFILE,
+  LANDSCAPE_CHECKOUT_TO_PROFILE,
   ORDER, PROFILE, CHECKOUT,
   PROFILE_ROUTE, ORDER_ROUTE, CHECKOUT_ROUTE
 } from '../../constants/constants';
@@ -44,7 +44,7 @@ const HeaderContainer = () => {
                 location={ORDER}
                 route={ORDER_ROUTE} />
               <ConditionalLink
-                location={CHECKOUT_TO_PROFILE}
+                location={LANDSCAPE_CHECKOUT_TO_PROFILE}
                 route={PROFILE_ROUTE} />
             </StyledInfoBox>
             : null

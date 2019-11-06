@@ -28,7 +28,8 @@ export const NO_CHOICE = 'NO_CHOICE';
 // Constants for tracking site location.
 export const ORDER = 'ORDER';
 export const ORDER_TO_PROFILE = 'ORDER_TO_PROFILE';
-export const CHECKOUT_TO_PROFILE = 'CHECKOUT_TO_PROFILE';
+export const LANDSCAPE_CHECKOUT_TO_PROFILE = 'CHECKOUT_TO_PROFILE';
+export const PORTRAIT_CHECKOUT_TO_PROFILE = 'PORTRAIT_CHECKOUT_TO_PROFILE';
 export const PROFILE = 'PROFLIE';
 export const CHECKOUT = 'CHECKOUT';
 

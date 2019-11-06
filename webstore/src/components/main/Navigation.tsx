@@ -5,7 +5,8 @@ import { updateLocation } from '../../redux/location/actions';
 import {
   CART_SVG, ORDER, PROFILE,
   CHECKOUT, ORDER_TO_PROFILE,
-  CHECKOUT_TO_PROFILE
+  LANDSCAPE_CHECKOUT_TO_PROFILE,
+  PORTRAIT_CHECKOUT_TO_PROFILE
 } from '../../constants/constants';
 import { StyledCartIcon } from '../../styles/root/RootStyles';
 import { LinkProps } from './styles';
@@ -32,9 +33,13 @@ export const ConditionalLink = ({ location, route }: LinkProps) => {
           onClick={() => locationTransition(PROFILE)}
         />
       );
-    case CHECKOUT_TO_PROFILE:
+    case LANDSCAPE_CHECKOUT_TO_PROFILE:
       return (
         <nav onClick={() => locationTransition(PROFILE)}>Return to Profile</nav>
+      );
+    case PORTRAIT_CHECKOUT_TO_PROFILE:
+      return (
+        <nav onClick={() => locationTransition(PROFILE)}>Back</nav>
       );
     case ORDER:
       return (

@@ -17,11 +17,11 @@ export const ConditionalLink = ({ location, route }: LinkProps) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { iconWidth, iconHeight } = svgResizer(display, CART_SVG);
+  const isProfileComplete = useSelector((state: any) => state.profileCompletionReducer.isComplete);
 
   function locationTransition(newLocation: string) {
     dispatch(updateLocation(newLocation));
     setTimeout(() => history.push(route), 1000);
-    console.log(location);
   };
 
   switch (location) {
@@ -47,7 +47,7 @@ export const ConditionalLink = ({ location, route }: LinkProps) => {
       );
     case CHECKOUT:
       return (
-        <nav onClick={() => locationTransition(CHECKOUT)}>Proceed to Checkout</nav>
+        <nav onClick={() => isProfileComplete ? locationTransition(CHECKOUT) : null}>Proceed to Checkout</nav>
       );
     default:
       return (<h2>hello!</h2>);

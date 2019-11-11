@@ -9,8 +9,8 @@ const svgResizer = (display: any, svgType: string) => {
         iconWidth = display.windowWidth * 0.15;
         iconHeight = display.windowHeight * 0.1;
       } else {
-        iconWidth = display.windowWidth * 0.15;
-        iconHeight = display.windowHeight * 0.15;
+        iconWidth = display.windowWidth * 0.13;
+        iconHeight = display.windowHeight * 0.13;
       }
       break;
     case LOGO_SVG:

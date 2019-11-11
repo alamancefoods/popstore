@@ -138,10 +138,6 @@ export const StyledPopForm = styled(Form)`
 
 export const ScalingDiv = styled(animated.button).attrs<ScaleAttrs>(({ s }) => ({
   style: {
-    // @ts-ignore
-    transform: s.interpolate(s => `scale(${s})`),
-    // @ts-ignore
-    opacity: s.interpolate(s => `${s}`),
   }
 }))`
    grid-area: ${props => props.theme.gridArea};

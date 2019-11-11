@@ -6,7 +6,7 @@ import { ThemeType } from '../../components/providers/QueryProvider';
 
 export const GlobalStyle = createGlobalStyle<{ theme: ThemeType }>`
     html, body, #root {
-      height: 100 %;
+      height: 100%;
       margin: 0;
       padding: 0;
       resize: none;
@@ -16,8 +16,8 @@ export const GlobalStyle = createGlobalStyle<{ theme: ThemeType }>`
   display: grid;
   grid-template-columns:
   [start] 0px
-  [firstColBreak] auto
-  [secondColBreak] ${props => props.theme.isPortrait ? 0 : props.theme.windowWidth * 0.2}px
+  [firstColBreak] ${props => props.theme.isPortrait ? props.theme.windowWidth : props.theme.windowWidth * 0.7}px
+  [secondColBreak] ${props => props.theme.isPortrait ? 0 : props.theme.windowWidth * 0.3}px
   [stop];
   grid-template-rows:
   [top] ${props => props.theme.isPortrait ? props.theme.windowHeight * 0.15 : props.theme.windowHeight * 0.2}px

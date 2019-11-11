@@ -39,17 +39,11 @@ const OrderForm = ({ className }: { className?: string }) => {
   return (
     <>
       <StyledButtonContainer>
-        {trail.map(({ s, ...rest }, index) => (
-          // @ts-ignore
-          <ScalingDiv
+        {BUTTON_OBJECTS.map((popButton, index) => (
+          <OrderButton
             key={BUTTON_OBJECTS[index].popFlavor}
-            s={s}
-            theme={{ gridArea: BUTTON_OBJECTS[index].popFlavor }}>
-            <OrderButton
-              key={BUTTON_OBJECTS[index].popFlavor}
-              popButton={BUTTON_OBJECTS[index]}
-            />
-          </ScalingDiv>
+            popButton={popButton}
+          />
         ))}
       </StyledButtonContainer>
       {choice === NO_CHOICE

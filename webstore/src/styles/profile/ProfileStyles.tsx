@@ -9,9 +9,9 @@ const portraitProfileGrid = `
 `;
 
 const landscapeProfileGrid = `
-"form form form checkout"
-"form form form submit"
-"form form form order"
+"form form checkout"
+"form form submit"
+"form form order"
 `;
 
 export const StyledProfileForm = styled(Form)`
@@ -22,7 +22,7 @@ height: 100%;
 position: relative;
 justify-items: center;
 justify-content: center;
-grid-template-columns: ${props => props.theme.isPortrait ? "repeat(3, 33%)" : "repeat(4, 25%)"};
+grid-template-columns: ${props => props.theme.isPortrait ? "repeat(3, 33%)" : "35% 35% 30%"};
 grid-template-rows: ${props => props.theme.isPortrait ? "75% 25%" : "repeat(3, 33%)"};
 grid-template-areas: ${props => props.theme.isPortrait ? portraitProfileGrid : landscapeProfileGrid};
 `;
@@ -33,6 +33,9 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
+background: rgba(211, 234, 242, 0.85);
+border-top-right-radius: ${props => props.theme.isPortrait ? '0%' : '10% 15%'}; 
+width: 100%;
 `;
 
 export const SubmitButton = styled.button`
@@ -46,7 +49,6 @@ export const StyledProfileContainer = styled.div`
   align-content: center;
   align-items: center;
 `;
-
 
 export const StyledFormPaper = styled.div`
   border: 2px solid #fffcf8;

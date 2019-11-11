@@ -1,5 +1,6 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { updateLocation } from '../../redux/location/actions';
 import {
   ORDER_TO_PROFILE,
   LANDSCAPE_CHECKOUT_TO_PROFILE,
@@ -16,6 +17,7 @@ const HeaderContainer = () => {
   const order = useSelector((state: any) => state.orderReducer.order);
   const siteLocation = useSelector((state: any) => state.locationReducer.location);
   const display = useSelector((state: any) => state.displayReducer.display);
+
 
   return (
     <StyledHeader>

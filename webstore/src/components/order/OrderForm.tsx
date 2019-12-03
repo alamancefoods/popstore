@@ -9,6 +9,7 @@ import {
 } from '../../styles/order/OrderStyles';
 import OrderButton from './OrderButton';
 import OrderEntry from './OrderEntry';
+import { Prompt } from './Prompt';
 
 
 const OrderForm = ({ className }: { className?: string }) => {
@@ -47,7 +48,7 @@ const OrderForm = ({ className }: { className?: string }) => {
         ))}
       </StyledButtonContainer>
       {choice === NO_CHOICE
-        ? null
+        ? <Prompt />
         : <OrderEntry />
       }
     </>

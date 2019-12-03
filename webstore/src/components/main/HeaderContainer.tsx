@@ -43,9 +43,6 @@ const HeaderContainer = () => {
           : siteLocation === CHECKOUT && !display.isPortrait ?
             <StyledInfoBox>
               <ConditionalLink
-                location={ORDER}
-                route={ORDER_ROUTE} />
-              <ConditionalLink
                 location={LANDSCAPE_CHECKOUT_TO_PROFILE}
                 route={PROFILE_ROUTE} />
             </StyledInfoBox>

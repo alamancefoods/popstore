@@ -2,6 +2,7 @@ import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import { ReactComponent as CartIcon } from '../../static/cart.svg';
 import { ThemeType } from '../../components/providers/QueryProvider';
+import { ConditionalLink } from '../../components/main/Navigation';
 
 
 export const GlobalStyle = createGlobalStyle<{ theme: ThemeType }>`
@@ -106,6 +107,11 @@ export const StyledBalance = styled.h4`
 `;
 
 export const StyledCartIcon = styled(CartIcon)`
+ cursor: pointer;
+`;
+
+export const StyledNav = styled.nav`
+  cursor: pointer;
 `;
 
 const alertPortraitGridArea = `secondRowBreak / firstColGreak / bottom / secondColBreak`;

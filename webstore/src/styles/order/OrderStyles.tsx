@@ -1,10 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import { animated } from 'react-spring';
+
 import OrderForm from '../../components/order/OrderForm';
 import { Form, Field, ErrorMessage } from 'formik';
 import { ReactComponent as PlusIcon } from '../../static/plusSign.svg';
 import { ReactComponent as MinusIcon } from '../../static/minusSign.svg';
+import { Prompt } from '../../components/order/Prompt';
 
 import { ScaleAttrs } from './types';
 
@@ -132,7 +134,8 @@ export const StyledPopForm = styled(Form)`
   };
   grid-template-areas: ${props => props.theme.isPortrait ? portraitEntryGrid : landscapeEntryGrid};
   align-items: ${props => props.theme.isPortrait ? 'center' : 'start'};
-  align-content: start;
+  align-content: center;
+  justify-content: center;
 `;
 
 
@@ -155,6 +158,7 @@ export const StyledFlavorIcon = styled(({ component, ...props }) => React.cloneE
   justify-self: center;
   align-self: center;
   filter: drop-shadow(5px 5px 2px #757575);
+  cursor: pointer;
 `;
 
 
@@ -253,6 +257,11 @@ export const StyledStatusContainer = styled.div`
 `;
 
 
+export const StyledOrderPrompt = styled.h3`
+  grid-area: ${props => props.theme.isPortrait ? portraitEntryGridArea : landscapeEntryGridArea};
+  justify-self: center;
+  align-self: center;
+`;
 
 export default StyledOrderForm;
 

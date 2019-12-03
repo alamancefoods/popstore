@@ -28,7 +28,7 @@ export const StyledPaymentContainer = styled.main`
   justify-items: center;
   justify-content: center;
   grid-template-columns: ${props => props.theme.isPortrait ? "repeat(2, 50%)" : "45% 25% 30%"};
-  grid-template-rows: ${props => props.theme.isPortrait ? "35% 35% 30%" : "repeat(3, 33%)"};
+  grid-template-rows: ${props => props.theme.isPortrait ? "60% 20% 20%" : "repeat(3, 33%)"};
   grid-template-areas: ${props => props.theme.isPortrait ? portraitPaymentGrid : landscapePaymentGrid};
 `;
 
@@ -71,15 +71,18 @@ export const StyledH3 = styled.h3`
 font-size: ${
   props => props.theme.isPortrait ?
     `${props.theme.windowHeight * 0.015}px` :
-    `${props.theme.windowHeight * 0.015}px`
+    `${props.theme.windowHeight * 0.025}px`
   }; 
 `;
 
 export const WrappedH3 = styled.h3<ZedProps>`
 font-size: ${
-  props => props.zedCount >= 5 ?
-    `${props.theme.windowHeight * 0.010}px` :
-    `${props.theme.windowHeight * 0.015}px`
+  props =>
+    props.zedCount >= 5 && props.theme.isPortrait ?
+      `${props.theme.windowHeight * 0.015}px` :
+      props.zedCount >= 5 ?
+        `${props.theme.windowHeight * 0.010}px` :
+        `${props.theme.windowHeight * 0.025}px`
   };
 `;
 
@@ -94,7 +97,7 @@ justify-content: flex-start;
 align-items: ${ props => props.theme.isPortrait ? 'center' : 'flex-start'};
 width: 100 %;
 background: rgba(211, 234, 242, 0.85);
-border-top-right-radius: ${ props => props.theme.isPortrait ? '0%' : '20% 15%'};
+border-top-right-radius: ${ props => props.theme.isPortrait ? '0%' : '28% 15%'};
 `;
 
 export const StyledCardContainer = styled.div`

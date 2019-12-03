@@ -1,17 +1,16 @@
 import styled from 'styled-components';
 import { Form } from 'formik';
 
-
-
 const portraitProfileGrid = `
+"warning warning warning"
 "form form form"
 "order submit checkout"
 `;
 
 const landscapeProfileGrid = `
-"form form checkout"
+"form form empty"
 "form form submit"
-"form form order"
+"form form blank"
 `;
 
 export const StyledProfileForm = styled(Form)`
@@ -23,9 +22,10 @@ position: relative;
 justify-items: center;
 justify-content: center;
 grid-template-columns: ${props => props.theme.isPortrait ? "repeat(3, 33%)" : "35% 35% 30%"};
-grid-template-rows: ${props => props.theme.isPortrait ? "75% 25%" : "repeat(3, 33%)"};
+grid-template-rows: ${props => props.theme.isPortrait ? "15% 60% 25%" : "33% 33% 33%"};
 grid-template-areas: ${props => props.theme.isPortrait ? portraitProfileGrid : landscapeProfileGrid};
 `;
+
 
 export const StyledFieldContainer = styled.main`
 grid-area: form;

@@ -38,6 +38,12 @@ export const ORDER_ROUTE = "/";
 export const PROFILE_ROUTE = "/checkout/shipping-details";
 export const CHECKOUT_ROUTE = "/complete-purchase";
 
+
+// Constants for component regions:
+export const ORDER_PROMPT = 'ORDER_PROMPT';
+export const PROFILE_PROMPT = 'PROFILE_PROMPT';
+export const PAYMENT_PROMPT = 'PAYMENT_PROMPT';
+
 // List of button objects.
 export const BUTTON_OBJECTS = [
   {

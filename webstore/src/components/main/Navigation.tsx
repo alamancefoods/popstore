@@ -8,7 +8,7 @@ import {
   LANDSCAPE_CHECKOUT_TO_PROFILE,
   PORTRAIT_CHECKOUT_TO_PROFILE
 } from '../../constants/constants';
-import { StyledCartIcon } from '../../styles/root/RootStyles';
+import { StyledCartIcon, StyledNav } from '../../styles/root/RootStyles';
 import { LinkProps } from './styles';
 import svgResizer from '../../utilities/svgResizer';
 
@@ -35,19 +35,19 @@ export const ConditionalLink = ({ location, route }: LinkProps) => {
       );
     case LANDSCAPE_CHECKOUT_TO_PROFILE:
       return (
-        <nav onClick={() => locationTransition(PROFILE)}>Return to Profile</nav>
+        <StyledNav onClick={() => locationTransition(PROFILE)}>Return to Profile</StyledNav>
       );
     case PORTRAIT_CHECKOUT_TO_PROFILE:
       return (
-        <nav onClick={() => locationTransition(PROFILE)}>Back</nav>
+        <StyledNav onClick={() => locationTransition(PROFILE)}>Back</StyledNav>
       );
     case ORDER:
       return (
-        <nav onClick={() => locationTransition(ORDER)}>Return to Order</nav>
+        <StyledNav onClick={() => locationTransition(ORDER)}>Return to Order</StyledNav>
       );
     case CHECKOUT:
       return (
-        <nav onClick={() => isProfileComplete ? locationTransition(CHECKOUT) : null}>Proceed to Checkout</nav>
+        <StyledNav onClick={() => isProfileComplete ? locationTransition(CHECKOUT) : null}>Proceed to Checkout</StyledNav>
       );
     default:
       return (<h2>hello!</h2>);

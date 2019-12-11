@@ -28,20 +28,24 @@ export const StyledPaymentContainer = styled.main`
   justify-items: center;
   justify-content: center;
   grid-template-columns: ${props => props.theme.isPortrait ? "repeat(2, 50%)" : "45% 25% 30%"};
-  grid-template-rows: ${props => props.theme.isPortrait ? "60% 20% 20%" : "repeat(3, 33%)"};
+  grid-template-rows: ${props => props.theme.isPortrait ? "55% 21.5% 23.5%" : "repeat(3, 33%)"};
   grid-template-areas: ${props => props.theme.isPortrait ? portraitPaymentGrid : landscapePaymentGrid};
 `;
 
 export const StyledOrderContainer = styled.div`
 grid-area: order;
-display: inline-flex;
-flex-shrink: 1;
+display: flex;
 flex-direction: column;
 justify-content: flex-start;
 align-items: ${props => props.theme.isPortrait ? 'center' : 'flex-start'};
 width: 100%;
 background: rgba(211, 234, 242, 0.85);
 flex-wrap: wrap;
+overflow: scroll;
+text-overflow: ellipses;
+-webkit-scrollbar {
+  display: none;
+}
 `;
 
 export const StyledInfoContainer = styled.div`
@@ -102,7 +106,6 @@ border-top-right-radius: ${ props => props.theme.isPortrait ? '0%' : '28% 15%'};
 
 export const StyledCardContainer = styled.div`
 font-size: ${ props => props.theme.windowHeight * 0.015} px;
-grid-area: payment;
 padding: ${props => props.theme.isPortrait ? 5 : props.theme.windowWidth * 0.03}px;
 display: flex;
 flex-grow: 1;
@@ -110,6 +113,12 @@ flex-direction: column;
 justify-content: flex-start;
 width: 75%;
   `;
+
+export const StyledCardBackground = styled.div`
+grid-area: payment;
+background: ${props => props.theme.isPortrait ? 'rgba(211, 234, 242, 0.85)' : ''};
+width: 100%;
+`;
 
 export const StyledLinkContainer = styled.div`
 grid-area: back;

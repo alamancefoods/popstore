@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { useTrail } from 'react-spring';
+import { useSprings, config } from 'react-spring';
 import { BUTTON_OBJECTS } from '../../constants/constants';
 import { NO_CHOICE, ORDER } from '../../constants/constants';
 import {
@@ -28,22 +28,31 @@ const OrderForm = ({ className }: { className?: string }) => {
     velocity = 20;
   };
 
-  const config = { mass: mass, tension: tension, friction: friction, velocity: velocity };
-  const trail = useTrail(BUTTON_OBJECTS.length, {
-    config,
-    s: siteLocation === ORDER ? 1 : 0,
-    from: { s: 0 },
-  });
+  const useMySprings = (location: string) => {
+    return (
+      useSprings(BUTTON_OBJECTS.length, BUTTON_OBJECTS.map(button =>
+        ({
+          config: config.default,
+          opacity: location === ORDER ? 1 : 0,
+          from: { opacity: 0 }
+        })
+      )));
+  };
+
+  const mySprings = useMySprings(siteLocation);
+
+
 
 
 
   return (
     <>
       <StyledButtonContainer>
-        {BUTTON_OBJECTS.map((popButton, index) => (
+        {mySprings.map(({ opacity }, index) => (
           <OrderButton
             key={BUTTON_OBJECTS[index].popFlavor}
-            popButton={popButton}
+            popButton={BUTTON_OBJECTS[index]}
+            opacity={opacity}
           />
         ))}
       </StyledButtonContainer>

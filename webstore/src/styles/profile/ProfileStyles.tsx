@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import { Form } from 'formik';
+import { ConditionalLink } from '../../components/main/Navigation';
 
 const portraitProfileGrid = `
-"warning warning warning"
 "form form form"
 "order submit checkout"
 `;
@@ -22,7 +22,7 @@ position: relative;
 justify-items: center;
 justify-content: center;
 grid-template-columns: ${props => props.theme.isPortrait ? "repeat(3, 33%)" : "35% 35% 30%"};
-grid-template-rows: ${props => props.theme.isPortrait ? "15% 60% 25%" : "33% 33% 33%"};
+grid-template-rows: ${props => props.theme.isPortrait ? "76.5% 23.5%" : "33% 33% 33%"};
 grid-template-areas: ${props => props.theme.isPortrait ? portraitProfileGrid : landscapeProfileGrid};
 `;
 
@@ -40,6 +40,10 @@ width: 100%;
 
 export const SubmitButton = styled.button`
 grid-area: submit;
+`;
+
+export const StyledOrderNav = styled(ConditionalLink)`
+grid-area: order;
 `;
 
 

@@ -9,7 +9,8 @@ import { ProfileInterface } from './types';
 import {
   StyledProfileForm,
   StyledFieldContainer,
-  SubmitButton
+  SubmitButton,
+  StyledOrderNav
 } from '../../styles/profile/ProfileStyles';
 import { ProfileEntrySchema } from './formSchemas';
 import { ConditionalLink } from '../main/Navigation';
@@ -112,7 +113,7 @@ const ProfileForm = ({ className }: { className?: string }) => {
             {/* Incredibly ugly, but hopefully temporary and remedial.**/}
             {display.isPortrait ?
               <>
-                <ConditionalLink location={ORDER} route={ORDER_ROUTE} />
+                <StyledOrderNav location={ORDER} route={ORDER_ROUTE} />
                 {isProfileComplete ?
                   <ConditionalLink location={CHECKOUT} route={CHECKOUT_ROUTE} /> :
                   null

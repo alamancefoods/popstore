@@ -18,19 +18,25 @@ const HeaderContainer = () => {
   const siteLocation = useSelector((state: any) => state.locationReducer.location);
   const display = useSelector((state: any) => state.displayReducer.display);
 
+  const theme = {
+    isOrder: true,
+    windowHeight: display.windowHeight,
+    windowWidth: display.windowWidth
+  };
+
 
   return (
     <StyledHeader>
       <ResizedLogo />
       {siteLocation === ORDER && order.totalCount > 0 ?
-        <StyledInfoBox>
+        <StyledInfoBox theme={theme}>
+          <Balance />
           {order.totalCount > 5 ?
             <ConditionalLink location={ORDER_TO_PROFILE} route={PROFILE_ROUTE} /> :
             null
           }
-          <Balance />
         </StyledInfoBox>
-        : siteLocation === PROFILE && display.isPortrait !== true ?
+        : siteLocation === PROFILE && !display.isPortrait ?
           <StyledInfoBox>
             <ConditionalLink
               location={ORDER}

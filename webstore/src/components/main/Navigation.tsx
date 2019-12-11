@@ -12,7 +12,7 @@ import { StyledCartIcon, StyledNav } from '../../styles/root/RootStyles';
 import { LinkProps } from './styles';
 import svgResizer from '../../utilities/svgResizer';
 
-export const ConditionalLink = ({ location, route }: LinkProps) => {
+export const ConditionalLink = ({ location, route, className }: LinkProps) => {
   const display = useSelector((state: any) => state.displayReducer.display);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -35,19 +35,19 @@ export const ConditionalLink = ({ location, route }: LinkProps) => {
       );
     case LANDSCAPE_CHECKOUT_TO_PROFILE:
       return (
-        <StyledNav onClick={() => locationTransition(PROFILE)}>Return to Profile</StyledNav>
+        <StyledNav className={className} onClick={() => locationTransition(PROFILE)}>Return to Profile</StyledNav>
       );
     case PORTRAIT_CHECKOUT_TO_PROFILE:
       return (
-        <StyledNav onClick={() => locationTransition(PROFILE)}>Back</StyledNav>
+        <StyledNav className={className} onClick={() => locationTransition(PROFILE)}>Back</StyledNav>
       );
     case ORDER:
       return (
-        <StyledNav onClick={() => locationTransition(ORDER)}>Return to Order</StyledNav>
+        <StyledNav className={className} onClick={() => locationTransition(ORDER)}>Return to Order</StyledNav>
       );
     case CHECKOUT:
       return (
-        <StyledNav onClick={() => isProfileComplete ? locationTransition(CHECKOUT) : null}>Proceed to Checkout</StyledNav>
+        <StyledNav className={className} onClick={() => isProfileComplete ? locationTransition(CHECKOUT) : null}>Proceed to Checkout</StyledNav>
       );
     default:
       return (<h2>hello!</h2>);

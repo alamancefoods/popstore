@@ -8,44 +8,27 @@ import {
   StyledFlavorIcon,
   StyledFlavorCountBox,
   StyledCountText,
-  StyledBackgroundCircle
+  StyledBackgroundCircle,
+  StyledSingleButtonContainer
 } from '../../styles/order/OrderStyles';
 import svgResizer from '../../utilities/svgResizer';
 
-const OrderButton = ({ popButton }: PopButtonProps) => {
+const OrderButton = ({ popButton, opacity }: PopButtonProps) => {
   const display = useSelector((state: any) => state.displayReducer.display);
   const choice = useSelector((state: any) => state.choiceReducer.choice);
   const order = useSelector((state: any) => state.orderReducer.order);
   const dispatch = useDispatch();
   const siteLocation = useSelector((state: any) => state.locationReducer.location);
 
-  let mass = 0.70;
-  let tension = 490;
-  let friction = 25;
-  let velocity = 30;
-  // My hacky way of changing configs during transitions.
-  if (siteLocation !== ORDER) {
-    mass = 0.5;
-    tension = 800;
-    friction = 30;
-    velocity = 20;
-  };
 
 
-  const opacityProps = useSpring({
-    config: config.default,
-    opacity: siteLocation === ORDER ? 1 : 0,
-    from: { opacity: 0 }
-  });
 
   const FlavorIcon = animated(popButton.svg);
   const { iconWidth, iconHeight } = svgResizer(display, BUTTON_SVG);
   const countFontSize = display.isPortrait ? display.windowHeight * 0.02 : display.windowHeight * 0.03;
-  const offsetX = iconHeight * 0.5;
-  const offsetY = iconWidth * 0.2;
+  const offsetX = iconHeight * 0.01;
+  const offsetY = iconWidth * 0.01;
   const theme = {
-    offsetX: offsetX,
-    offsetY: offsetY,
     countFontSize: countFontSize,
     gridArea: popButton.popFlavor
   };
@@ -54,14 +37,15 @@ const OrderButton = ({ popButton }: PopButtonProps) => {
     return null;
   } else {
     return (
-      <>
+      <StyledSingleButtonContainer
+        theme={theme}
+        style={{ opacity: opacity }}
+      >
         <StyledFlavorIcon
-          theme={theme}
           component={
             <FlavorIcon
               width={iconWidth}
               height={iconHeight}
-              style={opacityProps}
               onClick={
                 () => choice === NO_CHOICE ? dispatch(updateChoice(popButton.popFlavor)) : ''
               }
@@ -77,7 +61,7 @@ const OrderButton = ({ popButton }: PopButtonProps) => {
             </StyledFlavorCountBox>
           </>
           : null}
-      </>
+      </StyledSingleButtonContainer>
     );
   }
 };

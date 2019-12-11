@@ -23,4 +23,5 @@ grid-row: top / firstRowBreak;
 export interface LinkProps {
   location: string;
   route: string;
+  className?: string;
 };

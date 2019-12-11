@@ -78,7 +78,7 @@ export const StyledHeader = styled.header`
     HeaderLandscapeGridArea};
   grid-template-columns: ${props => props.theme.isPortrait ?
     "repeat(3, 1fr)" :
-    "40% 40% 20%"};
+    "35% 35% 30%"};
   grid-template-rows: 1fr;
   grid-template-areas: "left center right"
 `;
@@ -94,9 +94,12 @@ export const StyledInfoBox = styled.aside`
     margin-top: 20px;
     margin-right: 20px;
     display: flex;
-    justify-self: right;
-    justify-content: center;
-    flex-direction: column;
+    justify-content: space-around;
+    flex-direction: ${props => props.theme.isOrder ? 'row' : 'column'};
+    padding-right: ${props => props.theme.windowWidth * 0.05}px;
+    padding-left: ${props => props.theme.windowWidth * 0.05}px;
+    padding-top: ${props => props.theme.windowHeight * 0.02}px;
+    padding-bottom: ${props => props.theme.windowHeight * 0.02}px;
     align-items: center;
     grid-area: right;
     `;

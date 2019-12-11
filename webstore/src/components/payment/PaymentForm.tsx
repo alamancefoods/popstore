@@ -7,6 +7,7 @@ import { PaymentFormProps } from './types';
 import { popStringify } from '../../utilities/popConverter';
 import { convertPopCountToCharge } from '../../utilities/convertPopCountToCharge';
 import {
+  StyledCardBackground,
   StyledCardContainer,
   StyledPaymentContainer,
   StyledLinkContainer,
@@ -151,15 +152,17 @@ class PaymentForm extends Component<PaymentFormProps, {}> {
             <StyledH3>{this.props.profile.postalCode}</StyledH3>
           </StyledInfoContainer>
         </StyledProfileContainer>
-        <StyledCardContainer>
-          <StyledH1>Payment:</StyledH1>
-          <CardElement
-            style={{
-              base: {
-                fontSize: `${this.props.display.isPortrait ? this.props.display.windowHeight * 0.02 : this.props.display.windowHeight * 0.03}px`
-              }
-            }} hidePostalCode={true} />
-        </StyledCardContainer>
+        <StyledCardBackground>
+          <StyledCardContainer>
+            <StyledH1>Payment:</StyledH1>
+            <CardElement
+              style={{
+                base: {
+                  fontSize: `${this.props.display.isPortrait ? this.props.display.windowHeight * 0.02 : this.props.display.windowHeight * 0.03}px`
+                }
+              }} hidePostalCode={true} />
+          </StyledCardContainer>
+        </StyledCardBackground>
         <StyledFormButton onClick={this.submit}>Submit Payment</StyledFormButton>
         {/**Super hacky. Quick fix for conditional links.*/}
         {this.props.display.isPortrait ?

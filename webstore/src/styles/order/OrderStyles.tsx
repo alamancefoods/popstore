@@ -50,20 +50,39 @@ export const StyledButtonContainer = styled.main`
   border-top-right-radius: ${props => props.theme.isPortrait ? '0%' : '10% 15%'}; 
 `;
 
+const SingleButtonGrid = `
+"tl tm tr"
+"ml mm mr"
+"bl bm br"
+`;
+
+export const StyledSingleButtonContainer = styled(animated.div)`
+  grid-area: ${props => props.theme.gridArea};
+  justify-content: center;
+  align-items: center;
+  display: grid;
+  width: 100%;
+  grid-template-columns: 33% 33% 33%;
+  grid-template-rows: repeat(3, 33%);
+  grid-template-areas: ${SingleButtonGrid};
+`;
+
 
 
 export const StyledFlavorCountBox = styled.span`
   display: flex; 
+  grid-area: ml;
   flex-direction: column;
+  justify-self: end;
+  align-self: start;
   justify-content: center;
   border-radius: ${props => props.theme.countFontSize}px;
   align-items: center;
   height: ${props => props.theme.countFontSize * 2}px;
   width: ${props => props.theme.countFontSize * 2}px;
   z-index: 2;
+  transform: translateX(-25px);
   background-color: rgba(250, 167, 227);
-  transform: translate(-${props => props.theme.offsetX}px, ${props => props.theme.offsetY * 1.2}px);
-  grid-area: ${props => props.theme.gridArea};
   //filter: drop-shadow(-2px -2px 2px rgba(250, 167, 227));
 `;
 
@@ -73,18 +92,21 @@ export const StyledCountText = styled.sup`
 `;
 
 export const StyledBackgroundCircle = styled.span`
+  display: flex;
+  grid-area: mm;
+  justify-self: end;
+  align-self: start;
   border-radius: ${props => props.theme.countFontSize * 2}px;
   align-items: center;
   height: ${props => props.theme.countFontSize * 4}px;
   width: ${props => props.theme.countFontSize * 4}px;
   z-index: 0;
   background-color: rgba(255, 234, 112, 0.5);
-  transform: translate(-${props => props.theme.offsetX}px, ${props => props.theme.offsetY}px);
-  grid-area: ${props => props.theme.gridArea};
 `;
 
 export const StyledSVGEntry = styled.svg`
   position: absolute;
+  grid-area: tmm;
   display: flex;
   justify-content: left;
   justify-items: left;
@@ -152,7 +174,7 @@ export const ScalingDiv = styled(animated.button).attrs<ScaleAttrs>(({ s }) => (
 `;
 
 export const StyledFlavorIcon = styled(({ component, ...props }) => React.cloneElement(component, props))`
-  grid-area: ${props => props.theme.gridArea};
+  grid-area: mm;
   display: flex;
   z-index: 1;
   justify-self: center;

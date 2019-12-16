@@ -4,6 +4,9 @@ import { LocationActionTypes } from './types';
 export function updateLocation(location: string): LocationActionTypes {
   return {
     type: UPDATE_LOCATION,
-    payload: { location: location }
+    payload: {
+      location: location
+    }
   };
 };
+

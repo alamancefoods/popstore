@@ -12,7 +12,7 @@ export function locationReducer(
     case UPDATE_LOCATION:
       return {
         ...state,
-        location: action.payload.location
+        location: action.payload.location,
       };
     default:
       return state;

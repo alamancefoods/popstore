@@ -1,5 +1,6 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useStore } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { updateLocation } from '../../redux/location/actions';
 import {
   ORDER_TO_PROFILE,
@@ -17,6 +18,8 @@ const HeaderContainer = () => {
   const order = useSelector((state: any) => state.orderReducer.order);
   const siteLocation = useSelector((state: any) => state.locationReducer.location);
   const display = useSelector((state: any) => state.displayReducer.display);
+  const history = useHistory();
+  const path = history.location.pathname;
 
   const theme = {
     isOrder: true,
@@ -28,7 +31,7 @@ const HeaderContainer = () => {
   return (
     <StyledHeader>
       <ResizedLogo />
-      {siteLocation === ORDER && order.totalCount > 0 ?
+      {path === ORDER_ROUTE && order.totalCount > 0 ?
         <StyledInfoBox theme={theme}>
           <Balance />
           {order.totalCount > 5 ?
@@ -36,7 +39,7 @@ const HeaderContainer = () => {
             null
           }
         </StyledInfoBox>
-        : siteLocation === PROFILE && !display.isPortrait ?
+        : path === PROFILE_ROUTE && !display.isPortrait ?
           <StyledInfoBox>
             <ConditionalLink
               location={ORDER}
@@ -46,7 +49,7 @@ const HeaderContainer = () => {
               route={CHECKOUT_ROUTE}
             />
           </StyledInfoBox>
-          : siteLocation === CHECKOUT && !display.isPortrait ?
+          : path === CHECKOUT_ROUTE && !display.isPortrait ?
             <StyledInfoBox>
               <ConditionalLink
                 location={LANDSCAPE_CHECKOUT_TO_PROFILE}

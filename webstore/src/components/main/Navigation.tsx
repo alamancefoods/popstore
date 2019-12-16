@@ -19,6 +19,7 @@ export const ConditionalLink = ({ location, route, className }: LinkProps) => {
   const { iconWidth, iconHeight } = svgResizer(display, CART_SVG);
   const isProfileComplete = useSelector((state: any) => state.profileCompletionReducer.isComplete);
 
+
   function locationTransition(newLocation: string) {
     dispatch(updateLocation(newLocation));
     setTimeout(() => history.push(route), 1000);

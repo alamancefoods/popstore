@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { updateProfile, updateProfileComplete } from '../../redux/profile/actions';
 import { updateLocation } from '../../redux/location/actions';
 import { Formik, FormikActions, ErrorMessage, Field } from 'formik';
-import { STATE_LIST, CHECKOUT, CHECKOUT_ROUTE, ORDER, ORDER_ROUTE } from '../../constants/constants';
+import { STATE_LIST, CHECKOUT, PROFILE, CHECKOUT_ROUTE, ORDER, ORDER_ROUTE } from '../../constants/constants';
 import { ProfileInterface } from './types';
 import {
   StyledProfileForm,
@@ -57,7 +57,7 @@ const ProfileForm = ({ className }: { className?: string }) => {
             updateProfileComplete(true)
           );
           dispatch(updateLocation(CHECKOUT));
-          setTimeout(() => history.push(CHECKOUT_ROUTE), 1000);
+          setTimeout(() => (history.push(CHECKOUT_ROUTE), 1000));
         }}
       >
         {({ errors, touched }) => (

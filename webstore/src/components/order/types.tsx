@@ -20,13 +20,13 @@ export interface OrderInterface {
 }
 
 interface animationStyle {
-  opacity: any;
+  mod?: any;
 };
 
 export interface PopButtonProps {
   style?: animationStyle;
   popButton: any;
-  opacity: any;
+  mod: any;
 }
 
 export interface OrderFormProps {

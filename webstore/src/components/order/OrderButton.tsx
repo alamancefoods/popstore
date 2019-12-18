@@ -13,7 +13,7 @@ import {
 } from '../../styles/order/OrderStyles';
 import svgResizer from '../../utilities/svgResizer';
 
-const OrderButton = ({ popButton, opacity }: PopButtonProps) => {
+const OrderButton = ({ popButton, mod }: PopButtonProps) => {
   const display = useSelector((state: any) => state.displayReducer.display);
   const choice = useSelector((state: any) => state.choiceReducer.choice);
   const order = useSelector((state: any) => state.orderReducer.order);
@@ -39,7 +39,7 @@ const OrderButton = ({ popButton, opacity }: PopButtonProps) => {
     return (
       <StyledSingleButtonContainer
         theme={theme}
-        style={{ opacity: opacity }}
+        mod={mod}
       >
         <StyledFlavorIcon
           component={

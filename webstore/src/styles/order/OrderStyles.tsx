@@ -35,6 +35,7 @@ const landscapeButtonGrid = `
   "papaya mango coconut greenApple banana"
 `;
 
+
 export const StyledButtonContainer = styled.main`
   display: grid;
   grid-area: firstRowBreak / firstColBreak / secondRowBreak / secondColBreak;
@@ -56,7 +57,18 @@ const SingleButtonGrid = `
 "bl bm br"
 `;
 
-export const StyledSingleButtonContainer = styled(animated.div)`
+interface ExampleProps {
+  mod: any;
+};
+
+
+export const StyledSingleButtonContainer =
+  styled(animated.div).attrs<ExampleProps>(({ mod }) => ({
+    style: {
+      opacity: mod.interpolate((mod: any) => mod),
+      transform: mod.interpolate((mod: any) => `scale(${mod})`)
+    }
+  })) <ExampleProps>`
   grid-area: ${props => props.theme.gridArea};
   justify-content: center;
   align-items: center;

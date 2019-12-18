@@ -1,6 +1,8 @@
 import React from 'react';
+import { CSSProperties } from 'react';
 import { useSelector } from 'react-redux';
 import { useSprings, config } from 'react-spring';
+import { useOrderSprings } from '../../springs/orderSpring';
 import { BUTTON_OBJECTS } from '../../constants/constants';
 import { NO_CHOICE, ORDER } from '../../constants/constants';
 import {
@@ -16,30 +18,19 @@ const OrderForm = ({ className }: { className?: string }) => {
   const choice = useSelector((state: any) => state.choiceReducer.choice);
   const siteLocation = useSelector((state: any) => state.locationReducer.location);
 
-  let mass = 0.70;
-  let tension = 490;
-  let friction = 25;
-  let velocity = 30;
-  // My hacky way of changing configs during transitions.
-  if (siteLocation !== ORDER) {
-    mass = 0.5;
-    tension = 800;
-    friction = 30;
-    velocity = 20;
+  interface CustomSpringProps extends CSSProperties {
+    mod?: number;
   };
 
-  const useMySprings = (location: string) => {
-    return (
-      useSprings(BUTTON_OBJECTS.length, BUTTON_OBJECTS.map(button =>
-        ({
-          config: config.default,
-          opacity: location === ORDER ? 1 : 0,
-          from: { opacity: 0 }
-        })
-      )));
-  };
-
-  const mySprings = useMySprings(siteLocation);
+  const mySprings = useSprings<{}, CustomSpringProps>(
+    BUTTON_OBJECTS.length,
+    BUTTON_OBJECTS.map(button =>
+      ({
+        config: config.wobbly,
+        mod: siteLocation === ORDER ? 1 : 0,
+        from: { mod: 0 }
+      })
+    ));
 
 
 
@@ -48,11 +39,12 @@ const OrderForm = ({ className }: { className?: string }) => {
   return (
     <>
       <StyledButtonContainer>
-        {mySprings.map(({ opacity }, index) => (
+        {mySprings.map(({ mod, ...rest }, index) => (
           <OrderButton
             key={BUTTON_OBJECTS[index].popFlavor}
             popButton={BUTTON_OBJECTS[index]}
-            opacity={opacity}
+            // @ts-ignore
+            mod={mod}
           />
         ))}
       </StyledButtonContainer>

@@ -47,7 +47,7 @@ const OrderButton = ({ popButton, mod }: PopButtonProps) => {
               width={iconWidth}
               height={iconHeight}
               onClick={
-                () => choice === NO_CHOICE ? dispatch(updateChoice(popButton.popFlavor)) : ''
+                () => dispatch(updateChoice(popButton.popFlavor))
               }
             />
           }

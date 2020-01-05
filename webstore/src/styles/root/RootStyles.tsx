@@ -115,6 +115,7 @@ export const StyledCartIcon = styled(CartIcon)`
 
 export const StyledNav = styled.nav`
   cursor: pointer;
+  font-size: ${props => props.theme.isPortrait ? props.theme.windowWidth * 0.04 : props.theme.windowWidth * 0.013}px;
 `;
 
 const alertPortraitGridArea = `secondRowBreak / firstColGreak / bottom / secondColBreak`;

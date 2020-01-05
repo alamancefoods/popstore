@@ -1,8 +1,9 @@
 import React from 'react';
+import { useTransition, animated } from 'react-spring';
 import { useSelector } from 'react-redux';
 import { StripeProvider, Elements } from 'react-stripe-elements';
 import QueryProvider from '../providers/QueryProvider';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch, Redirect, useLocation } from 'react-router-dom';
 import {
   PROFILE_ROUTE, ORDER_ROUTE, CHECKOUT_ROUTE,
   STRIPE_API_KEY

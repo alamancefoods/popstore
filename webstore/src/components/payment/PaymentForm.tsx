@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { completePurchase } from '../../redux/payment/actions';
-import { CardElement, injectStripe } from 'react-stripe-elements';
+import { CardCVCElement, CardNumberElement, CardExpiryElement, injectStripe } from 'react-stripe-elements';
 import { devRootURL } from '../../utilities/rootURLS';
 import { PaymentFormProps } from './types';
 import { popStringify } from '../../utilities/popConverter';
@@ -9,6 +9,13 @@ import { convertPopCountToCharge } from '../../utilities/convertPopCountToCharge
 import {
   StyledCardBackground,
   StyledCardContainer,
+  StyledCardContainerBottom,
+  FormBlock,
+  CardLabel,
+  HiddenCardLabel,
+  StyledCardNumber,
+  StyledCardCvc,
+  StyledCardExpiry,
   StyledPaymentContainer,
   StyledLinkContainer,
   StyledOrderLink,
@@ -16,9 +23,11 @@ import {
   StyledFormButton,
   StyledProfileContainer,
   StyledOrderContainer,
+  StyledOrderSubContainer,
   StyledInfoContainer,
   StyledH1,
   StyledH3,
+  StyledH4,
   WrappedH3,
   StyledLabel
 } from '../../styles/payment/PaymentStyles';
@@ -42,7 +51,7 @@ class PaymentForm extends Component<PaymentFormProps, {}> {
   constructor(props: PaymentFormProps) {
     super(props);
     this.state = {
-      zedCount: this.orderParser(NON_ZERO_FLAVOR_COUNT)
+      nilCount: this.orderParser(NON_ZERO_FLAVOR_COUNT)
     };
     this.submit = this.submit.bind(this);
     this.orderParser = this.orderParser.bind(this);
@@ -63,13 +72,13 @@ class PaymentForm extends Component<PaymentFormProps, {}> {
         return Object.entries(orderCopy);
         break;
       case NON_ZERO_FLAVOR_COUNT:
-        let nonZedCount = 0;
+        let nonNilCount = 0;
         for (let attr in orderCopy) {
           if (orderCopy[attr] !== 0) {
-            ++nonZedCount;
+            ++nonNilCount;
           };
         }
-        return nonZedCount;
+        return nonNilCount;
         break;
       default:
         break;
@@ -78,13 +87,13 @@ class PaymentForm extends Component<PaymentFormProps, {}> {
 
 
   orderMapper() {
-    let zedCount = this.orderParser(NON_ZERO_FLAVOR_COUNT);
+    let nilCount = this.orderParser(NON_ZERO_FLAVOR_COUNT);
     return (
       this.orderParser(NON_ZERO_FLAVORS).map(function(kvArray: [string, number]) {
         if (kvArray[1] > 0) {
           return <WrappedH3
-            zedCount={zedCount}
-            onClick={() => console.log(zedCount)}
+            nilCount={nilCount}
+            onClick={() => console.log(nilCount)}
             key={popStringify(kvArray[0])}>
             {popStringify(kvArray[0])} : {kvArray[1]}
           </WrappedH3>;
@@ -135,7 +144,9 @@ class PaymentForm extends Component<PaymentFormProps, {}> {
         <StyledOrderContainer>
           <StyledInfoContainer>
             <StyledH1>Balance: ${this.orderParser(PARSED_BALANCE)}</StyledH1>
-            {this.orderMapper()}
+            <StyledOrderSubContainer>
+              {this.orderMapper()}
+            </StyledOrderSubContainer>
           </StyledInfoContainer>
         </StyledOrderContainer>
         <StyledProfileContainer>
@@ -154,14 +165,42 @@ class PaymentForm extends Component<PaymentFormProps, {}> {
         </StyledProfileContainer>
         <StyledCardBackground>
           <StyledCardContainer>
-            <StyledH1>Payment:</StyledH1>
-            <CardElement
-              style={{
-                base: {
-                  fontSize: `${this.props.display.isPortrait ? this.props.display.windowHeight * 0.02 : this.props.display.windowHeight * 0.03}px`
-                }
-              }} hidePostalCode={true} />
+            <FormBlock>
+              <CardLabel>Card Number</CardLabel>
+              <StyledCardNumber
+                style={{
+                  base: {
+                    fontSize: `${this.props.display.isPortrait ? this.props.display.windowHeight * 0.02 : this.props.display.windowHeight * 0.02}px`,
+                    color: 'rgba(240, 150, 120)'
+                  }
+                }}
+              />
+            </FormBlock>
           </StyledCardContainer>
+          <StyledCardContainerBottom>
+            <FormBlock>
+              <CardLabel>Expiration</CardLabel>
+              <StyledCardExpiry
+                style={{
+                  base: {
+                    fontSize: `${this.props.display.isPortrait ? this.props.display.windowHeight * 0.02 : this.props.display.windowHeight * 0.02}px`,
+                    color: 'rgba(240, 150, 120)'
+                  }
+                }}
+              />
+            </FormBlock>
+            <FormBlock>
+              <HiddenCardLabel>CVC</HiddenCardLabel>
+              <StyledCardCvc
+                style={{
+                  base: {
+                    fontSize: `${this.props.display.isPortrait ? this.props.display.windowHeight * 0.02 : this.props.display.windowHeight * 0.02}px`,
+                    color: 'rgba(240, 150, 120)'
+                  }
+                }}
+              />
+            </FormBlock>
+          </StyledCardContainerBottom>
         </StyledCardBackground>
         <StyledFormButton onClick={this.submit}>Submit Payment</StyledFormButton>
         {/**Super hacky. Quick fix for conditional links.*/}

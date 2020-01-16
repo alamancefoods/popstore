@@ -1,8 +1,9 @@
 import styled, { StyledFunction } from 'styled-components';
 import { ConditionalLink } from '../../components/main/Navigation';
+import { CardCVCElement, CardNumberElement, CardExpiryElement } from 'react-stripe-elements';
 
 interface ZedProps {
-  zedCount: number;
+  nilCount: number;
 };
 
 const portraitPaymentGrid = `
@@ -40,8 +41,8 @@ justify-content: flex-start;
 align-items: ${props => props.theme.isPortrait ? 'center' : 'flex-start'};
 width: 100%;
 background: rgba(211, 234, 242, 0.85);
-flex-wrap: wrap;
-overflow: scroll;
+overflow-x: hidden;
+overflow-y: ${props => props.theme.isPortrait ? 'scroll' : 'hidden'};
 text-overflow: ellipses;
 -webkit-scrollbar {
   display: none;
@@ -55,12 +56,36 @@ flex-direction: column;
 flex-wrap: wrap;
 `;
 
+export const StyledOrderSubContainer = styled.div`
+display: flex;
+flex-direction: column;
+flex-wrap: wrap;
+height: ${props => props.theme.isPortrait ? '' : props.theme.windowHeight * 0.6}px;
+`;
+
 export const StyledH1 = styled.h1`
 font-size: ${
   props => props.theme.isPortrait ?
     `${props.theme.windowHeight * 0.02}px` :
     `${props.theme.windowHeight * 0.03}px`
   };
+`;
+
+
+export const StyledH3 = styled.h3`
+font-size: ${
+  props => props.theme.isPortrait ?
+    `${props.theme.windowHeight * 0.015}px` :
+    `${props.theme.windowHeight * 0.025}px`
+  }; 
+`;
+
+export const StyledH4 = styled.h3`
+font-size: ${
+  props => props.theme.isPortrait ?
+    `${props.theme.windowHeight * 0.01}px` :
+    `${props.theme.windowHeight * 0.02}px`
+  }; 
 `;
 
 export const StyledLabel = styled.label`
@@ -71,23 +96,17 @@ font-size: ${
   };
 `;
 
-export const StyledH3 = styled.h3`
-font-size: ${
-  props => props.theme.isPortrait ?
-    `${props.theme.windowHeight * 0.015}px` :
-    `${props.theme.windowHeight * 0.025}px`
-  }; 
-`;
 
 export const WrappedH3 = styled.h3<ZedProps>`
 font-size: ${
   props =>
-    props.zedCount >= 5 && props.theme.isPortrait ?
+    props.nilCount >= 5 && props.theme.isPortrait ?
       `${props.theme.windowHeight * 0.015}px` :
-      props.zedCount >= 5 ?
-        `${props.theme.windowHeight * 0.010}px` :
+      props.nilCount >= 5 ?
+        `${props.theme.windowHeight * 0.02}px` :
         `${props.theme.windowHeight * 0.025}px`
   };
+padding-right: ${props => props.theme.isPortrait ? 0 : 20}px;
 `;
 
 
@@ -106,13 +125,51 @@ border-top-right-radius: ${ props => props.theme.isPortrait ? '0%' : '28% 15%'};
 
 export const StyledCardContainer = styled.div`
 font-size: ${ props => props.theme.windowHeight * 0.015} px;
-padding: ${props => props.theme.isPortrait ? 5 : props.theme.windowWidth * 0.03}px;
+padding-top: ${props => props.theme.isPortrait ? 5 : props.theme.windowWidth * 0.03}px;
+padding-left: ${props => props.theme.isPortrait ? 5 : props.theme.windowWidth * 0.03}px;
 display: flex;
 flex-grow: 1;
 flex-direction: column;
 justify-content: flex-start;
 width: 75%;
   `;
+
+export const StyledCardContainerBottom = styled.div`
+font-size: ${ props => props.theme.windowHeight * 0.015} px;
+padding-left: ${props => props.theme.isPortrait ? 5 : props.theme.windowWidth * 0.03}px;
+padding-bottom: ${props => props.theme.isPortrait ? 5 : props.theme.windowWidth * 0.03}px;
+display: flex;
+flex-grow: 1;
+flex-direction: row;
+justify-content: flex-start;
+width: 75%;
+`;
+
+export const FormBlock = styled.div`
+display: flex;
+flex-direction: column
+`;
+
+export const CardLabel = styled.label` 
+font-size: ${props => props.theme.isPortrait ? props.theme.windowHeight * 0.02 : props.theme.windowHeight * 0.02}px;
+`;
+
+export const HiddenCardLabel = styled.label`
+font-size: ${props => props.theme.isPortrait ? props.theme.windowHeight * 0.02 : props.theme.windowHeight * 0.02}px;
+visibility: hidden;
+`;
+
+export const StyledCardCvc = styled(CardCVCElement)`
+width: 100%;
+`;
+
+export const StyledCardNumber = styled(CardNumberElement)`
+width: 100%;
+`;
+
+export const StyledCardExpiry = styled(CardExpiryElement)`
+width: 100%;
+`;
 
 export const StyledCardBackground = styled.div`
 grid-area: payment;

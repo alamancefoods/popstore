@@ -12,12 +12,13 @@ import {
 import OrderButton from './OrderButton';
 import OrderEntry from './OrderEntry';
 import { Prompt } from './Prompt';
+import { useLocation } from 'react-router-dom';
 
 
 const OrderForm = ({ className }: { className?: string }) => {
   const choice = useSelector((state: any) => state.choiceReducer.choice);
-  const siteLocation = useSelector((state: any) => state.locationReducer.location);
-  const orderSprings = useOrderSprings(siteLocation);
+  const siteLocation = useLocation();
+  const orderSprings = useOrderSprings(siteLocation.pathname);
 
   return (
     <>
@@ -40,11 +41,3 @@ const OrderForm = ({ className }: { className?: string }) => {
 
 
 export default OrderForm;
-
-
-//        {BUTTON_OBJECTS.map((popButton, index) =>
-//         <OrderButton
-//            popButton={popButton}
-//            key={index}
-//          />
-//        )}

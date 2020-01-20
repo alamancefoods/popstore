@@ -83,6 +83,7 @@ export const StyledSingleButtonContainer =
 
 export const StyledFlavorCountBox = styled.span`
   display: flex; 
+  position: absolute;
   grid-area: ml;
   flex-direction: column;
   justify-self: end;
@@ -95,6 +96,20 @@ export const StyledFlavorCountBox = styled.span`
   z-index: 2;
   transform: translateX(-25px);
   background-color: rgba(250, 167, 227);
+  right: ${function(props) {
+    let baseVal = 1;
+    if (props.theme.isPortrait) {
+      baseVal = props.theme.windowWidth * -0.05;
+      return baseVal;
+    } else {
+      if (props.theme.windowWidth > 900) {
+        baseVal = props.theme.windowWidth * -0.01;
+      } else {
+        baseVal = props.theme.windowWidth * -0.03;
+      }
+      return baseVal;
+    }
+  }}px;
   //filter: drop-shadow(-2px -2px 2px rgba(250, 167, 227));
 `;
 
@@ -214,20 +229,48 @@ export const StyledFlavorChoice = styled(({ component, ...props }) => React.clon
 
 
 export const StyledFlavorName = styled.h4`
-font-size: ${props => props.theme.isPortrait ? props.theme.windowHeight * 0.03 : props.theme.windowHeight * 0.05}px;
+font-size: ${props => props.theme.isPortrait ? props.theme.windowHeight * 0.03 : props.theme.windowHeight * 0.03}px;
 font-family: 'Baloo Bhaina', cursive;
 grid-area: name;
 justify-self: center;
 align-self: center;
 `;
 
-export const StyledPlusIcon = styled(PlusIcon)`
+interface PlusIconProps {
+  xPlus: any;
+}
+
+export const StyledPlusIcon = styled(animated(PlusIcon)).attrs<PlusIconProps>(({ xPlus }) => ({
+  style: {
+    transform: xPlus
+      .interpolate({
+        range: [0, 0.25, 0.35, 0.45, 0.55, 0.65, 0.75, 1],
+        output: [1, 0.97, 0.9, 1.1, 1.5, 1.1, 1.03, 1]
+      })
+      .interpolate((xPlus: any) => `scale(${xPlus})`)
+  }
+})) <PlusIconProps>`
 grid-area: plus;
 justify-self: center;
 align-self: center;
 `;
 
-export const StyledMinusIcon = styled(MinusIcon)`
+interface MinIconProps {
+  xMin: any;
+  firstRender: any;
+}
+
+export const StyledMinusIcon = styled(animated(MinusIcon)).attrs<MinIconProps>(({ xMin, firstRender }) => ({
+  style: {
+    transform: xMin
+      .interpolate({
+        from: 1,
+        range: [0, 0.25, 0.35, 0.45, 0.55, 0.65, 0.75, 1],
+        output: firstRender ? [1, 1.03, 1.1, 0.9, 0.5, 0.9, 0.97, 1] : [1, 0.97, 0.9, 1.1, 1.5, 1.1, 1.03, 1]
+      })
+      .interpolate((xMin: any) => `scale(${xMin})`)
+  }
+})) <MinIconProps>`
 grid-area: minus;
 justify-self: center;
 align-self: center;
@@ -298,4 +341,3 @@ export const StyledOrderPrompt = styled.h3`
 `;
 
 export default StyledOrderForm;
-

@@ -30,7 +30,9 @@ const OrderButton = ({ popButton, mod }: PopButtonProps) => {
   const offsetY = iconWidth * 0.01;
   const theme = {
     countFontSize: countFontSize,
-    gridArea: popButton.popFlavor
+    gridArea: popButton.popFlavor,
+    windowWidth: display.windowWidth,
+    isPortrait: display.isPortrait
   };
 
   if (choice === popButton.popFlavor) {

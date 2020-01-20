@@ -22,7 +22,7 @@ export const ConditionalLink = ({ location, route, className }: LinkProps) => {
 
   function locationTransition(newLocation: string) {
     dispatch(updateLocation(newLocation));
-    setTimeout(() => history.push(route), 1000);
+    history.push(route);
   };
 
   switch (location) {

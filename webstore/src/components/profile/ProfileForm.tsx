@@ -9,6 +9,11 @@ import { ProfileInterface } from './types';
 import {
   StyledProfileForm,
   StyledFieldContainer,
+  FormPlacement,
+  InputSection,
+  StyledField,
+  StyledDropdown,
+  Label,
   SubmitButton,
   StyledOrderNav
 } from '../../styles/profile/ProfileStyles';
@@ -64,47 +69,49 @@ const ProfileForm = ({ className }: { className?: string }) => {
           <StyledProfileForm>
 
             <StyledFieldContainer>
-              <div>
-                <label>Name:</label>
-                <Field name="name" type="text" placeholder="Dr Archibald Pop MD" />
-                <ErrorMessage name="name" />
-              </div>
-              <div>
-                <label>Address Line One:</label>
-                <Field name="addressLineOne" type="text" placeholder="1616 Funfoods Lane" />
-                <ErrorMessage name="addressLineOne" />
-              </div>
-              <div>
-                <label>Address Line Two:</label>
-                <Field name="addressLineTwo" type="text" placeholder="Room 132" />
-                <ErrorMessage name="addressLineTwo" />
-              </div>
-              <div>
-                <label>City:</label>
-                <Field name="city" type="text" placeholder="Burlington" />
-                <ErrorMessage name="city" />
-              </div>
-              <div>
-                <label>State:</label>
-                <Field component="select" name="state">
-                  {STATE_LIST.map((state) => <option
-                    value={state}
-                    key={state}
-                  > {state}
-                  </option>
-                  )}
-                </Field>
-              </div>
-              <div>
-                <label>Zip Code:</label>
-                <Field name="postalCode" type="string" placeholder="27515" />
-                <ErrorMessage name="postalCode" />
-              </div>
-              <div>
-                <label>Email:</label>
-                <Field name="email" type="email" placeholder="docpop@popmail.com" />
-                <ErrorMessage name="email" />
-              </div>
+              <FormPlacement>
+                <InputSection>
+                  <Label>Name:</Label>
+                  <StyledField name="name" type="text" placeholder="Dr Archibald Pop MD" />
+                  <ErrorMessage name="name" />
+                </InputSection>
+                <InputSection>
+                  <Label>Address Line One:</Label>
+                  <StyledField name="addressLineOne" type="text" placeholder="1616 Funfoods Lane" />
+                  <ErrorMessage name="addressLineOne" />
+                </InputSection>
+                <InputSection>
+                  <Label>Address Line Two:</Label>
+                  <StyledField name="addressLineTwo" type="text" placeholder="Room 132" />
+                  <ErrorMessage name="addressLineTwo" />
+                </InputSection>
+                <InputSection>
+                  <Label>City:</Label>
+                  <StyledField name="city" type="text" placeholder="Burlington" />
+                  <ErrorMessage name="city" />
+                </InputSection>
+                <InputSection>
+                  <Label>State:</Label>
+                  <StyledDropdown component="select" name="state">
+                    {STATE_LIST.map((state) => <option
+                      value={state}
+                      key={state}
+                    > {state}
+                    </option>
+                    )}
+                  </StyledDropdown>
+                </InputSection>
+                <InputSection>
+                  <Label>Zip Code:</Label>
+                  <StyledField name="postalCode" type="string" placeholder="27515" />
+                  <ErrorMessage name="postalCode" />
+                </InputSection>
+                <InputSection>
+                  <Label>Email:</Label>
+                  <StyledField name="email" type="email" placeholder="docpop@popmail.com" />
+                  <ErrorMessage name="email" />
+                </InputSection>
+              </FormPlacement>
             </StyledFieldContainer>
 
             <SubmitButton type="submit">Submit</SubmitButton>

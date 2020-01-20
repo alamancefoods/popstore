@@ -1,7 +1,7 @@
 import { useSprings, config } from 'react-spring';
 import { CustomSpringProps } from './types';
 import { BUTTON_OBJECTS } from '../constants/constants';
-import { NO_CHOICE, ORDER } from '../constants/constants';
+import { NO_CHOICE, ORDER_ROUTE } from '../constants/constants';
 
 
 
@@ -13,7 +13,7 @@ export const useOrderSprings = (location: string) => {
       BUTTON_OBJECTS.map(button =>
         ({
           config: config.wobbly,
-          mod: location === ORDER ? 1 : 0,
+          mod: location === ORDER_ROUTE ? 1 : 0,
           from: { mod: 0 }
         })
       ))

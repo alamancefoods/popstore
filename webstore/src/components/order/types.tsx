@@ -29,6 +29,10 @@ export interface PopButtonProps {
   mod: any;
 }
 
+export interface AnimProps {
+  mod: any;
+}
+
 export interface OrderFormProps {
   addPopToOrder: (popFlavor: string) => void;
   updateOrder: (numericChange: number, popFlavor: string) => void;

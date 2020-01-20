@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Form } from 'formik';
+import { Form, Field } from 'formik';
 import { ConditionalLink } from '../../components/main/Navigation';
 
 const portraitProfileGrid = `
@@ -36,6 +36,44 @@ align-items: center;
 background: rgba(211, 234, 242, 0.85);
 border-top-right-radius: ${props => props.theme.isPortrait ? '0%' : '10% 15%'}; 
 width: 100%;
+`;
+
+export const FormPlacement = styled.div`
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: left;
+`;
+
+
+export const InputSection = styled.div`
+display: flex;
+flex-direction: column;
+justify-content: left;
+`;
+
+export const StyledField = styled(Field)`
+width: ${props => props.theme.isPortrait ? props.theme.windowWidth * 0.75 : props.theme.windowWidth * 0.25}px;
+height: ${props => props.theme.isPortrait ? props.theme.windowHeight * 0.04 : props.theme.windowHeight * 0.05}px;
+border-radius: ${props => props.theme.windowHeight * 0.02}px;
+background: rgba(120, 210, 240, 0.75);
+border: 0px;
+margin: 2px;
+`;
+
+export const StyledDropdown = styled(Field)`
+width: ${props => props.theme.isPortrait ? props.theme.windowWidth * 0.20 : props.theme.windowWidth * 0.05}px;
+height: ${props => props.theme.isPortrait ? props.theme.windowHeight * 0.04 : props.theme.windowHeight * 0.05}px;
+background: rgba(120, 210, 240, 0.75);
+border-bottom-left-radius: ${props => props.theme.windowHeight * 0.02}px;
+border-top-left-radius: ${props => props.theme.windowHeight * 0.02}px;
+border: 0px;
+margin: 2px;
+`;
+
+export const Label = styled.label`
+font-family: 'Lalezar', cursive;
+font-size: ${props => props.theme.isPortrait ? props.theme.windowHeight * 0.02 : props.theme.windowHeight * 0.03}px;
 `;
 
 export const SubmitButton = styled.button`

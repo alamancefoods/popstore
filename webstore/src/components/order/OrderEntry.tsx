@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { animated } from 'react-spring';
 import { useSelector, useDispatch } from 'react-redux';
+import { useSpring } from 'react-spring';
 import { updateChoice, updateOrder } from '../../redux/order/actions';
 import { NO_CHOICE, BUTTON_SVG, PLUS_SVG, MINUS_SVG } from '../../constants/constants';
 import { OrderEntryValueTypes } from './types';
@@ -36,6 +38,20 @@ const OrderEntry = () => {
   const siteLocation = useSelector((state: any) => state.locationReducer.location);
   const dispatch = useDispatch();
   const choiceCount = order[choice];
+  const [plusBounce, toggleP] = useState(true);
+  const { xPlus } = useSpring({
+    from: { xPlus: 0 },
+    xPlus: plusBounce
+      ? 1 : 0, config: { duration: 500 }
+  });
+  const [minBounce, toggleM] = useState(true);
+  const { xMin } = useSpring({
+    from: { xMin: 0 },
+    xMin: minBounce
+      ? 1 : 0, config: { duration: 500 }
+  });
+  const [firstRender, setRender] = useState(false);
+
 
 
   // Determine the correct SVG to use based on the picked pop state.
@@ -57,14 +73,16 @@ const OrderEntry = () => {
   };
 
   const selectionAddOne = () => {
+    toggleP(!plusBounce);
     let newChoice = choiceCount + 1;
-    console.log(siteLocation);
     dispatch(updateOrder(choice, newChoice));
   };
 
   const selectionMinusOne = () => {
+    setRender(true);
     if (choiceCount > 0) {
       let newChoice = choiceCount - 1;
+      toggleM(!minBounce);
       dispatch(updateOrder(choice, newChoice));
     }
   };
@@ -83,6 +101,7 @@ const OrderEntry = () => {
       }}
       validationSchema={OrderEntrySchema}
       onSubmit={(values: OrderEntryValueTypes, actions: FormikActions<OrderEntryValueTypes>) => {
+        console.log(display.windowWidth)
         let parsedNum = parseInt(values.popCount);
         if (isNaN(parsedNum)) {
         } else if (parsedNum === order[choice]) {
@@ -110,6 +129,8 @@ const OrderEntry = () => {
             width={minusIconWidth}
             height={minusIconHeight}
             onClick={selectionMinusOne}
+            xMin={xMin}
+            firstRender={firstRender}
           />
           <StyledPopField
             type="number"
@@ -121,6 +142,7 @@ const OrderEntry = () => {
             width={plusIconWidth}
             height={plusIconHeight}
             onClick={selectionAddOne}
+            xPlus={xPlus}
           />
 
           <ValueSubmissionContainer>

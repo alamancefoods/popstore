@@ -6,15 +6,9 @@ import { StyledBalance } from '../../styles/root/RootStyles';
 const Balance = ({ className }: { className?: string }) => {
   const order = useSelector((state: any) => state.orderReducer.order);
 
-  if (order.totalCount > 0) {
-    return (
-      <StyledBalance> ${convertPopCountToCharge(order.totalCount, false)}</StyledBalance>
-    );
-  } else {
-    return (
-      null
-    );
-  }
+  return (
+    <StyledBalance> Total: ${convertPopCountToCharge(order.totalCount, false)}</StyledBalance>
+  );
 };
 
 export default Balance;

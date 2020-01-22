@@ -48,3 +48,6 @@ export interface PaymentFormProps {
   display: any;
 }
 
+export interface PaymentFormState {
+  offset: number;
+}

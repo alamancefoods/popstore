@@ -4,6 +4,7 @@ import { ReactComponent as CartIcon } from '../../static/cart.svg';
 import { ThemeType } from '../../components/providers/QueryProvider';
 import { ConditionalLink } from '../../components/main/Navigation';
 import { SubmitAnim } from '../../components/main/SubmitAnim';
+import { HOCPanelSpring } from '../../springs/HOCPanelSpring';
 
 
 export const GlobalStyle = createGlobalStyle<{ theme: ThemeType }>`
@@ -95,7 +96,8 @@ export const StyledInfoBox = styled.aside`
     margin-top: 20px;
     margin-right: 20px;
     display: flex;
-    justify-content: ${props => props.theme.isPortrait ? 'flex-start' : 'space-around'};
+    align-items: center;
+    justify-content: ${props => props.theme.isPortrait ? 'center' : 'space-around'};
     flex-direction: ${props => props.theme.isOrder ? 'row' : 'column'};
     padding-right: ${props => props.theme.windowWidth * 0.05}px;
     padding-left: ${props => props.theme.windowWidth * 0.05}px;
@@ -112,7 +114,7 @@ export const StyledInfoBox = styled.aside`
     `;
 
 export const StyledBalance = styled.h4`
-  font-size: ${props => props.theme.isPortrait ? props.theme.windowHeight * 0.02 : props.theme.windowHeight * 0.03}px;
+  font-size: ${props => props.theme.isPortrait ? props.theme.windowHeight * 0.017 : props.theme.windowHeight * 0.03}px;
   font-family: 'Carter One', cursive;
 `;
 
@@ -151,6 +153,14 @@ z-index: 1;
 `;
 
 export const StyledPanel = styled(SubmitAnim)`
+grid-area: center;
+align-self: center;
+justify-self: center;
+filter: drop-shadow(7px -7px 0px rgb(110, 110, 224));
+z-index: 0;
+`;
+
+export const StyledHOCPanel = styled(HOCPanelSpring)`
 grid-area: center;
 align-self: center;
 justify-self: center;

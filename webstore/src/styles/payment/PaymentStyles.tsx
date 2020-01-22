@@ -14,8 +14,8 @@ const portraitPaymentGrid = `
 
 const landscapePaymentGrid = `
 "order profile payment"
-"order profile payment"
 "order profile submit"
+"order profile blank"
 `;
 
 
@@ -64,6 +64,7 @@ height: ${props => props.theme.isPortrait ? '' : props.theme.windowHeight * 0.6}
 `;
 
 export const StyledH1 = styled.h1`
+font-family: 'Lalezar', cursive;
 font-size: ${
   props => props.theme.isPortrait ?
     `${props.theme.windowHeight * 0.02}px` :
@@ -73,6 +74,7 @@ font-size: ${
 
 
 export const StyledH3 = styled.h3`
+font-family: 'Roboto Condensed', sans-serif;
 font-size: ${
   props => props.theme.isPortrait ?
     `${props.theme.windowHeight * 0.015}px` :
@@ -98,6 +100,7 @@ font-size: ${
 
 
 export const WrappedH3 = styled.h3<ZedProps>`
+font-family: 'Roboto Condensed', sans-serif;
 font-size: ${
   props =>
     props.nilCount >= 5 && props.theme.isPortrait ?
@@ -151,16 +154,18 @@ flex-direction: column
 `;
 
 export const CardLabel = styled.label` 
-font-size: ${props => props.theme.isPortrait ? props.theme.windowHeight * 0.02 : props.theme.windowHeight * 0.02}px;
+font-family: 'Lalezar', cursive;
+font-size: ${props => props.theme.windowHeight * 0.03}px;
 `;
 
 export const HiddenCardLabel = styled.label`
-font-size: ${props => props.theme.isPortrait ? props.theme.windowHeight * 0.02 : props.theme.windowHeight * 0.02}px;
+font-family: 'Lalezar', cursive;
+font-size: ${props => props.theme.windowHeight * 0.03}px;
 visibility: hidden;
 `;
 
 export const StyledCardCvc = styled(CardCVCElement)`
-width: 100%;
+width: ${props => props.theme.isPortrait ? props.theme.windowWidth * 0.1 : props.theme.windowWidth * 0.05}px;
 `;
 
 export const StyledCardNumber = styled(CardNumberElement)`
@@ -168,7 +173,7 @@ width: 100%;
 `;
 
 export const StyledCardExpiry = styled(CardExpiryElement)`
-width: 100%;
+width: ${props => props.theme.isPortrait ? props.theme.windowWidth * 0.3 : props.theme.windowWidth * 0.15}px;
 `;
 
 export const StyledCardBackground = styled.div`

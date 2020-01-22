@@ -33,10 +33,6 @@ const HeaderContainer = () => {
       {path === ORDER_ROUTE && order.totalCount > 0 ?
         <StyledInfoBox theme={theme}>
           <Balance />
-          {order.totalCount > 5 ?
-            <ConditionalLink location={ORDER_TO_PROFILE} route={PROFILE_ROUTE} /> :
-            null
-          }
         </StyledInfoBox>
         : path === PROFILE_ROUTE ?
           <StyledInfoBox>

@@ -1,11 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { animated } from 'react-spring';
+import { Spring } from 'react-spring/renderprops';
 import { completePurchase } from '../../redux/payment/actions';
 import { CardCVCElement, CardNumberElement, CardExpiryElement, injectStripe } from 'react-stripe-elements';
 import { devRootURL } from '../../utilities/rootURLS';
-import { PaymentFormProps } from './types';
+import { PaymentFormProps, PaymentFormState } from './types';
 import { popStringify } from '../../utilities/popConverter';
 import { convertPopCountToCharge } from '../../utilities/convertPopCountToCharge';
+import { MenuPanelSpring } from '../../springs/MenuPanelSpring';
+import { ReactComponent as ExampleIc } from '../../static/buttonPanel.svg';
+import {
+  SubmitButton,
+  ButtonContainer,
+  StyledHOCPanel
+} from '../../styles/root/RootStyles';
 import {
   StyledCardBackground,
   StyledCardContainer,
@@ -47,12 +56,10 @@ const NON_ZERO_FLAVOR_COUNT = 'NON_ZERO_FLAVOR_COUNT';
 
 
 
-class PaymentForm extends Component<PaymentFormProps, {}> {
+class PaymentForm extends Component<PaymentFormProps, PaymentFormState> {
   constructor(props: PaymentFormProps) {
     super(props);
-    this.state = {
-      nilCount: this.orderParser(NON_ZERO_FLAVOR_COUNT)
-    };
+    this.state = { offset: 100 };
     this.submit = this.submit.bind(this);
     this.orderParser = this.orderParser.bind(this);
     this.orderMapper = this.orderMapper.bind(this);
@@ -202,14 +209,22 @@ class PaymentForm extends Component<PaymentFormProps, {}> {
             </FormBlock>
           </StyledCardContainerBottom>
         </StyledCardBackground>
-        <StyledFormButton onClick={this.submit}>Submit Payment</StyledFormButton>
-        {/**Super hacky. Quick fix for conditional links.*/}
-        {this.props.display.isPortrait ?
-          <StyledLinkContainer>
-            <StyledProfileLink location={PORTRAIT_CHECKOUT_TO_PROFILE} route={PROFILE_ROUTE} />
-          </StyledLinkContainer>
-          : null
-        }
+        <ButtonContainer>
+          <SubmitButton type="submit">Pay Now</SubmitButton>
+          <Spring
+            from={{ dash: this.state.offset }}
+            to={{ dash: 0 }}
+          >
+            {props => (
+              <animated.svg
+                strokeDasharray={this.state.offset}
+                strokeDashoffset={props.dash}
+              >
+                <ExampleIc />
+              </animated.svg>
+            )}
+          </Spring>
+        </ButtonContainer>
       </StyledPaymentContainer>
     );
   }
@@ -218,3 +233,5 @@ class PaymentForm extends Component<PaymentFormProps, {}> {
 
 
 export default connect(mapStateToProps)(injectStripe(PaymentForm));
+
+        //<StyledFormButton onClick={this.submit}>Submit Payment</StyledFormButton>

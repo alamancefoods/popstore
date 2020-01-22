@@ -17,8 +17,7 @@ export const SubmitAnim = ({ panelSpring, className }: SubmitAnimInterface) => {
       strokeDasharray={100}
       strokeDashoffset={strokeDashoffset}
       height={display.windowHeight * 0.075}
-    ><ExampleIc
-      />
+    ><ExampleIc />
     </animated.svg >
   );
 };

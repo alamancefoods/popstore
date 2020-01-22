@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom';
-import { ORDER_ROUTE } from '../../constants/constants';
+import { useLocation, useHistory } from 'react-router-dom';
+import { PROFILE_ROUTE, ORDER_ROUTE } from '../../constants/constants';
 import { StyledOrderPrompt } from '../../styles/order/OrderStyles';
 import { MenuPanelSpring } from '../../springs/MenuPanelSpring';
 import {
@@ -15,6 +15,7 @@ export const Prompt = () => {
   const order = useSelector((state: any) => state.orderReducer.order);
   const totalCount = order.totalCount;
   const location = useLocation();
+  const history = useHistory();
   const panelSpring = MenuPanelSpring();
   let fontSize = 0;
 
@@ -27,7 +28,11 @@ export const Prompt = () => {
       } else {
         return (
           <ButtonContainer>
-            <SubmitButton type="submit">Checkout</SubmitButton>
+            <SubmitButton
+              onClick={() => history.push(PROFILE_ROUTE)}
+              type="submit">
+              Checkout
+            </SubmitButton>
             <StyledPanel panelSpring={panelSpring} />
           </ButtonContainer>
         );

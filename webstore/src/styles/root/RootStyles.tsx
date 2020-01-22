@@ -3,6 +3,7 @@ import styled, { createGlobalStyle } from 'styled-components';
 import { ReactComponent as CartIcon } from '../../static/cart.svg';
 import { ThemeType } from '../../components/providers/QueryProvider';
 import { ConditionalLink } from '../../components/main/Navigation';
+import { SubmitAnim } from '../../components/main/SubmitAnim';
 
 
 export const GlobalStyle = createGlobalStyle<{ theme: ThemeType }>`
@@ -94,19 +95,67 @@ export const StyledInfoBox = styled.aside`
     margin-top: 20px;
     margin-right: 20px;
     display: flex;
-    justify-content: space-around;
+    justify-content: ${props => props.theme.isPortrait ? 'flex-start' : 'space-around'};
     flex-direction: ${props => props.theme.isOrder ? 'row' : 'column'};
     padding-right: ${props => props.theme.windowWidth * 0.05}px;
     padding-left: ${props => props.theme.windowWidth * 0.05}px;
-    padding-top: ${props => props.theme.windowHeight * 0.02}px;
-    padding-bottom: ${props => props.theme.windowHeight * 0.02}px;
+    padding-top: ${props => props.theme.isPortrait ? props.theme.windowHeight * 0.02 : props.theme.windowHeight * 0.02}px;
+    padding-bottom: ${props => props.theme.isPortrait ? 0 : props.theme.windowHeight * 0.02}px;
     align-items: center;
     grid-area: right;
+    background: rgba(211, 234, 242, 1);
+    border-top-right-radius: ${props => props.theme.windowWidth * 0.01}px;
+    border-top-left-radius: ${props => props.theme.windowWidth * 0.01}px;
+    border-bottom-right-radius: ${props => props.theme.isPortrait ? 0 : props.theme.windowWidth * 0.01}px;
+    border-bottom-left-radius: ${props => props.theme.isPortrait ? 0 : props.theme.windowWidth * 0.01}px;
+    filter: drop-shadow(0px 2px 2px #757575);
     `;
 
 export const StyledBalance = styled.h4`
   font-size: ${props => props.theme.isPortrait ? props.theme.windowHeight * 0.02 : props.theme.windowHeight * 0.03}px;
   font-family: 'Carter One', cursive;
+`;
+
+interface SubmitButtonProps {
+  errors?: number;
+};
+
+
+const gridLayout = `
+"left center right"
+`;
+
+export const ButtonContainer = styled.div`
+grid-area: submit;
+display: grid;
+justify-content: center;
+align-content: center;
+grid-template-areas: ${gridLayout};
+justify-content: center;
+align-items: center;
+`;
+
+export const SubmitButton = styled.button<SubmitButtonProps>`
+grid-area: center;
+align-self: center;
+justify-self: center;
+color: ${props => props.errors != undefined && props.errors > 0 ? 'grey' : 'rgb(110, 110, 224)'};
+background-color: rgba(211,234,243,0);
+border: 0px;
+filter: drop-shadow(1px 1px 1px #757575);
+height: ${props => props.theme.isPortrait ? props.theme.windowHeight * 0.05 : props.theme.windowHeight * 0.07}px;
+font-family: 'Lalezar', cursive;
+font-size: ${props => props.theme.isPortrait ? props.theme.windowHeight * 0.03 : props.theme.windowHeight * 0.05}px;
+border-radius: ${props => props.theme.isPortrait ? props.theme.windowHeight * 0.03 : props.theme.windowHeight * 0.005}px;
+z-index: 1;
+`;
+
+export const StyledPanel = styled(SubmitAnim)`
+grid-area: center;
+align-self: center;
+justify-self: center;
+filter: drop-shadow(7px -7px 0px rgb(110, 110, 224));
+z-index: 0;
 `;
 
 export const StyledCartIcon = styled(CartIcon)`
@@ -115,7 +164,8 @@ export const StyledCartIcon = styled(CartIcon)`
 
 export const StyledNav = styled.nav`
   cursor: pointer;
-  font-size: ${props => props.theme.isPortrait ? props.theme.windowWidth * 0.04 : props.theme.windowWidth * 0.013}px;
+  font-size: ${props => props.theme.isPortrait ? props.theme.windowWidth * 0.02 : props.theme.windowWidth * 0.013}px;
+  font-family: 'Carter One', cursive;
 `;
 
 const alertPortraitGridArea = `secondRowBreak / firstColGreak / bottom / secondColBreak`;

@@ -33,10 +33,12 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-background: rgba(211, 234, 242, 0.85);
+background: rgba(211, 234, 242, 1);
 border-top-right-radius: ${props => props.theme.isPortrait ? '0%' : '10% 15%'}; 
+filter: drop-shadow(0px 2px 2px #757575);
 width: 100%;
 `;
+
 
 export const FormPlacement = styled.div`
 display: flex;
@@ -76,9 +78,8 @@ font-family: 'Lalezar', cursive;
 font-size: ${props => props.theme.isPortrait ? props.theme.windowHeight * 0.02 : props.theme.windowHeight * 0.03}px;
 `;
 
-export const SubmitButton = styled.button`
-grid-area: submit;
-`;
+
+
 
 export const StyledOrderNav = styled(ConditionalLink)`
 grid-area: order;

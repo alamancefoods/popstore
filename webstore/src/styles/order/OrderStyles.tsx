@@ -47,8 +47,9 @@ export const StyledButtonContainer = styled.main`
   grid-template-columns: ${props => props.theme.isPortrait ? "33% 33% 33%" : "20% 20% 20% 20% 20%"};
   grid-template-rows: auto;
   grid-template-areas: ${props => props.theme.isPortrait ? portraitButtonGrid : landscapeButtonGrid};
-  background: rgba(211, 234, 242, 0.85);
+  background: rgba(211, 234, 242, 1);
   border-top-right-radius: ${props => props.theme.isPortrait ? '0%' : '10% 15%'}; 
+  filter: drop-shadow(0px 2px 2px #757575);
 `;
 
 const SingleButtonGrid = `

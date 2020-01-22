@@ -1,11 +1,18 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { updateProfile, updateProfileComplete } from '../../redux/profile/actions';
 import { updateLocation } from '../../redux/location/actions';
 import { Formik, FormikActions, ErrorMessage, Field } from 'formik';
 import { STATE_LIST, CHECKOUT, PROFILE, CHECKOUT_ROUTE, ORDER, ORDER_ROUTE } from '../../constants/constants';
+import { MenuPanelSpring } from '../../springs/MenuPanelSpring';
 import { ProfileInterface } from './types';
+import {
+  SubmitButton,
+  ButtonContainer,
+  StyledPanel
+} from '../../styles/root/RootStyles';
+
 import {
   StyledProfileForm,
   StyledFieldContainer,
@@ -14,7 +21,6 @@ import {
   StyledField,
   StyledDropdown,
   Label,
-  SubmitButton,
   StyledOrderNav
 } from '../../styles/profile/ProfileStyles';
 import { ProfileEntrySchema } from './formSchemas';
@@ -28,6 +34,7 @@ const ProfileForm = ({ className }: { className?: string }) => {
   const profile = useSelector((state: any) => state.profileReducer.profile);
   const isProfileComplete = useSelector((state: any) => state.profileCompletionReducer.isComplete);
   const display = useSelector((state: any) => state.displayReducer.display);
+  const panelSpring = MenuPanelSpring();
 
 
 
@@ -114,20 +121,12 @@ const ProfileForm = ({ className }: { className?: string }) => {
               </FormPlacement>
             </StyledFieldContainer>
 
-            <SubmitButton type="submit">Submit</SubmitButton>
 
+            <ButtonContainer>
+              <SubmitButton errors={Object.entries(errors).length} type="submit">Submit</SubmitButton>
+              <StyledPanel panelSpring={panelSpring} />
+            </ButtonContainer>
 
-            {/* Incredibly ugly, but hopefully temporary and remedial.**/}
-            {display.isPortrait ?
-              <>
-                <StyledOrderNav location={ORDER} route={ORDER_ROUTE} />
-                {isProfileComplete ?
-                  <ConditionalLink location={CHECKOUT} route={CHECKOUT_ROUTE} /> :
-                  null
-                }
-              </>
-              : null
-            }
 
           </StyledProfileForm>
         )}

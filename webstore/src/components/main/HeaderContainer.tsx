@@ -23,6 +23,7 @@ const HeaderContainer = () => {
 
   const theme = {
     isOrder: true,
+    isPortrait: display.isPortrait,
     windowHeight: display.windowHeight,
     windowWidth: display.windowWidth
   };
@@ -39,17 +40,13 @@ const HeaderContainer = () => {
             null
           }
         </StyledInfoBox>
-        : path === PROFILE_ROUTE && !display.isPortrait ?
+        : path === PROFILE_ROUTE ?
           <StyledInfoBox>
             <ConditionalLink
               location={ORDER}
               route={ORDER_ROUTE} />
-            <ConditionalLink
-              location={CHECKOUT}
-              route={CHECKOUT_ROUTE}
-            />
           </StyledInfoBox>
-          : path === CHECKOUT_ROUTE && !display.isPortrait ?
+          : path === CHECKOUT_ROUTE ?
             <StyledInfoBox>
               <ConditionalLink
                 location={LANDSCAPE_CHECKOUT_TO_PROFILE}

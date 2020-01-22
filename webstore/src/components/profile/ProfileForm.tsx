@@ -2,7 +2,6 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 import { updateProfile, updateProfileComplete } from '../../redux/profile/actions';
-import { updateLocation } from '../../redux/location/actions';
 import { Formik, FormikActions, ErrorMessage, Field } from 'formik';
 import { STATE_LIST, CHECKOUT, PROFILE, CHECKOUT_ROUTE, ORDER, ORDER_ROUTE } from '../../constants/constants';
 import { MenuPanelSpring } from '../../springs/MenuPanelSpring';
@@ -68,7 +67,6 @@ const ProfileForm = ({ className }: { className?: string }) => {
           dispatch(
             updateProfileComplete(true)
           );
-          dispatch(updateLocation(CHECKOUT));
           setTimeout(() => (history.push(CHECKOUT_ROUTE), 1000));
         }}
       >

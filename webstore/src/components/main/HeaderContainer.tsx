@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useStore } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { updateLocation } from '../../redux/location/actions';
 import {
   ORDER_TO_PROFILE,
   LANDSCAPE_CHECKOUT_TO_PROFILE,
@@ -16,7 +15,6 @@ import Balance from './Balance';
 
 const HeaderContainer = () => {
   const order = useSelector((state: any) => state.orderReducer.order);
-  const siteLocation = useSelector((state: any) => state.locationReducer.location);
   const display = useSelector((state: any) => state.displayReducer.display);
   const history = useHistory();
   const path = history.location.pathname;

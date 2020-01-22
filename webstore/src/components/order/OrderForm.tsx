@@ -6,6 +6,7 @@ import { useOrderSprings } from '../../springs/orderSprings';
 import { BUTTON_OBJECTS } from '../../constants/constants';
 import { NO_CHOICE, ORDER } from '../../constants/constants';
 import {
+  StyledOrderForm,
   StyledButtonContainer,
   ScalingDiv
 } from '../../styles/order/OrderStyles';
@@ -22,19 +23,21 @@ const OrderForm = ({ className }: { className?: string }) => {
 
   return (
     <>
-      <StyledButtonContainer>
-        {orderSprings.map(({ mod, ...rest }, index) => (
-          <OrderButton
-            key={BUTTON_OBJECTS[index].popFlavor}
-            popButton={BUTTON_OBJECTS[index]}
-            mod={mod}
-          />
-        ))}
-      </StyledButtonContainer>
-      {choice === NO_CHOICE
-        ? <Prompt />
-        : <OrderEntry />
-      }
+      <StyledOrderForm>
+        <StyledButtonContainer>
+          {orderSprings.map(({ mod, ...rest }, index) => (
+            <OrderButton
+              key={BUTTON_OBJECTS[index].popFlavor}
+              popButton={BUTTON_OBJECTS[index]}
+              mod={mod}
+            />
+          ))}
+        </StyledButtonContainer>
+        {choice === NO_CHOICE
+          ? <Prompt />
+          : <OrderEntry />
+        }
+      </StyledOrderForm>
     </>
   );
 };

@@ -1,7 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { updateLocation } from '../../redux/location/actions';
 import {
   CART_SVG, ORDER, PROFILE,
   CHECKOUT, ORDER_TO_PROFILE,
@@ -21,7 +20,6 @@ export const ConditionalLink = ({ location, route, className }: LinkProps) => {
 
 
   function locationTransition(newLocation: string) {
-    dispatch(updateLocation(newLocation));
     history.push(route);
   };
 

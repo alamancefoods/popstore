@@ -18,7 +18,6 @@ const OrderButton = ({ popButton, mod }: PopButtonProps) => {
   const choice = useSelector((state: any) => state.choiceReducer.choice);
   const order = useSelector((state: any) => state.orderReducer.order);
   const dispatch = useDispatch();
-  const siteLocation = useSelector((state: any) => state.locationReducer.location);
 
 
 

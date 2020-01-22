@@ -18,7 +18,6 @@ import UserAlert from './UserAlert';
 const App: React.FC = () => {
   const isProfileComplete = useSelector((state: any) => state.profileCompletionReducer.isComplete);
   const order = useSelector((state: any) => state.orderReducer.order);
-  const siteLocation = useSelector((state: any) => state.locationReducer.location);
   const display = useSelector((state: any) => state.displayReducer.display);
 
 

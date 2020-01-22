@@ -10,14 +10,30 @@ import { Prompt } from '../../components/order/Prompt';
 
 import { ScaleAttrs } from './types';
 
-const StyledOrderForm = styled(props => <OrderForm {...props} />)`
-  display: flex;
-  flex-direction: column;
-  grid-area: firstRowBreak / firstColBreak / bottom / secondColBreak;
-  justify-content: center;
-  height: 100%;
+
+const portraitOrderGrid = `
+"order order order"
+"blank submit oblank"
 `;
 
+const landscapeOrderGrid = `
+"order order blank"
+"order order submit"
+"order order oblank"
+`;
+
+export const StyledOrderForm = styled.div`
+display: grid;
+grid-area: firstRowBreak / firstColBreak / bottom / stop;
+width: 100%;
+height: 100%;
+position: relative;
+justify-items: center;
+justify-content: center;
+grid-template-columns: ${props => props.theme.isPortrait ? "repeat(3, 33%)" : "35% 35% 30%"};
+grid-template-rows: ${props => props.theme.isPortrait ? "76.5% 23.5%" : "33% 33% 33%"};
+grid-template-areas: ${props => props.theme.isPortrait ? portraitOrderGrid : landscapeOrderGrid};
+`;
 
 // Styles for Buttons.
 const portraitButtonGrid = `
@@ -37,8 +53,8 @@ const landscapeButtonGrid = `
 
 
 export const StyledButtonContainer = styled.main`
+  grid-area: order;
   display: grid;
-  grid-area: firstRowBreak / firstColBreak / secondRowBreak / secondColBreak;
   height: 100%;
   width: 100%;
   position: relative;
@@ -170,9 +186,9 @@ const landscapeEntryGrid = `
 // 
 
 export const StyledPopForm = styled(Form)`
+  grid-area: submit;
   display: grid;
   z-index: 0;
-  grid-area: ${props => props.theme.isPortrait ? portraitEntryGridArea : landscapeEntryGridArea};
   grid-template-rows: ${props => props.theme.isPortrait ?
     `auto repeat(3, ${props.theme.windowHeight / 15}px)` :
     `${props.theme.windowHeight * 0.2}px
@@ -341,4 +357,3 @@ export const StyledOrderPrompt = styled.h3`
   align-self: center;
 `;
 
-export default StyledOrderForm;

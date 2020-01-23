@@ -30,7 +30,7 @@ const HeaderContainer = () => {
   return (
     <StyledHeader>
       <ResizedLogo />
-      {path === ORDER_ROUTE && order.totalCount > 0 ?
+      {path === ORDER_ROUTE ?
         <StyledInfoBox theme={theme}>
           <Balance />
         </StyledInfoBox>

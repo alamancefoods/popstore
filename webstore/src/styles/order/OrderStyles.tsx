@@ -352,7 +352,9 @@ export const StyledStatusContainer = styled.div`
 
 
 export const StyledOrderPrompt = styled.h3`
-  grid-area: ${props => props.theme.isPortrait ? portraitEntryGridArea : landscapeEntryGridArea};
+  grid-area: submit;
+  font-family: 'Lalezar', cursive;
+  font-size: ${props => props.theme.isPortrait ? props.theme.windowHeight * 0.03 : props.theme.windowHeight * 0.03}px;
   justify-self: center;
   align-self: center;
 `;

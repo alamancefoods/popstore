@@ -22,7 +22,7 @@ export const Prompt = () => {
   switch (location.pathname) {
     case ORDER_ROUTE:
       if (totalCount === 0) {
-        return <StyledOrderPrompt>Choose a fruit to picke a flavor!</StyledOrderPrompt>;
+        return <StyledOrderPrompt>Choose a fruit to pick a flavor!</StyledOrderPrompt>;
       } else if (totalCount >= 0 && totalCount < 5) {
         return <StyledOrderPrompt>Choose a minimum of five pops to qualify order.</StyledOrderPrompt>;
       } else {

@@ -1,10 +1,10 @@
 import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
+import { Spring } from 'react-spring/renderprops';
 import { ReactComponent as CartIcon } from '../../static/cart.svg';
 import { ThemeType } from '../../components/providers/QueryProvider';
 import { ConditionalLink } from '../../components/main/Navigation';
 import { SubmitAnim } from '../../components/main/SubmitAnim';
-import { HOCPanelSpring } from '../../springs/HOCPanelSpring';
 
 
 export const GlobalStyle = createGlobalStyle<{ theme: ThemeType }>`
@@ -160,13 +160,14 @@ filter: drop-shadow(7px -7px 0px rgb(110, 110, 224));
 z-index: 0;
 `;
 
-export const StyledHOCPanel = styled(HOCPanelSpring)`
+export const PaymentPanelSpring = styled(Spring)`
 grid-area: center;
 align-self: center;
 justify-self: center;
 filter: drop-shadow(7px -7px 0px rgb(110, 110, 224));
 z-index: 0;
 `;
+
 
 export const StyledCartIcon = styled(CartIcon)`
  cursor: pointer;

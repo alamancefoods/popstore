@@ -13,32 +13,33 @@ import { ReactComponent as ExampleIc } from '../../static/buttonPanel.svg';
 import {
   SubmitButton,
   ButtonContainer,
-  StyledHOCPanel
+  PaymentPanelSpring
 } from '../../styles/root/RootStyles';
 import {
-  StyledCardBackground,
-  StyledCardContainer,
-  StyledCardContainerBottom,
-  FormBlock,
-  CardLabel,
-  HiddenCardLabel,
-  StyledCardNumber,
-  StyledCardCvc,
-  StyledCardExpiry,
-  StyledPaymentContainer,
-  StyledLinkContainer,
-  StyledOrderLink,
-  StyledProfileLink,
-  StyledFormButton,
-  StyledProfileContainer,
-  StyledOrderContainer,
-  StyledOrderSubContainer,
-  StyledInfoContainer,
+  PaymentContainer,
+  SummaryContainer,
+  OrderSummary,
+  ProfileSummary,
+  InfoContainer,
+  OrderSubContainer,
   StyledH1,
   StyledH3,
   StyledH4,
   WrappedH3,
-  StyledLabel
+  StyledLabel,
+  CardBackground,
+  UpperCardElement,
+  LowerCardElements,
+  CardCvc,
+  CardNumber,
+  CardExpiry,
+  FormBlock,
+  CardLabel,
+  HiddenCardLabel,
+  LinkContainer,
+  OrderLink,
+  ProfileLink,
+  Button
 } from '../../styles/payment/PaymentStyles';
 import { ORDER, PORTRAIT_CHECKOUT_TO_PROFILE, ORDER_ROUTE, PROFILE_ROUTE } from '../../constants/constants';
 
@@ -147,34 +148,36 @@ class PaymentForm extends Component<PaymentFormProps, PaymentFormState> {
 
   render() {
     return (
-      <StyledPaymentContainer>
-        <StyledOrderContainer>
-          <StyledInfoContainer>
-            <StyledH1>Balance: ${this.orderParser(PARSED_BALANCE)}</StyledH1>
-            <StyledOrderSubContainer>
-              {this.orderMapper()}
-            </StyledOrderSubContainer>
-          </StyledInfoContainer>
-        </StyledOrderContainer>
-        <StyledProfileContainer>
-          <StyledInfoContainer >
-            <StyledH1>Name:</StyledH1>
-            <StyledH3>{this.props.profile.name}</StyledH3>
-            <StyledH1 onClick={() => this.orderParser(NON_ZERO_FLAVOR_COUNT)}>Address: </StyledH1>
-            <StyledH3>{this.props.profile.addressLineOne}</StyledH3>
-            {this.props.profile.addressLineTwo.length > 0 ?
-              <StyledH3>{this.props.profile.addressLineTwo}</StyledH3> :
-              null
-            }
-            <StyledH3>{this.props.profile.city}, {this.props.profile.state}</StyledH3>
-            <StyledH3>{this.props.profile.postalCode}</StyledH3>
-          </StyledInfoContainer>
-        </StyledProfileContainer>
-        <StyledCardBackground>
-          <StyledCardContainer>
+      <PaymentContainer>
+        <SummaryContainer>
+          <OrderSummary>
+            <InfoContainer>
+              <StyledH1>Balance: ${this.orderParser(PARSED_BALANCE)}</StyledH1>
+              <OrderSubContainer>
+                {this.orderMapper()}
+              </OrderSubContainer>
+            </InfoContainer>
+          </OrderSummary>
+          <ProfileSummary>
+            <InfoContainer >
+              <StyledH1>Name:</StyledH1>
+              <StyledH3>{this.props.profile.name}</StyledH3>
+              <StyledH1 onClick={() => this.orderParser(NON_ZERO_FLAVOR_COUNT)}>Address: </StyledH1>
+              <StyledH3>{this.props.profile.addressLineOne}</StyledH3>
+              {this.props.profile.addressLineTwo.length > 0 ?
+                <StyledH3>{this.props.profile.addressLineTwo}</StyledH3> :
+                null
+              }
+              <StyledH3>{this.props.profile.city}, {this.props.profile.state}</StyledH3>
+              <StyledH3>{this.props.profile.postalCode}</StyledH3>
+            </InfoContainer>
+          </ProfileSummary>
+        </SummaryContainer>
+        <CardBackground>
+          <UpperCardElement>
             <FormBlock>
               <CardLabel>Card Number</CardLabel>
-              <StyledCardNumber
+              <CardNumber
                 style={{
                   base: {
                     fontSize: `${this.props.display.isPortrait ? this.props.display.windowHeight * 0.02 : this.props.display.windowHeight * 0.02}px`,
@@ -183,11 +186,11 @@ class PaymentForm extends Component<PaymentFormProps, PaymentFormState> {
                 }}
               />
             </FormBlock>
-          </StyledCardContainer>
-          <StyledCardContainerBottom>
+          </UpperCardElement>
+          <LowerCardElements>
             <FormBlock>
               <CardLabel>Expiration</CardLabel>
-              <StyledCardExpiry
+              <CardExpiry
                 style={{
                   base: {
                     fontSize: `${this.props.display.isPortrait ? this.props.display.windowHeight * 0.02 : this.props.display.windowHeight * 0.02}px`,
@@ -198,7 +201,7 @@ class PaymentForm extends Component<PaymentFormProps, PaymentFormState> {
             </FormBlock>
             <FormBlock>
               <HiddenCardLabel>CVC</HiddenCardLabel>
-              <StyledCardCvc
+              <CardCvc
                 style={{
                   base: {
                     fontSize: `${this.props.display.isPortrait ? this.props.display.windowHeight * 0.02 : this.props.display.windowHeight * 0.02}px`,
@@ -207,8 +210,8 @@ class PaymentForm extends Component<PaymentFormProps, PaymentFormState> {
                 }}
               />
             </FormBlock>
-          </StyledCardContainerBottom>
-        </StyledCardBackground>
+          </LowerCardElements>
+        </CardBackground>
         <ButtonContainer>
           <SubmitButton type="submit">Pay Now</SubmitButton>
           <Spring
@@ -217,6 +220,13 @@ class PaymentForm extends Component<PaymentFormProps, PaymentFormState> {
           >
             {props => (
               <animated.svg
+                style={{
+                  gridArea: 'center',
+                  alignSelf: 'center',
+                  justifySelf: 'center',
+                  filter: 'drop-shadow(7px -7px 0px rgb(110, 110, 224))'
+                }}
+                height={this.props.display.windowHeight * 0.075}
                 strokeDasharray={this.state.offset}
                 strokeDashoffset={props.dash}
               >
@@ -225,7 +235,7 @@ class PaymentForm extends Component<PaymentFormProps, PaymentFormState> {
             )}
           </Spring>
         </ButtonContainer>
-      </StyledPaymentContainer>
+      </PaymentContainer>
     );
   }
 

@@ -4,7 +4,7 @@ import { PURCHASE_DEFAULT } from '../stateDefaults';
 
 const initialState: PurchaseState = PURCHASE_DEFAULT;
 
-export function purchaseReducer(
+export function paymentReducer(
   state = initialState,
   action: PurchaseActionTypes
 ): PurchaseState {

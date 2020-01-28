@@ -34,15 +34,26 @@ export const ConditionalLink = ({ location, route, className }: LinkProps) => {
       );
     case LANDSCAPE_CHECKOUT_TO_PROFILE:
       return (
-        <StyledNav className={className} onClick={() => locationTransition(PROFILE)}>Return to Profile</StyledNav>
-      );
-    case PORTRAIT_CHECKOUT_TO_PROFILE:
-      return (
-        <StyledNav className={className} onClick={() => locationTransition(PROFILE)}>Back</StyledNav>
+        <StyledNav
+          className={className}
+          onClick={() => locationTransition(PROFILE)}
+        >{
+            display.isPortrait ?
+              "Previous Page" :
+              "Return To Profile"
+          }
+        </StyledNav>
       );
     case ORDER:
       return (
-        <StyledNav className={className} onClick={() => locationTransition(ORDER)}>Return to Order</StyledNav>
+        <StyledNav
+          className={className}
+          onClick={() => locationTransition(ORDER)}
+        >{
+            display.isPortrait ?
+              "Previous Page" :
+              "Return to Order"
+          }</StyledNav>
       );
     case CHECKOUT:
       return (

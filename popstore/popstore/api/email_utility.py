@@ -5,7 +5,7 @@ class EmailDispatch:
         self.order = order
         self.profile = profile
         self.user = 'afisalesbot@gmail.com'
-        self.password = 'PortoJengaCutsmart'
+        self.password = 'hello4friend'
 
 
     def send_message(self):

@@ -114,7 +114,7 @@ export const StyledInfoBox = styled.aside`
     `;
 
 export const StyledBalance = styled.h4`
-  font-size: ${props => props.theme.isPortrait ? props.theme.windowHeight * 0.017 : props.theme.windowHeight * 0.03}px;
+  font-size: ${props => props.theme.isPortrait ? props.theme.windowHeight * 0.02 : props.theme.windowHeight * 0.03}px;
   font-family: 'Carter One', cursive;
 `;
 
@@ -125,6 +125,15 @@ interface SubmitButtonProps {
 
 const gridLayout = `
 "left center right"
+`;
+
+export const PromptMessage = styled.h3`
+  grid-area: submit;
+  font-family: 'Lalezar', cursive;
+  font-size: ${props => props.theme.isPortrait ? props.theme.windowHeight * 0.03 : props.theme.windowHeight * 0.04}px;
+  justify-self: center;
+  align-self: center;
+  width: ${props => props.theme.isPortrait ? '100%' : '50%'};
 `;
 
 export const ButtonContainer = styled.div`
@@ -141,13 +150,18 @@ export const SubmitButton = styled.button<SubmitButtonProps>`
 grid-area: center;
 align-self: center;
 justify-self: center;
-color: ${props => props.errors != undefined && props.errors > 0 ? 'grey' : 'rgb(110, 110, 224)'};
+color: ${props =>
+    props.errors !== undefined && props.errors > 100 ?
+      'palevioletred' :
+      props.errors !== undefined && props.errors > 0 ?
+        'grey' :
+        'rgb(110, 110, 224)'};
 background-color: rgba(211,234,243,0);
 border: 0px;
 filter: drop-shadow(1px 1px 1px #757575);
 height: ${props => props.theme.isPortrait ? props.theme.windowHeight * 0.05 : props.theme.windowHeight * 0.07}px;
 font-family: 'Lalezar', cursive;
-font-size: ${props => props.theme.isPortrait ? props.theme.windowHeight * 0.03 : props.theme.windowHeight * 0.05}px;
+font-size: ${props => props.theme.isPortrait ? props.theme.windowHeight * 0.03 : props.theme.windowHeight * 0.04}px;
 border-radius: ${props => props.theme.isPortrait ? props.theme.windowHeight * 0.03 : props.theme.windowHeight * 0.005}px;
 z-index: 1;
 `;
@@ -156,7 +170,14 @@ export const StyledPanel = styled(SubmitAnim)`
 grid-area: center;
 align-self: center;
 justify-self: center;
-filter: drop-shadow(7px -7px 0px rgb(110, 110, 224));
+filter: drop-shadow(
+${props => props.theme.isPortrait ?
+    props.theme.windowWidth * 0.01 :
+    props.theme.windowWidth * 0.005}px 
+-${props => props.theme.isPortrait ?
+    props.theme.windowWidth * 0.01 :
+    props.theme.windowWidth * 0.005}px 0px rgb(110, 110, 224));
+width: ${props => props.theme.windowWidth * 0.25}px;
 z-index: 0;
 `;
 
@@ -175,7 +196,7 @@ export const StyledCartIcon = styled(CartIcon)`
 
 export const StyledNav = styled.nav`
   cursor: pointer;
-  font-size: ${props => props.theme.isPortrait ? props.theme.windowWidth * 0.02 : props.theme.windowWidth * 0.013}px;
+  font-size: ${props => props.theme.isPortrait ? props.theme.windowWidth * 0.03 : props.theme.windowWidth * 0.013}px;
   font-family: 'Carter One', cursive;
 `;
 

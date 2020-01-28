@@ -20,13 +20,7 @@ import {
   SummaryContainer,
   OrderSummary,
   ProfileSummary,
-  InfoContainer,
-  OrderSubContainer,
-  StyledH1,
-  StyledH3,
-  StyledH4,
-  WrappedH3,
-  StyledLabel,
+  CreditSummary,
   CardBackground,
   UpperCardElement,
   LowerCardElements,
@@ -36,6 +30,13 @@ import {
   FormBlock,
   CardLabel,
   HiddenCardLabel,
+  CardErrorWarning,
+  InfoContainer,
+  OrderSubContainer,
+  StyledLabel,
+  StyledH3,
+  StyledH4,
+  WrappedH3,
   LinkContainer,
   OrderLink,
   ProfileLink,
@@ -47,7 +48,8 @@ function mapStateToProps(state: any) {
   return {
     profile: state.profileReducer.profile,
     order: state.orderReducer.order,
-    display: state.displayReducer.display
+    display: state.displayReducer.display,
+    isComplete: state.paymentReducer.isComplete
   };
 };
 
@@ -60,7 +62,11 @@ const NON_ZERO_FLAVOR_COUNT = 'NON_ZERO_FLAVOR_COUNT';
 class PaymentForm extends Component<PaymentFormProps, PaymentFormState> {
   constructor(props: PaymentFormProps) {
     super(props);
-    this.state = { offset: 100 };
+    this.state = {
+      offset: 100,
+      cardError: 0,
+      submitPrompt: "Pay Now"
+    };
     this.submit = this.submit.bind(this);
     this.orderParser = this.orderParser.bind(this);
     this.orderMapper = this.orderMapper.bind(this);
@@ -75,10 +81,8 @@ class PaymentForm extends Component<PaymentFormProps, PaymentFormState> {
     switch (parseChoice) {
       case PARSED_BALANCE:
         return convertPopCountToCharge(balance, false);
-        break;
       case NON_ZERO_FLAVORS:
         return Object.entries(orderCopy);
-        break;
       case NON_ZERO_FLAVOR_COUNT:
         let nonNilCount = 0;
         for (let attr in orderCopy) {
@@ -87,7 +91,6 @@ class PaymentForm extends Component<PaymentFormProps, PaymentFormState> {
           };
         }
         return nonNilCount;
-        break;
       default:
         break;
     }
@@ -135,10 +138,21 @@ class PaymentForm extends Component<PaymentFormProps, PaymentFormState> {
       }
       if (response!.ok) {
         this.props.dispatch(completePurchase());
+        console.log('oll korrect!');
       } else {
         console.log(response);
       }
     } else {
+      this.setState({
+        cardError: 101,
+        submitPrompt: "Card Error"
+      });
+      setTimeout(() => {
+        this.setState({
+          cardError: 0,
+          submitPrompt: "Pay Now"
+        });
+      }, 3500);
       console.log('That value doesn\'t work!');
     }
   }
@@ -152,7 +166,7 @@ class PaymentForm extends Component<PaymentFormProps, PaymentFormState> {
         <SummaryContainer>
           <OrderSummary>
             <InfoContainer>
-              <StyledH1>Balance: ${this.orderParser(PARSED_BALANCE)}</StyledH1>
+              <StyledLabel>Balance: ${this.orderParser(PARSED_BALANCE)}</StyledLabel>
               <OrderSubContainer>
                 {this.orderMapper()}
               </OrderSubContainer>
@@ -160,9 +174,9 @@ class PaymentForm extends Component<PaymentFormProps, PaymentFormState> {
           </OrderSummary>
           <ProfileSummary>
             <InfoContainer >
-              <StyledH1>Name:</StyledH1>
+              <StyledLabel>Name:</StyledLabel>
               <StyledH3>{this.props.profile.name}</StyledH3>
-              <StyledH1 onClick={() => this.orderParser(NON_ZERO_FLAVOR_COUNT)}>Address: </StyledH1>
+              <StyledLabel onClick={() => this.orderParser(NON_ZERO_FLAVOR_COUNT)}>Address: </StyledLabel>
               <StyledH3>{this.props.profile.addressLineOne}</StyledH3>
               {this.props.profile.addressLineTwo.length > 0 ?
                 <StyledH3>{this.props.profile.addressLineTwo}</StyledH3> :
@@ -172,48 +186,65 @@ class PaymentForm extends Component<PaymentFormProps, PaymentFormState> {
               <StyledH3>{this.props.profile.postalCode}</StyledH3>
             </InfoContainer>
           </ProfileSummary>
+          <CreditSummary>
+            <CardBackground>
+              <UpperCardElement>
+                <FormBlock>
+                  <StyledLabel>Card Number</StyledLabel>
+                  <CardNumber
+                    style={{
+                      base: {
+                        fontSize: `${this.props.display.isPortrait ? this.props.display.windowHeight * 0.02 : this.props.display.windowHeight * 0.02}px`,
+                        color: 'rgba(110, 110, 224)'
+                      }
+                    }}
+                  />
+                </FormBlock>
+              </UpperCardElement>
+              <LowerCardElements>
+                <FormBlock>
+                  <StyledLabel>Expiration</StyledLabel>
+                  <CardExpiry
+                    style={{
+                      base: {
+                        fontSize: `${this.props.display.isPortrait ? this.props.display.windowHeight * 0.02 : this.props.display.windowHeight * 0.02}px`,
+                        color: 'rgba(110, 110, 224)'
+                      }
+                    }}
+                  />
+                </FormBlock>
+                <FormBlock>
+                  <HiddenCardLabel>CVC</HiddenCardLabel>
+                  <CardCvc
+                    style={{
+                      base: {
+                        fontSize: `${this.props.display.isPortrait ? this.props.display.windowHeight * 0.02 : this.props.display.windowHeight * 0.02}px`,
+                        color: 'rgba(110, 110, 224)'
+                      }
+                    }}
+                  />
+                </FormBlock>
+              </LowerCardElements>
+            </CardBackground>
+            {this.state.cardError > 0 ?
+              this.props.display.isPortrait ?
+                null :
+                <CardErrorWarning>
+                  Whoops! <br />
+                  Something didn't compute. <br />
+                  Try entering that number again!
+              </CardErrorWarning>
+              : null}
+          </CreditSummary>
         </SummaryContainer>
-        <CardBackground>
-          <UpperCardElement>
-            <FormBlock>
-              <CardLabel>Card Number</CardLabel>
-              <CardNumber
-                style={{
-                  base: {
-                    fontSize: `${this.props.display.isPortrait ? this.props.display.windowHeight * 0.02 : this.props.display.windowHeight * 0.02}px`,
-                    color: 'rgba(240, 150, 120)'
-                  }
-                }}
-              />
-            </FormBlock>
-          </UpperCardElement>
-          <LowerCardElements>
-            <FormBlock>
-              <CardLabel>Expiration</CardLabel>
-              <CardExpiry
-                style={{
-                  base: {
-                    fontSize: `${this.props.display.isPortrait ? this.props.display.windowHeight * 0.02 : this.props.display.windowHeight * 0.02}px`,
-                    color: 'rgba(240, 150, 120)'
-                  }
-                }}
-              />
-            </FormBlock>
-            <FormBlock>
-              <HiddenCardLabel>CVC</HiddenCardLabel>
-              <CardCvc
-                style={{
-                  base: {
-                    fontSize: `${this.props.display.isPortrait ? this.props.display.windowHeight * 0.02 : this.props.display.windowHeight * 0.02}px`,
-                    color: 'rgba(240, 150, 120)'
-                  }
-                }}
-              />
-            </FormBlock>
-          </LowerCardElements>
-        </CardBackground>
         <ButtonContainer>
-          <SubmitButton type="submit">Pay Now</SubmitButton>
+          <SubmitButton
+            onClick={this.submit}
+            type="submit"
+            errors={this.state.cardError}
+          >
+            {this.state.submitPrompt}
+          </SubmitButton>
           <Spring
             from={{ dash: this.state.offset }}
             to={{ dash: 0 }}

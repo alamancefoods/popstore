@@ -50,4 +50,6 @@ export interface PaymentFormProps {
 
 export interface PaymentFormState {
   offset: number;
+  cardError: number;
+  submitPrompt: string;
 }

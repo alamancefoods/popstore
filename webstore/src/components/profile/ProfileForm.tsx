@@ -18,6 +18,7 @@ import {
   FormPlacement,
   InputSection,
   StyledField,
+  ErrBox,
   StyledDropdown,
   Label,
   StyledOrderNav
@@ -67,7 +68,7 @@ const ProfileForm = ({ className }: { className?: string }) => {
           dispatch(
             updateProfileComplete(true)
           );
-          setTimeout(() => (history.push(CHECKOUT_ROUTE), 1000));
+          history.push(CHECKOUT_ROUTE)
         }}
       >
         {({ errors, touched }) => (
@@ -77,23 +78,31 @@ const ProfileForm = ({ className }: { className?: string }) => {
               <FormPlacement>
                 <InputSection>
                   <Label>Name:</Label>
-                  <StyledField name="name" type="text" placeholder="Dr Archibald Pop MD" />
-                  <ErrorMessage name="name" />
+                  <StyledField errors={errors.name} name="name" type="text" placeholder="Dr Archibald Pop MD" />
+                  <ErrBox>
+                    <ErrorMessage name="name" />
+                  </ErrBox>
                 </InputSection>
                 <InputSection>
                   <Label>Address Line One:</Label>
-                  <StyledField name="addressLineOne" type="text" placeholder="1616 Funfoods Lane" />
-                  <ErrorMessage name="addressLineOne" />
+                  <StyledField errors={errors.addressLineOne} name="addressLineOne" type="text" placeholder="1616 Funfoods Lane" />
+                  <ErrBox>
+                    <ErrorMessage name="addressLineOne" />
+                  </ErrBox>
                 </InputSection>
                 <InputSection>
                   <Label>Address Line Two:</Label>
-                  <StyledField name="addressLineTwo" type="text" placeholder="Room 132" />
-                  <ErrorMessage name="addressLineTwo" />
+                  <StyledField errors={errors.addressLineTwo} name="addressLineTwo" type="text" placeholder="Room 132" />
+                  <ErrBox>
+                    <ErrorMessage name="addressLineTwo" />
+                  </ErrBox>
                 </InputSection>
                 <InputSection>
                   <Label>City:</Label>
-                  <StyledField name="city" type="text" placeholder="Burlington" />
-                  <ErrorMessage name="city" />
+                  <StyledField errors={errors.city} name="city" type="text" placeholder="Burlington" />
+                  <ErrBox>
+                    <ErrorMessage name="city" />
+                  </ErrBox>
                 </InputSection>
                 <InputSection>
                   <Label>State:</Label>
@@ -108,20 +117,25 @@ const ProfileForm = ({ className }: { className?: string }) => {
                 </InputSection>
                 <InputSection>
                   <Label>Zip Code:</Label>
-                  <StyledField name="postalCode" type="string" placeholder="27515" />
-                  <ErrorMessage name="postalCode" />
+                  <StyledField errors={errors.postalCode} name="postalCode" type="string" placeholder="27515" />
+                  <ErrBox>
+                    <ErrorMessage name="postalCode" />
+                  </ErrBox>
                 </InputSection>
                 <InputSection>
                   <Label>Email:</Label>
-                  <StyledField name="email" type="email" placeholder="docpop@popmail.com" />
-                  <ErrorMessage name="email" />
+                  <StyledField errors={errors.email} name="email" type="email" placeholder="docpop@popmail.com" />
+                  <ErrBox>
+                    <ErrorMessage name="email" />
+                  </ErrBox>
                 </InputSection>
               </FormPlacement>
             </StyledFieldContainer>
 
 
             <ButtonContainer>
-              <SubmitButton errors={Object.entries(errors).length} type="submit">Submit</SubmitButton>
+              <SubmitButton onClick={() =>
+                console.log(errors)} errors={Object.entries(errors).length} type="submit">Submit</SubmitButton>
               <StyledPanel panelSpring={panelSpring} />
             </ButtonContainer>
 

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Form, Field } from 'formik';
 import { ConditionalLink } from '../../components/main/Navigation';
+import { ErrorMessage } from 'formik';
 
 const portraitProfileGrid = `
 "form form form"
@@ -49,19 +50,34 @@ align-items: left;
 
 
 export const InputSection = styled.div`
+margin: 5px;
 display: flex;
 flex-direction: column;
 justify-content: left;
 `;
 
-export const StyledField = styled(Field)`
-width: ${props => props.theme.isPortrait ? props.theme.windowWidth * 0.75 : props.theme.windowWidth * 0.25}px;
-height: ${props => props.theme.isPortrait ? props.theme.windowHeight * 0.04 : props.theme.windowHeight * 0.05}px;
+interface FieldProps {
+  errors?: any;
+};
+
+export const StyledField = styled(Field) <FieldProps>`
+width: ${props => props.theme.isPortrait ? props.theme.windowWidth * 0.7 : props.theme.windowWidth * 0.25}px;
+height: ${props => props.theme.isPortrait ? props.theme.windowHeight * 0.03 : props.theme.windowHeight * 0.04}px;
 border-radius: ${props => props.theme.windowHeight * 0.02}px;
 background: rgba(120, 210, 240, 0.75);
-border: 0px;
+border: ${props => props.errors ? '1px solid red' : '0px'};
 margin: 2px;
 `;
+
+
+export const ErrBox = styled.div`
+height: ${props => props.theme.windowHeight * 0.001}px;
+font-size: ${props => props.theme.isPortrait ?
+    props.theme.windowHeight * 0.015 :
+    props.theme.windowHeight * 0.02}px;
+color: red;
+`;
+
 
 export const StyledDropdown = styled(Field)`
 width: ${props => props.theme.isPortrait ? props.theme.windowWidth * 0.20 : props.theme.windowWidth * 0.05}px;

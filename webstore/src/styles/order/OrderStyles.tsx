@@ -330,17 +330,22 @@ grid-area: alert;
 
 export const StyledFlavorSubmitButton = styled.button`
   display: table;
-  font-size: ${props => props.theme.isPortrait ? '3vh' : '4vh'};
-  border: 2px solid rgb(56, 184, 50);
-  border-radius: ${props => props.theme.windowHeight * 0.05}px;
+  font-size: ${props => props.theme.isPortrait ? '3vh' : '5vh'};
+  font-family: 'Lalezar', cursive;
+  background-color: rgba(211,234,243,0);
+  color: green;
+  border: 0px;
 `;
 
 export const StyledFlavorDeleteButton = styled.button`
   display: table;
   font-size: ${props => props.theme.isPortrait ? '3vh' : '4vh'};
   margin: ${props => props.theme.windowHeight * 0.02}px;
-  border: 2px solid rgb(255, 23, 73);
-  border-radius: ${props => props.theme.windowHeight * 0.05}px;
+  font-size: ${props => props.theme.isPortrait ? '3vh' : '5vh'};
+  font-family: 'Lalezar', cursive;
+  background-color: rgba(211,234,243,0);
+  color: red;
+  border: 0px;
 `;
 
 export const StyledStatusContainer = styled.div`
@@ -348,14 +353,5 @@ export const StyledStatusContainer = styled.div`
   grid-area: secondRowBreak / firstColBreak / bottom / secondColBreak;
   flex-direction: row;
   justify-content: space-around;
-`;
-
-
-export const StyledOrderPrompt = styled.h3`
-  grid-area: submit;
-  font-family: 'Lalezar', cursive;
-  font-size: ${props => props.theme.isPortrait ? props.theme.windowHeight * 0.03 : props.theme.windowHeight * 0.03}px;
-  justify-self: center;
-  align-self: center;
 `;
 

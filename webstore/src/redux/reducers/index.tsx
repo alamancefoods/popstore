@@ -4,6 +4,7 @@ import { choiceReducer } from '../order/choiceReducer';
 import { initReducer } from '../order/initReducer';
 import { displayReducer } from '../display/displayReducer';
 import { profileReducer } from '../profile/profileReducer';
+import { paymentReducer } from '../payment/paymentReducer';
 import { profileCompletionReducer } from '../profile/profileCompletionReducer';
 
 export default combineReducers({
@@ -12,5 +13,6 @@ export default combineReducers({
   initReducer,
   displayReducer,
   profileReducer,
+  paymentReducer,
   profileCompletionReducer
 });

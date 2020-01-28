@@ -2,10 +2,10 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation, useHistory } from 'react-router-dom';
 import { PROFILE_ROUTE, ORDER_ROUTE } from '../../constants/constants';
-import { StyledOrderPrompt } from '../../styles/order/OrderStyles';
 import { MenuPanelSpring } from '../../springs/MenuPanelSpring';
 import {
   SubmitButton,
+  PromptMessage,
   ButtonContainer,
   StyledPanel
 } from '../../styles/root/RootStyles';
@@ -22,9 +22,9 @@ export const Prompt = () => {
   switch (location.pathname) {
     case ORDER_ROUTE:
       if (totalCount === 0) {
-        return <StyledOrderPrompt>Choose a fruit to pick a flavor!</StyledOrderPrompt>;
+        return <PromptMessage>Choose a fruit to pick a flavor!</PromptMessage>;
       } else if (totalCount >= 0 && totalCount < 5) {
-        return <StyledOrderPrompt>Choose a minimum of five pops to qualify order.</StyledOrderPrompt>;
+        return <PromptMessage>Choose a minimum of five pops to qualify order.</PromptMessage>;
       } else {
         return (
           <ButtonContainer>
@@ -38,7 +38,7 @@ export const Prompt = () => {
         );
       }
     default:
-      return <StyledOrderPrompt>The pops are behaving strangly</StyledOrderPrompt>;
+      return <PromptMessage>The pops are behaving strangly</PromptMessage>;
 
   };
 };

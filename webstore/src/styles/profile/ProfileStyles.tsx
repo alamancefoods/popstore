@@ -33,7 +33,7 @@ grid-area: form;
 display: flex;
 flex-direction: column;
 justify-content: center;
-align-items: center;
+align-items: ${props => props.theme.isPortrait ? 'center' : 'left'};
 background: rgba(211, 234, 242, 1);
 border-top-right-radius: ${props => props.theme.isPortrait ? '0%' : '10% 15%'}; 
 filter: drop-shadow(0px 2px 2px #757575);
@@ -43,9 +43,12 @@ width: 100%;
 
 export const FormPlacement = styled.div`
 display: flex;
+flex-wrap: wrap;
+padding-left: ${props => props.theme.isPortrait ? 0 : props.theme.windowWidth * 0.02}px;
 flex-direction: column;
-justify-content: center;
+justify-content: ${props => props.theme.isPortrait ? 'center' : 'flex-start'};
 align-items: left;
+height: ${props => props.theme.isPortrait ? '' : props.theme.windowHeight * 0.6}px;
 `;
 
 

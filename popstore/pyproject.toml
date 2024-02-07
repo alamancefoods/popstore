@@ -6,7 +6,7 @@ authors = ["MTempleman <huntertempleman@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.7"
-django = "^2.2"
+django = ">=2.2,<4.0"
 django-cors-headers = "^3.0"
 pycountry = "^18.12"
 djangorestframework = "^3.9"
